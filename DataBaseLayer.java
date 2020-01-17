@@ -17,6 +17,7 @@ public class DataBaseLayer {
    private ResultSet result;
    private int modification;
    /*J'ai juste mis un commentaire ici pour essayer si Áa marche*/
+   /*Áa marche pas mais je rÈessaye*/
    DataBaseLayer(String requete){
        //R√©cup√©ration des donn√©es SQL
         /* Chargement du driver JDBC pour MySQL */
