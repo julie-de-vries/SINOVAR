@@ -16,25 +16,25 @@ import java.sql.*;
 public class DataBaseLayer {
    private ResultSet result;
    private int modification;
-   /*J'ai juste mis un commentaire ici pour essayer si �a marche*/
-   /*�a marche pas mais je r�essaye*/
+   
+   
    DataBaseLayer(String requete){
-       //Récupération des données SQL
+       //RÃ©cupÃ©ration des donnÃ©es SQL
         /* Chargement du driver JDBC pour MySQL */
         try {
             Class.forName( "com.mysql.jdbc.Driver" );
         } catch ( ClassNotFoundException e ) {
-            /* Gérer les éventuelles erreurs ici. */
+            /* GÃ©rer les Ã©ventuelles erreurs ici. */
         }
-        /* Connexion à la base de données */
+        /* Connexion Ã  la base de donnÃ©es */
         String url = "jdbc:mysql://localhost:3306/bdd_sdzee";
         Connection connexion = null;
         try {
             connexion = DriverManager.getConnection( url );
-            /* Création de l'objet gérant les requêtes */
+            /* CrÃ©ation de l'objet gÃ©rant les requÃªtes */
             Statement statement = connexion.createStatement();
-            /* Exécution d'une requête de lecture */
-            if (requete.startsWith("SELECT")){/*selon si la requête est une lecture ou une modification*/
+            /* ExÃ©cution d'une requÃªte de lecture */
+            if (requete.startsWith("SELECT")){/*selon si la requÃªte est une lecture ou une modification*/
                 result = statement.executeQuery( requete );
             }
             else{
@@ -42,7 +42,7 @@ public class DataBaseLayer {
                 /*vaut soit le nombre de colonnes resultat ou 0 si il n'y pas de resultat*/ 
             }
         } catch ( SQLException e ) {
-            /* Gérer les éventuelles erreurs ici */
+            /* GÃ©rer les Ã©ventuelles erreurs ici */
         } finally {
             if ( connexion != null )
                 try {
