@@ -16,7 +16,7 @@ import java.sql.*;
 public class DataBaseLayer {
    private ResultSet result;
    private int modification;
-   
+   /*J'ai juste mis un commentaire ici pour essayer si �a marche*/
    DataBaseLayer(String requete){
        //Récupération des données SQL
         /* Chargement du driver JDBC pour MySQL */
