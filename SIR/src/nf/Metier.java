@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sir;
+package nf;
 
 /**
  *
  * @author Peuillon
  */
-public class CompteRendu {
-    
-    private String titre;
-    private String contenu;
-    private Professionnels professionnels;
+public enum Metier {
+    Practicien,
+    SecretairesMedicales,
+    Manipulateurs,
+    Interne,
 }

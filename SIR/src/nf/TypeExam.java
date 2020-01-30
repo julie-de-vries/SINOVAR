@@ -3,15 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sir;
+package nf;
 
 /**
  *
  * @author Peuillon
  */
-public enum Metier {
-    Practicien,
-    SecretairesMedicales,
-    Manipulateurs,
-    Interne,
+public enum TypeExam {
+    Scanner,
+    Angiographie,
+    IRM,
+    RadioArgentique,
+    AccelerateurParticule,
+    Echoendoscope,
+    Mammographe,
+    
 }
