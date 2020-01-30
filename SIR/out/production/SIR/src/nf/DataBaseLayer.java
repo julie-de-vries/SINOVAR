@@ -12,11 +12,12 @@ package nf;
 
 
 import java.sql.*;
-import java.util.ArrayList;
 
 public class DataBaseLayer {
-    private ArrayList<ArrayList<String>> result=new ArrayList<>();
-    private int modification;
+    private final static String TABLE_USERS_NAME_COLUMN_NAME = "nom";
+    private ResultSet result;
+   private int modification;
+   private Connection connexion;
 
     DataBaseLayer(String requete){
        //Récupération des données SQL
@@ -29,11 +30,9 @@ public class DataBaseLayer {
         }
         /* Connexion à la base de données */
         String url = "jdbc:mysql://localhost:3306/sinovar?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-        String user = "Julie";
-        String password = "sinovAr4";
-        Connection connexion = null;
+        connexion = null;
        try {
-           connexion = DriverManager.getConnection( url ,user, password);
+           connexion = DriverManager.getConnection( url ,"Julie","sinovAr4");
        } catch (SQLException e) {
            e.printStackTrace();
        }
@@ -46,17 +45,10 @@ public class DataBaseLayer {
        try {
             /* Création de l'objet gérant les requêtes */
             /* Exécution d'une requête de lecture */
-            if (requete.startsWith("SELECT")){
-                /*selon si la requête est une lecture ou une modification*/
-                ResultSet resultSet = statement.executeQuery( requete );
-                //String nom = result.getString(TABLE_USERS_NAME_COLUMN_NAME);
-                //int i=0;
-                //while (resultSet.next()){
-                    //result.add(resultSet.get);
-                    //i++;
-                //}
-                result=resultSetToArrayList(resultSet);
-            
+            if (requete.startsWith("SELECT")){/*selon si la requête est une lecture ou une modification*/
+                result = statement.executeQuery( requete );
+                String nom = result.getString(TABLE_USERS_NAME_COLUMN_NAME);
+                System.out.println(result);
             }
             else{
                 modification = statement.executeUpdate ( requete ); 
@@ -80,7 +72,7 @@ public class DataBaseLayer {
     /**
      * @return the resultat
      */
-    public ArrayList<ArrayList<String>> getResult() {
+    public ResultSet getResult() {
         return result;
     }
 
@@ -90,26 +82,12 @@ public class DataBaseLayer {
     public int getModification() {
         return modification;
     }
-    
-    ArrayList<ArrayList<String>> resultSetToArrayList(ResultSet row) throws SQLException{
-    ResultSetMetaData meta= row.getMetaData();
-    int length=meta.getColumnCount();
-    ArrayList<ArrayList<String>> model=new ArrayList<>();
-    ArrayList<String> columnLabels = new ArrayList<>();
-    for(int i=0;i<length;++i){
-        columnLabels.add(meta.getColumnLabel(i+1));
-    }
-    model.add(columnLabels);
 
-    while(row.next()){
-        ArrayList<String> rowList = new ArrayList<>();
-        for(int i=0;i<length;++i)
-             {
-             rowList.add(row.getString(i+1));
-             }
-        model.add(rowList);
-    }
-    return model;
+    /**
+     * @return the connexion
+     */
+    public Connection getConnexion() {
+        return connexion;
     }
     
     

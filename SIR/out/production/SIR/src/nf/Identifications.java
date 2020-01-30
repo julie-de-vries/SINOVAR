@@ -5,20 +5,21 @@
  */
 package nf;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.sql.*;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 
 /**
  *
  * @author Julie
  */
 public class Identifications {
-    private String name;
-    private boolean auth;
-    private boolean ajoutTableConnections;
+    private String name=null;
+    private boolean auth=false;
     /*String hashWith256(String textToHash) { //encryption
         MessageDigest digest=null;
         try {
@@ -36,17 +37,19 @@ public class Identifications {
     
     public Identifications(String id, String password){
         DataBaseLayer DBL = new DataBaseLayer("SELECT nom FROM sinovar.utilisateur WHERE id ='"+id+"' AND password='"+password+"';");
-        ArrayList<ArrayList<String>> result=DBL.getResult();
-            result.remove(0);
-            auth = !result.isEmpty(); /*vérifie si une personne a été authentifiée*/
-            if(auth){
-                name= result.get(0).get(0); /*récupère le nom du personnel authetifié*/
-                DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-                String date=dateFormat.format(new Date());
-                DBL = new DataBaseLayer("INSERT INTO connections VALUES('"+date+"','"+id+"');");/*ajoute la connection à la base de données*/
-                int m = DBL.getModification();
-                ajoutTableConnections=(m>0);/*vrai si la modification a bien été effectuée*/
+        
+        try {
+            //String result =  /*récupère le nom du personnel authetifié*/
+            auth = DBL.getResult().wasNull(); /*vérifie si une personne a été authentifiée*/
+            if(!auth){
+                name=DBL.getResult().getString(1);;
             }
+                } catch (SQLException ex) {
+            Logger.getLogger(Identifications.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+            
+        /*sans id et mot de passe correspondant, la méthode retourne un string null*/
     } 
 
     /**
