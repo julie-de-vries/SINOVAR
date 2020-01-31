@@ -13,5 +13,5 @@ public class CompteRendu {
     
     private String titre;
     private String contenu;
-    private Professionnels professionnels;
+    private Professionnel professionnels;
 }
