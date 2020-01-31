@@ -84,12 +84,14 @@ public class SIR {
     }
 
     //cherche un patient selon son nom
-    public void chercherPatient(String nom, String prenom) {
+    public ArrayList<Patient> chercherPatient(String recherche) {
+        ArrayList<Patient> p=new ArrayList();
         for (int i = 0; i < patients.size(); i++) {
-            if (patients.get(i).getNomUsuel().equals(nom) && patients.get(i).getPrenom().equals(prenom)) {
-                patients.get(i).afficher();
+            if ((patients.get(i).getNomUsuel()+patients.get(i).getPrenom()).toLowerCase().contains(recherche.trim().toLowerCase())) {
+                p.add(patients.get(i));
             }
         }
+        return p;
     }
 
     //cherche un patient selon son identifiant

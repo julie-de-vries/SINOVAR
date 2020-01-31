@@ -54,9 +54,9 @@ public class Agenda {
                     //on compare a toutes les valeurs d'examen
                     for (int j=0;j<p.getExam().size();j++){
                         //on compare les valeurs de debut et de fin
-                        if(hf.compareTo(p.getExam().get(j).getHeureDebut())>0 && hd.compareTo(p.getExam().get(j).get)){
+                        /*if(hf.compareTo(p.getExam().get(j).getHeureDebut())>0 && hd.compareTo(p.getExam().get(j).get)){
                             
-                        }
+                        }*/
                     }
                     p.getExam().get(i).afficherExam();
                 }

@@ -22,7 +22,7 @@ public class Patient {
     private String nss;
     //private final int id_patient;
 //Ajouter un lien vers le PACS
-
+    
     public Patient(String nom, String prenom, int id_patient, String dateDeNaissance, String genre, String nss, String adresse) {
         this.nomUsuel = nom;
         this.prenom = prenom;

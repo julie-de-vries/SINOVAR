@@ -40,6 +40,7 @@ public class ImageRadio extends JPanel {
             int y = (getHeight() - radioImage.getIconHeight()) / 2;
             g.drawImage(radioImage.getImage(), x, y, radioImage.getIconWidth(), radioImage.getIconHeight(), this);
         
+        
     }
 
     @Override
@@ -51,12 +52,11 @@ public class ImageRadio extends JPanel {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                JFrame frame = new JFrame(ImageRadio.class.getSimpleName());
-                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                final ImageRadio IR = new ImageRadio();
-                frame.add(IR);
-                frame.pack();
-                frame.setVisible(true);
+                //JFrame jf = new JFrame();
+                //jf.setVisible(true);
+                ImageRadio ir = new ImageRadio();
+                ir.setVisible(true);
+                //jf.add(ir);
             }
         });
     }

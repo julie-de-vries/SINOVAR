@@ -18,7 +18,7 @@ public class DataBaseLayer {
     private ArrayList<ArrayList<String>> result=new ArrayList<>();
     private int modification;
 
-    DataBaseLayer(String requete){
+    public DataBaseLayer(String requete){
        //Récupération des données SQL
         /* Chargement du driver JDBC pour MySQL */
         try {

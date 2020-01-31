@@ -30,9 +30,10 @@ public class MyApp {
         }
         */
         //Test traitement d'image
-        ImageProcessing img = new ImageProcessing("C:\\Users\\Julie\\Downloads\\pgm\\pgm\\abdomen\\cor494-i43.pgm");
+        /*ImageProcessing img = new ImageProcessing("C:\\Users\\Julie\\Downloads\\pgm\\pgm\\abdomen\\cor494-i43.pgm");
         System.out.println(img.getImg());
-        
+        */
+        System.out.println(Metier.valueOf("Practicien"));
     }
 
 }
