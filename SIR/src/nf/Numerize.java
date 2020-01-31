@@ -7,17 +7,12 @@ package nf;
 
 /**
  *
- * @author Peuillon
+ * @author Julie
  */
-public enum Code {
-    ENREGISTREMENT(3),
-    NUMERISATION(5);
-    private int cout;
+public class Numerize {
     
-    Code(int cout){
-        this.cout = cout;
-    }
-    public int coutExam(){
-        return this.cout;
+    public Numerize(String fileName){
+        DataBaseLayer DBL = new DataBaseLayer("INSERT INTO pacs VALUES('"+fileName+"');");
+        /*ajoute la connection à la base de données*/
     }
 }

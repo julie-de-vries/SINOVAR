@@ -14,7 +14,7 @@ import java.util.*;
  *
  * @author Julie
  */
-public class PgmImage extends RadiologyPicture{
+public class PgmImage{
     // image buffer for graphical display
 	private BufferedImage img;
 	// image buffer for plain gray-scale pixel values
