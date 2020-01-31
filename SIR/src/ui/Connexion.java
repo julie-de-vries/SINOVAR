@@ -150,7 +150,7 @@ public class Connexion extends javax.swing.JFrame {
                 .addComponent(texte2)
                 .addGap(140, 140, 140)
                 .addComponent(texte_connexion)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 193, Short.MAX_VALUE)
                 .addGroup(texte_indicatifLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(texte_id)
                     .addComponent(entree_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -223,12 +223,12 @@ public class Connexion extends javax.swing.JFrame {
 //            t.setVisible(true);     
 //            this.remove(jPanel1);
             
-            
-            jPanel1.setVisible(false);
+            this.remove(jPanel1);
+            //jPanel1.setVisible(false);
             Test te = new Test();
-            te.setVisible(true);
             this.add(te);
-            te.setBounds(0, 0, 1290, 1080);
+            te.setVisible(true);
+            
             this.repaint();
             
             
