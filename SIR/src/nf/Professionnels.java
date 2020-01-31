@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package nf;
 
 import java.util.ArrayList;
@@ -23,10 +18,12 @@ public class Professionnels {
         listePro.add(p);
     }
 
-    public void afficherListeProfessionnel() {
+    public String afficherListeProfessionnel() {
+        String s="";
         for (int i = 0; i < listePro.size(); i++) {
-            listePro.get(i).afficher();
-            System.out.println("------------------");
+            s+=listePro.get(i).afficher();
+            s+="------------------";
         }
+        return s;
     }
 }

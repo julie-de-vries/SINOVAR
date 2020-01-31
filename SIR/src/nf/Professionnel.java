@@ -19,7 +19,6 @@ public class Professionnel {
     private final String motDePasse;
     private final String departement;
     private final Metier metier;
-    private Agenda agenda;
     private ArrayList<Examen> exam;
 
     public Professionnel(int id, String nom, String prenom, String motDePasse, String departement, Metier metier) {
@@ -29,7 +28,6 @@ public class Professionnel {
         this.motDePasse = motDePasse;
         this.departement = departement;
         this.metier = metier;
-        this.agenda = agenda;
         this.exam = new ArrayList<>();
     }
 
@@ -61,10 +59,10 @@ public class Professionnel {
         return this.exam;
     }
 
-    public void afficher() {
+    public String afficher() {
         String s = "";
         s += this.prenom + " " + this.nom + "\n" + this.metier + "\n" + this.departement;
-        System.out.println(s);
+        return s;
     }
 
     //ajouter un examen dans la liste d'un professionnel
@@ -77,10 +75,12 @@ public class Professionnel {
     }
     //affiche la liste d'examen que le practicien doit faire
 
-    public void afficherExamen() {
+    public String afficherExamen() {
+        String s="";
         for(int i=0;i<exam.size();i++){
-            exam.get(i).afficherExam();
+            s+=exam.get(i).afficherExam();
         }
+        return s;
     }
 
 }

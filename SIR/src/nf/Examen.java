@@ -100,7 +100,7 @@ public class Examen {
         this.code = code;
     }
 
-    public void afficherExam() {
+    public String afficherExam() {
         String s = "";
         s += "\t" + this.getDate().substring(4, 8) + "-" + this.getDate().substring(2, 4) + "-" + this.getDate().substring(0, 2); //ajout de la date au bon format
         s += "-" + this.getHeureDebut().substring(0, 2) + "-" + this.getHeureDebut().substring(3, 5);//ajout de l'heure
@@ -111,14 +111,14 @@ public class Examen {
         s += "\n\tAppareil utilisé : " + this.appareil;
         s += "\n\tNom du Practicien : " + this.nomPracticien;
         s += "\n\tCompte rendu : " + this.rapport;
-        System.out.println(s);
+        return s;
     }
 
-    public void afficherDose() {
+    public String afficherDose() {
         String s = "";
         s += this.getLibelle();
         s += "\n" + this.getDose();
-        System.out.println(s);
+        return s;
     }
 
     public int calculerCout() {

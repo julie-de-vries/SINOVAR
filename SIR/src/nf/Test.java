@@ -24,17 +24,14 @@ public class Test {
         Metier metier4 = Metier.Practicien;
 
 //        Agenda agenda1 = new Agenda()
-        
-        
-        
         Professionnel pro1 = new Professionnel(1, "Deblouze", "Agathe", "cardio", "Cardiologie", metier3);
         Professionnel pro2 = new Professionnel(2, "Egee", "Yves", "respi", "Respiratoire", metier4);
         Professionnel pro3 = new Professionnel(3, "Cover", "Harry", "potter", "Digestif", metier3);
         Professionnel pro4 = new Professionnel(4, "Bole", "Pat", "patate", "urologie", metier4);
         Professionnel pro5 = new Professionnel(5, "Track", "Pat", "patate", "urologie", metier4);
-        
+
         Professionnels listePro = new Professionnels();
-        
+
         listePro.ajouterProfessionnel(pro1);
         listePro.ajouterProfessionnel(pro2);
         listePro.ajouterProfessionnel(pro3);
@@ -48,20 +45,24 @@ public class Test {
         TypeExam te6 = TypeExam.RadioArgentique;
         TypeExam te7 = TypeExam.Scanner;
 
-        Examen exam1 = new Examen(1, "Tete particule", "03041959", "10h58","11h05", te1, "Deblouze", "g beso1 d'R");
-        Examen exam2 = new Examen(2, "Angiographie des poumons", "03041959", "10h56","12h00", te2, "Egee", "astalista baby");
-        Examen exam3 = new Examen(3, "Echographie", "05062012", "15h35","16h05", te3, "Cover", "RAS");
-        Examen exam4 = new Examen(4, "IRM du cerveau", "15052003", "16h13","16h45", te4, "Bole", "");
-        Examen exam5 = new Examen(5, "Cancer du sein", "03041959", "11h00","17h03", te5, "Deblouze", "My name is DRE");
-        Examen exam6 = new Examen(6, "radio Argentique du foie", "11032013", "12h14","12h45", te6, "Egee", "");
-        Examen exam7 = new Examen(7, "Scanner de la clavicule", "23012020", "21h35","22h26", te7, "Etudiante numero4", "Pas de luxation");
+        Examen exam1 = new Examen(1, "Tete particule", "03041959", "10h58", "11h05", te1, "Deblouze", "g beso1 d'R");
+        Examen exam2 = new Examen(2, "Angiographie des poumons", "03041959", "11h08", "12h00", te2, "Deblouze", "astalista baby");
+        Examen exam3 = new Examen(3, "Echographie", "03041959", "15h35", "16h25", te3, "Deblouze", "RAS");
+        Examen exam4 = new Examen(4, "IRM du cerveau", "03041959", "16h18", "16h15", te4, "Deblouze", "");
+        Examen exam5 = new Examen(5, "Cancer du sein", "04041959", "21h35", "22h35", te5, "Deblouze", "My name is DRE");
+        Examen exam6 = new Examen(6, "radio Argentique du foie", "03041959", "12h14", "12h18", te6, "Deblouze", "");
+        
+        Examen exam7 = new Examen(7, "Radio de la clavicule", "23012020", "21h35", "22h26", te7, "Egee", "Pas de luxation");
+        Examen exam8 = new Examen(6, "radio Argentique du foie", "03041959", "10h22", "10j36", te6, "Egee", "");
+        Examen exam9 = new Examen(6, "radio Argentique du foie", "03041959", "10h35", "11h00", te6, "Egee", "");
+        Examen exam10 = new Examen(6, "radio Argentique du foie", "03041959", "12h15", "12h30", te6, "Egee", "");
 
         DMR dmr1 = new DMR();
         DMR dmr2 = new DMR();
         DMR dmr3 = new DMR();
 
-        Agenda agenda = new Agenda(listePro,"03041959");
-        
+        Agenda agenda = new Agenda(listePro, "03041959");
+
         SIR sir = new SIR(listePro);
 
         p3.setNomNaissance("Tyran");
@@ -69,9 +70,8 @@ public class Test {
         sir.ajouterPatient(p);
         sir.ajouterPatient(p2);
         sir.ajouterPatient(p3);
-        
-        //sir.afficherListeProfessionnel();
 
+        //sir.afficherListeProfessionnel();
         dmr1.ajouterExamen(exam1);
         dmr1.ajouterExamen(exam2);
         dmr1.ajouterExamen(exam3);
@@ -79,11 +79,21 @@ public class Test {
         dmr2.ajouterExamen(exam5);
         dmr2.ajouterExamen(exam6);
         dmr3.ajouterExamen(exam7);
-        
+
         p.setDmr(dmr1);
         p2.setDmr(dmr2);
         pro1.ajouterExamen(exam1);
+        pro1.ajouterExamen(exam2);
+        pro1.ajouterExamen(exam3);
+        pro1.ajouterExamen(exam4);
         pro1.ajouterExamen(exam5);
+        pro1.ajouterExamen(exam6);
+
+        pro2.ajouterExamen(exam7);
+        pro2.ajouterExamen(exam8);
+        pro2.ajouterExamen(exam9);
+        pro2.ajouterExamen(exam10);
+
         //pro1.afficherExamen();
         //listePro.afficherListeProfessionnel();
         //dmr1.afficherListeExamen();
@@ -97,7 +107,7 @@ public class Test {
         //System.out.println(exam1.calculerCout());
         //sir.afficherExamProfessionnel(pro5);
 
-        agenda.afficherAgenda(pro1,"03041959");
+        agenda.afficherAgenda(pro1, "04041959");
     }
 
 }
