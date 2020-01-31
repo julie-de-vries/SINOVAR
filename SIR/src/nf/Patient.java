@@ -20,7 +20,6 @@ public class Patient {
     private final String lieuDeNaissance;
     private DMR dmr;
     private String nss;
-    //private final int id_patient;
 //Ajouter un lien vers le PACS
     
     public Patient(String nom, String prenom, int id_patient, String dateDeNaissance, String genre, String nss, String adresse) {
@@ -34,12 +33,12 @@ public class Patient {
             this.nomNaissance = "";
         }
         this.id_patient = id_patient;
-        this.nss=nss;
+        this.nss = nss;
         dmr = new DMR();
         this.lieuDeNaissance = adresse;
     }
 
-    public void afficher() {
+    public String afficher() {
         String s = "";
         s += this.getPrenom() + " " + this.getNomUsuel() + "\n" + this.getGenre() + "\nDate de Naissance : " + this.getDateDeNaissance() + "\nLieu de Naissance : "
                 + this.getLieuDeNaissance() + "\nNumero de Securite Sociale : " + this.getNss();
@@ -47,7 +46,7 @@ public class Patient {
             s += "\nNom De Naissance : " + this.getNomNaissance();
         }
         s += "\n--------------------";
-        System.out.println(s);
+        return s;
     }
 
     public String getNomUsuel() {
@@ -181,8 +180,8 @@ public class Patient {
         return eV;
     }
 
-    public void affichageDate() { //affiche la date de Naissance au format JJ/MM/AAAA
-        String s;
+    public String affichageDate() { //affiche la date de Naissance au format JJ/MM/AAAA
+        String s="";
         if (estDateValide()) {
             s = dateDeNaissance.substring(0, 2);
             s += "/";
@@ -192,6 +191,6 @@ public class Patient {
         } else {
             s = "Erreur";
         }
-        System.out.println(s);
+        return s;
     }
 }

@@ -26,29 +26,34 @@ public class SIR {
         this.patients.add(p);
     }
 
-    public void afficherListePatients() {
+    public String afficherListePatients() {
+        String s = "";
         for (int i = 0; i < patients.size(); i++) {
-            System.out.println("Patient " + i + " \n");
-            patients.get(i).afficher();
+            s += "Patient " + i + " \n";
+            s += patients.get(i).afficher();
         }
+        return s;
     }
 
-    public void afficherTout() {
+    public String afficherTout() {
+        String s = "";
         for (int i = 0; i < patients.size(); i++) {
-            System.out.println("Patient " + patients.get(i).getNomUsuel() + " :\n");
-            patients.get(i).afficher();
-            System.out.println("");
+            s += "Patient " + patients.get(i).getNomUsuel() + " :\n";
+            s += patients.get(i).afficher();
+            s += "\n";
             for (int j = 0; j < patients.get(i).getDmr().getExamen().size(); j++) {
-                System.out.println("\tExamen " + patients.get(i).getDmr().getExamen().get(j).getIdExam() + " :\n");
-                patients.get(i).getDmr().getExamen().get(j).afficherExam();
-                System.out.println("");
+                s += "\tExamen " + patients.get(i).getDmr().getExamen().get(j).getIdExam() + " :\n";
+                s += patients.get(i).getDmr().getExamen().get(j).afficherExam();
+                s += "\n";
             }
-            System.out.println("--------------------");
+            s += "--------------------";
         }
+        return s;
     }
 
-    public void trierNomPatient() {
+    public String trierNomPatient() {
         ArrayList<Patient> copiePatient = new ArrayList<>(patients);
+        String s = "";
         while (!copiePatient.isEmpty()) {
             int imin = 0;
             Patient p1 = copiePatient.get(imin);
@@ -59,14 +64,16 @@ public class SIR {
                     p1 = p2;
                 }
             }
-            p1.afficher();
-            System.out.println("-----------------------");
+            s += p1.afficher();
+            s += "-----------------------";
             copiePatient.remove(imin);
         }
+        return s;
     }
 
-    public void trierIdPatient() {
+    public String trierIdPatient() {
         ArrayList<Patient> copiePatient = new ArrayList<>(patients);
+        String s = "";
         while (!copiePatient.isEmpty()) {
             int imin = 0;
             Patient p1 = copiePatient.get(imin);
@@ -77,10 +84,11 @@ public class SIR {
                     p1 = p2;
                 }
             }
-            p1.afficher();
-            System.out.println("-----------------------");
+            s += p1.afficher();
+            s += "-----------------------";
             copiePatient.remove(imin);
         }
+        return s;
     }
 
     //cherche un patient selon son nom
@@ -95,54 +103,62 @@ public class SIR {
     }
 
     //cherche un patient selon son identifiant
-    public void chercherPatientId(int id_patient) {
+    public Patient chercherPatientId(int id_patient) {
+        Patient p = null;
         int i = 0;
         while (i != patients.size() && patients.get(i).getIdPatient() != id_patient) {
             i++;
         }
         if (i != patients.size()) {
-            patients.get(i).afficher();
+            p = patients.get(i);
         }
+        return p;
     }
 
     //cherche un professionnel en particulier grace a son nom
-    public void chercherProfessionnel(String nom, String prenom) {
+    public Professionnel chercherProfessionnel(String nom, String prenom) {
+        Professionnel p = null;
         for (int i = 0; i < listePro.getListePro().size(); i++) {
             if (listePro.getListePro().get(i).getNom().equals(nom) && listePro.getListePro().get(i).getPrenom().equals(prenom)) {
-                listePro.getListePro().get(i).afficher();
-            } else {
-                System.out.println("This doctor doesn't exist in our data base");
+                p = listePro.getListePro().get(i);
             }
         }
+        return p;
     }
 
     //affiche le DMR d'un patient donne
-    public void afficherDmr(Patient p) {
+    public String afficherDmr(Patient p) {
+        String s="";
         if (patients.contains(p)) {
-            p.afficher();
-            p.getDmr().afficherListeExamen();
+            s+=p.afficher();
+            s+=p.getDmr().afficherListeExamen();
         }
+        return s;
     }
 
     //afficher la liste des professionnels
-    public void afficherListeProfessionnel(){
-        listePro.afficherListeProfessionnel();
+    public String afficherListeProfessionnel() {
+        String s="";
+        s+=listePro.afficherListeProfessionnel();
+        return s;
     }
-    
+
     //affiche la liste d'examen qu'un professionnel de sante doit faire
-    public void afficherExamProfessionnel(Professionnel p){
+    public String afficherExamProfessionnel(Professionnel p) {
+        String s="";
         //parcourt la liste des patients
-        for(int i=0;i<patients.size();i++){
+        for (int i = 0; i < patients.size(); i++) {
             //pour chaque patient, parcourt la liste d'examen de son DMR
-            for(int j=0;j<patients.get(i).getDmr().getExamen().size();j++){
+            for (int j = 0; j < patients.get(i).getDmr().getExamen().size(); j++) {
                 //si le professionnel de sante correspond
-                if(patients.get(i).getDmr().getExamen().get(j).getNomPracticien().equals(p.getNom())){
+                if (patients.get(i).getDmr().getExamen().get(j).getNomPracticien().equals(p.getNom())) {
                     //affiche l'examen en question
-                    patients.get(i).getDmr().getExamen().get(j).afficherExam();
-                    System.out.println("------------------------");
+                    s+=patients.get(i).getDmr().getExamen().get(j).afficherExam();
+                    s+="------------------------";
                 }
             }
-            
+
         }
+        return s;
     }
 }
