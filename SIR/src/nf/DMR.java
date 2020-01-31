@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package nf;
+package sir;
 
 import java.util.ArrayList;
 
@@ -55,12 +55,12 @@ public class DMR {
                     imin = i;
                     e1 = e2;
                 } //si la date est la même oncompare les heures
-                else if (e1.getDate().compareTo(e2.getDate()) == 0 && e1.getHeure().substring(0, 2).compareTo(e2.getHeure().substring(0, 2)) > 0) {
+                else if (e1.getDate().compareTo(e2.getDate()) == 0 && e1.getHeureDebut().substring(0, 2).compareTo(e2.getHeureDebut().substring(0, 2)) > 0) {
                     imin = i;
                     e1 = e2;
                 } //si la date est l'heure sont les mêmes, on compare les minutes
-                else if (e1.getDate().compareTo(e2.getDate()) == 0 && e1.getHeure().substring(0, 2).compareTo(e2.getHeure().substring(0, 2)) == 0
-                        && e1.getHeure().substring(2, 4).compareTo(e2.getHeure().substring(2, 4)) > 0) {
+                else if (e1.getDate().compareTo(e2.getDate()) == 0 && e1.getHeureDebut().substring(0, 2).compareTo(e2.getHeureDebut().substring(0, 2)) == 0
+                        && e1.getHeureDebut().substring(2, 4).compareTo(e2.getHeureDebut().substring(2, 4)) > 0) {
                     imin = i;
                     e1 = e2;
                 }

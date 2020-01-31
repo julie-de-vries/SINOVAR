@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package nf;
+package sir;
+
+import java.util.ArrayList;
 
 /**
  *
@@ -18,6 +20,7 @@ public class Professionnel {
     private final String departement;
     private final Metier metier;
     private Agenda agenda;
+    private ArrayList<Examen> exam;
 
     public Professionnel(int id, String nom, String prenom, String motDePasse, String departement, Metier metier) {
         this.id_pro = id;
@@ -26,7 +29,8 @@ public class Professionnel {
         this.motDePasse = motDePasse;
         this.departement = departement;
         this.metier = metier;
-        this.agenda=agenda;
+        this.agenda = agenda;
+        this.exam = new ArrayList<>();
     }
 
     public int getId_pro() {
@@ -52,10 +56,31 @@ public class Professionnel {
     public Metier getMetier() {
         return this.metier;
     }
+    
+    public ArrayList<Examen> getExam(){
+        return this.exam;
+    }
 
     public void afficher() {
         String s = "";
         s += this.prenom + " " + this.nom + "\n" + this.metier + "\n" + this.departement;
         System.out.println(s);
     }
+
+    //ajouter un examen dans la liste d'un professionnel
+    public void ajouterExamen(Examen e) {
+        if (this.nom.equals(e.getNomPracticien())) {
+            this.exam.add(e);
+        } else {
+            System.out.println("ce n'est pas le bon medecin");
+        }
+    }
+    //affiche la liste d'examen que le practicien doit faire
+
+    public void afficherExamen() {
+        for(int i=0;i<exam.size();i++){
+            exam.get(i).afficherExam();
+        }
+    }
+
 }

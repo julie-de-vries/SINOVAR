@@ -3,19 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package nf;
+package sir;
 
 import java.util.ArrayList;
 
 public class SIR {
 
     private ArrayList<Patient> patients;
-    private ArrayList<Professionnel> professionnel;
+    private Professionnels listePro;
 //    private Agenda agenda;
 
-    public SIR() {
+    public SIR(Professionnels p) {
         patients = new ArrayList<>();
-        professionnel = new ArrayList<Professionnel>();
+        this.listePro = p;
     }
 
     public ArrayList<Patient> getPatient() {
@@ -24,10 +24,6 @@ public class SIR {
 
     public void ajouterPatient(Patient p) {
         this.patients.add(p);
-    }
-
-    public void ajouterProfessionnel(Professionnel p) {
-        this.professionnel.add(p);
     }
 
     public void afficherListePatients() {
@@ -87,6 +83,7 @@ public class SIR {
         }
     }
 
+    //cherche un patient selon son nom
     public void chercherPatient(String nom, String prenom) {
         for (int i = 0; i < patients.size(); i++) {
             if (patients.get(i).getNomUsuel().equals(nom) && patients.get(i).getPrenom().equals(prenom)) {
@@ -95,6 +92,7 @@ public class SIR {
         }
     }
 
+    //cherche un patient selon son identifiant
     public void chercherPatientId(int id_patient) {
         int i = 0;
         while (i != patients.size() && patients.get(i).getIdPatient() != id_patient) {
@@ -105,6 +103,18 @@ public class SIR {
         }
     }
 
+    //cherche un professionnel en particulier grace a son nom
+    public void chercherProfessionnel(String nom, String prenom) {
+        for (int i = 0; i < listePro.getListePro().size(); i++) {
+            if (listePro.getListePro().get(i).getNom().equals(nom) && listePro.getListePro().get(i).getPrenom().equals(prenom)) {
+                listePro.getListePro().get(i).afficher();
+            } else {
+                System.out.println("This doctor doesn't exist in our data base");
+            }
+        }
+    }
+
+    //affiche le DMR d'un patient donne
     public void afficherDmr(Patient p) {
         if (patients.contains(p)) {
             p.afficher();
@@ -112,10 +122,25 @@ public class SIR {
         }
     }
 
-    public void afficherListeProfessionnel() {
-        for (int i = 0; i < professionnel.size(); i++) {
-            professionnel.get(i).afficher();
-            System.out.println("------------------");
+    //afficher la liste des professionnels
+    public void afficherListeProfessionnel(){
+        listePro.afficherListeProfessionnel();
+    }
+    
+    //affiche la liste d'examen qu'un professionnel de sante doit faire
+    public void afficherExamProfessionnel(Professionnel p){
+        //parcourt la liste des patients
+        for(int i=0;i<patients.size();i++){
+            //pour chaque patient, parcourt la liste d'examen de son DMR
+            for(int j=0;j<patients.get(i).getDmr().getExamen().size();j++){
+                //si le professionnel de sante correspond
+                if(patients.get(i).getDmr().getExamen().get(j).getNomPracticien().equals(p.getNom())){
+                    //affiche l'examen en question
+                    patients.get(i).getDmr().getExamen().get(j).afficherExam();
+                    System.out.println("------------------------");
+                }
+            }
+            
         }
     }
 }

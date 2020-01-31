@@ -3,12 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package nf;
+package sir;
 
 public class Examen {
 
     private String date;
-    private String heure;
+    private String heureDebut;
+    private String heureFin;
     private final TypeExam appareil;
     private String nomPracticien;
     private String rapport;
@@ -18,10 +19,11 @@ public class Examen {
     private String libelleDose;
     private Code code;
 
-    public Examen(int id_exam, String nomExam, String date, String heure, TypeExam appareil, String nomPracticien, String rapport) {
+    public Examen(int id_exam, String nomExam, String date, String heureDebut, String heureFin, TypeExam appareil, String nomPracticien, String rapport) {
         this.id_exam = id_exam;
         this.date = date;
-        this.heure = heure;
+        this.heureDebut = heureDebut;
+        this.heureFin = heureFin;
         this.appareil = appareil;
         this.nomPracticien = nomPracticien; //a changer avec les bases de données
         this.rapport = rapport;
@@ -31,11 +33,15 @@ public class Examen {
     }
 
     public String getDate() {
-        return date;
+        return this.date;
     }
 
-    public String getHeure() {
-        return heure;
+    public String getHeureDebut() {
+        return this.heureDebut;
+    }
+
+    public String getHeureFin() {
+        return this.heureFin;
     }
 
     public void setDate(String date) {
@@ -43,14 +49,14 @@ public class Examen {
     }
 
     public void setHeure(String heure) {
-        this.heure = heure;
+        this.heureDebut = heure;
     }
 
     public TypeExam getAppareil() {
         return this.appareil;
     }
-    
-    public String getRapport(){
+
+    public String getRapport() {
         return this.rapport;
     }
 
@@ -62,14 +68,14 @@ public class Examen {
         this.nomPracticien = ph;
     }
 
-    public String getNomExamen(){
+    public String getNomExamen() {
         return this.nomExam;
     }
-    
-    public String getNomPracticien(){
+
+    public String getNomPracticien() {
         return this.nomPracticien;
     }
-    
+
     public int getIdExam() {
         return this.id_exam;
     }
@@ -89,15 +95,17 @@ public class Examen {
     public void setLibelle(String libelle) {
         this.libelleDose = libelle;
     }
-    
-    public void setCode(Code code){
+
+    public void setCode(Code code) {
         this.code = code;
     }
 
     public void afficherExam() {
         String s = "";
-        s += "\t"+this.getDate().substring(4, 8) + "-" + this.getDate().substring(2, 4) + "-" + this.getDate().substring(0, 2); //ajout de la date au bon format
-        s += "-" + this.getHeure().substring(0, 2) + "-" + this.getHeure().substring(3, 5); //ajout de l'heure
+        s += "\t" + this.getDate().substring(4, 8) + "-" + this.getDate().substring(2, 4) + "-" + this.getDate().substring(0, 2); //ajout de la date au bon format
+        s += "-" + this.getHeureDebut().substring(0, 2) + "-" + this.getHeureDebut().substring(3, 5);//ajout de l'heure
+        s += "  " + this.getHeureFin().substring(0, 2) + "-" + this.getHeureFin().substring(3, 5);//ajout heure de fin
+
         s += "\n\tNumero de l'examen : " + this.id_exam;
         s += "\n\tNom de l'examen : " + this.nomExam;
         s += "\n\tAppareil utilisé : " + this.appareil;
@@ -112,9 +120,9 @@ public class Examen {
         s += "\n" + this.getDose();
         System.out.println(s);
     }
-    
-    public int calculerCout(){
+
+    public int calculerCout() {
         return code.coutExam();
     }
-    
+
 }
