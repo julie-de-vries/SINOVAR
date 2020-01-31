@@ -10,12 +10,12 @@ import java.util.ArrayList;
 public class SIR {
 
     private ArrayList<Patient> patients;
-    private ArrayList<Professionnel> professionnel;
+    private Professionnels listePro;
 //    private Agenda agenda;
 
-    public SIR() {
+    public SIR(Professionnels p) {
         patients = new ArrayList<>();
-        professionnel = new ArrayList<Professionnel>();
+        this.listePro = p;
     }
 
     public ArrayList<Patient> getPatient() {
@@ -26,33 +26,34 @@ public class SIR {
         this.patients.add(p);
     }
 
-    public void ajouterProfessionnel(Professionnel p) {
-        this.professionnel.add(p);
-    }
-
-    public void afficherListePatients() {
+    public String afficherListePatients() {
+        String s = "";
         for (int i = 0; i < patients.size(); i++) {
-            System.out.println("Patient " + i + " \n");
-            patients.get(i).afficher();
+            s += "Patient " + i + " \n";
+            s += patients.get(i).afficher();
         }
+        return s;
     }
 
-    public void afficherTout() {
+    public String afficherTout() {
+        String s = "";
         for (int i = 0; i < patients.size(); i++) {
-            System.out.println("Patient " + patients.get(i).getNomUsuel() + " :\n");
-            patients.get(i).afficher();
-            System.out.println("");
+            s += "Patient " + patients.get(i).getNomUsuel() + " :\n";
+            s += patients.get(i).afficher();
+            s += "\n";
             for (int j = 0; j < patients.get(i).getDmr().getExamen().size(); j++) {
-                System.out.println("\tExamen " + patients.get(i).getDmr().getExamen().get(j).getIdExam() + " :\n");
-                patients.get(i).getDmr().getExamen().get(j).afficherExam();
-                System.out.println("");
+                s += "\tExamen " + patients.get(i).getDmr().getExamen().get(j).getIdExam() + " :\n";
+                s += patients.get(i).getDmr().getExamen().get(j).afficherExam();
+                s += "\n";
             }
-            System.out.println("--------------------");
+            s += "--------------------";
         }
+        return s;
     }
 
-    public void trierNomPatient() {
+    public String trierNomPatient() {
         ArrayList<Patient> copiePatient = new ArrayList<>(patients);
+        String s = "";
         while (!copiePatient.isEmpty()) {
             int imin = 0;
             Patient p1 = copiePatient.get(imin);
@@ -63,14 +64,16 @@ public class SIR {
                     p1 = p2;
                 }
             }
-            p1.afficher();
-            System.out.println("-----------------------");
+            s += p1.afficher();
+            s += "-----------------------";
             copiePatient.remove(imin);
         }
+        return s;
     }
 
-    public void trierIdPatient() {
+    public String trierIdPatient() {
         ArrayList<Patient> copiePatient = new ArrayList<>(patients);
+        String s = "";
         while (!copiePatient.isEmpty()) {
             int imin = 0;
             Patient p1 = copiePatient.get(imin);
@@ -81,41 +84,81 @@ public class SIR {
                     p1 = p2;
                 }
             }
-            p1.afficher();
-            System.out.println("-----------------------");
+            s += p1.afficher();
+            s += "-----------------------";
             copiePatient.remove(imin);
         }
+        return s;
     }
 
-    public void chercherPatient(String nom, String prenom) {
+    //cherche un patient selon son nom
+    public Patient chercherPatient(String nom, String prenom) {
+        Patient p = null;
         for (int i = 0; i < patients.size(); i++) {
             if (patients.get(i).getNomUsuel().equals(nom) && patients.get(i).getPrenom().equals(prenom)) {
-                patients.get(i).afficher();
+                p = patients.get(i);
             }
         }
+        return p;
     }
 
-    public void chercherPatientId(int id_patient) {
+    //cherche un patient selon son identifiant
+    public Patient chercherPatientId(int id_patient) {
+        Patient p = null;
         int i = 0;
         while (i != patients.size() && patients.get(i).getIdPatient() != id_patient) {
             i++;
         }
         if (i != patients.size()) {
-            patients.get(i).afficher();
+            p = patients.get(i);
         }
+        return p;
     }
 
-    public void afficherDmr(Patient p) {
+    //cherche un professionnel en particulier grace a son nom
+    public Professionnel chercherProfessionnel(String nom, String prenom) {
+        Professionnel p = null;
+        for (int i = 0; i < listePro.getListePro().size(); i++) {
+            if (listePro.getListePro().get(i).getNom().equals(nom) && listePro.getListePro().get(i).getPrenom().equals(prenom)) {
+                p = listePro.getListePro().get(i);
+            }
+        }
+        return p;
+    }
+
+    //affiche le DMR d'un patient donne
+    public String afficherDmr(Patient p) {
+        String s="";
         if (patients.contains(p)) {
-            p.afficher();
-            p.getDmr().afficherListeExamen();
+            s+=p.afficher();
+            s+=p.getDmr().afficherListeExamen();
         }
+        return s;
     }
 
-    public void afficherListeProfessionnel() {
-        for (int i = 0; i < professionnel.size(); i++) {
-            professionnel.get(i).afficher();
-            System.out.println("------------------");
+    //afficher la liste des professionnels
+    public String afficherListeProfessionnel() {
+        String s="";
+        s+=listePro.afficherListeProfessionnel();
+        return s;
+    }
+
+    //affiche la liste d'examen qu'un professionnel de sante doit faire
+    public String afficherExamProfessionnel(Professionnel p) {
+        String s="";
+        //parcourt la liste des patients
+        for (int i = 0; i < patients.size(); i++) {
+            //pour chaque patient, parcourt la liste d'examen de son DMR
+            for (int j = 0; j < patients.get(i).getDmr().getExamen().size(); j++) {
+                //si le professionnel de sante correspond
+                if (patients.get(i).getDmr().getExamen().get(j).getNomPracticien().equals(p.getNom())) {
+                    //affiche l'examen en question
+                    s+=patients.get(i).getDmr().getExamen().get(j).afficherExam();
+                    s+="------------------------";
+                }
+            }
+
         }
+        return s;
     }
 }

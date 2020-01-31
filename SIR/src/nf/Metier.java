@@ -13,5 +13,4 @@ public enum Metier {
     Practicien,
     SecretairesMedicales,
     Manipulateurs,
-    Interne,
 }

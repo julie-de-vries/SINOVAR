@@ -9,6 +9,10 @@ package nf;
  *
  * @author Julie
  */
-public class RadiologyPicture {
+public class Numerize {
     
+    public Numerize(String fileName){
+        DataBaseLayer DBL = new DataBaseLayer("INSERT INTO pacs VALUES('"+fileName+"');");
+        /*ajoute la connection à la base de données*/
+    }
 }

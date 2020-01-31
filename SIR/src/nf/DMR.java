@@ -23,18 +23,21 @@ public class DMR {
         examens.add(e);
     }
 
-    public void afficherListeExamen() {
+    public String afficherListeExamen() {
+        String s="";
         for (int i = 0; i < examens.size(); i++) {
-            System.out.println("Examen " + examens.get(i).getIdExam() + " : \n");
-            examens.get(i).afficherExam();
-            System.out.println("---------------------------------------");
+            s+="Examen " + examens.get(i).getIdExam() + " : \n";
+            s+=examens.get(i).afficherExam();
+            s+="---------------------------------------";
         }
+        return s;
     }
 
     //On trie tous les examens par date
-    public void trierParDates() {
+    public String trierParDates() {
         //on copie la liste d'examen dans une nouvelle liste afin de ne rien supprimer dans la principale
         ArrayList<Examen> copieExam = new ArrayList<Examen>(examens);
+        String s="";
         //tant que la liste créée n'est pas vide, on recommence
         while (!copieExam.isEmpty()) {
             int imin = 0;
@@ -55,27 +58,29 @@ public class DMR {
                     imin = i;
                     e1 = e2;
                 } //si la date est la même oncompare les heures
-                else if (e1.getDate().compareTo(e2.getDate()) == 0 && e1.getHeure().substring(0, 2).compareTo(e2.getHeure().substring(0, 2)) > 0) {
+                else if (e1.getDate().compareTo(e2.getDate()) == 0 && e1.getHeureDebut().substring(0, 2).compareTo(e2.getHeureDebut().substring(0, 2)) > 0) {
                     imin = i;
                     e1 = e2;
                 } //si la date est l'heure sont les mêmes, on compare les minutes
-                else if (e1.getDate().compareTo(e2.getDate()) == 0 && e1.getHeure().substring(0, 2).compareTo(e2.getHeure().substring(0, 2)) == 0
-                        && e1.getHeure().substring(2, 4).compareTo(e2.getHeure().substring(2, 4)) > 0) {
+                else if (e1.getDate().compareTo(e2.getDate()) == 0 && e1.getHeureDebut().substring(0, 2).compareTo(e2.getHeureDebut().substring(0, 2)) == 0
+                        && e1.getHeureDebut().substring(2, 4).compareTo(e2.getHeureDebut().substring(2, 4)) > 0) {
                     imin = i;
                     e1 = e2;
                 }
             }
             //on affiche cet examen
-            e1.afficherExam();
-            System.out.println("---------------------");
+            s+=e1.afficherExam();
+            s+="---------------------";
             //on le supprime de la liste
             copieExam.remove(imin);
         }
+        return s;
     }
 
-    public void trierParNom() {
+    public String trierParNom() {
         //creation d'une liste, copie de la liste examens
         ArrayList<Examen> copieExam = new ArrayList<>(examens);
+        String s="";
         //Tant que nous sommes pas a la fin de la liste
         while (!copieExam.isEmpty()) {
             int imin = 0;
@@ -89,11 +94,12 @@ public class DMR {
                 }
             }
             //on affiche l'examen
-            e1.afficherExam();
-            System.out.println("------------------------");
+            s+=e1.afficherExam();
+            s+="------------------------";
             //on eneleve l'examen qu'on a affiche de la liste
             copieExam.remove(imin);
         }
+        return s;
     }
 
     //trier par numero d'archivage
@@ -119,27 +125,33 @@ public class DMR {
 //            copieExam.remove(imin);
 //        }
 //    }
-    public void chercherExam(Examen e) {
+    public Examen chercherExam(Examen e) {
+        Examen exam = null;
         if (this.examens.contains(e)) {
-            e.afficherExam();
+            exam=e;
         }
+        return exam;
     }
 
-    public void chercherExamId(int idExam) {
+    public Examen chercherExamId(int idExam) {
+        Examen e=null;
         for (int i = 0; i < examens.size(); i++) {
             if (examens.get(i).getIdExam() == idExam) {
-                examens.get(i).afficherExam();
+                e=examens.get(i);
             }
         }
+        return e;
     }
 
-    public void afficherRapport(Examen e) {
+    public String afficherRapport(Examen e) {
+        String s="";
         if (examens.contains(e)) {
-            System.out.println(e.getRapport());
+            s+=e.getRapport();
         }
         else {
             System.out.println("Cet examen n'est pas dans le dossier");
         }
+        return s;
     }
 
 }

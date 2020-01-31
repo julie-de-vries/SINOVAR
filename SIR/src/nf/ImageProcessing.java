@@ -5,8 +5,13 @@
  */
 package nf;
 
+import java.awt.Color;
 import java.awt.image.BufferedImage;
-
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 /**
  *
  * @author Julie
@@ -15,11 +20,20 @@ public class ImageProcessing {
     private BufferedImage img;
     
     public ImageProcessing(String imageFileName){
-        PgmImage pgm = new PgmImage(imageFileName);
-        img=pgm.getImg();
+        if(imageFileName.endsWith("pgm")){
+            PgmImage pgm = new PgmImage(imageFileName);
+            img=pgm.getImg();
+        }
+        else{
+            try {
+                img = ImageIO.read(new File(imageFileName));
+            } catch (IOException ex) {
+                Logger.getLogger(ImageProcessing.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
     /*l'image est tournée de 90° vers la gauche*/
-    public void rotate(){
+    public void rotateToLeft(){
         int         height  = img.getWidth();
         int         width = img.getHeight();
         BufferedImage   newImage = new BufferedImage( height, width, img.getType() );
@@ -27,6 +41,18 @@ public class ImageProcessing {
         for( int i=0 ; i < width ; i++ )
             for( int j=0 ; j < height ; j++ )
                 newImage.setRGB( j, i, img.getRGB(i,j) );
+
+        img=newImage;
+    }
+    /*l'image est tournée de 90° vers la droite*/
+    public void rotateToRight(){
+        int         height  = img.getWidth();
+        int         width = img.getHeight();
+        BufferedImage   newImage = new BufferedImage( height, width, img.getType() );
+
+        for( int i=0 ; i < width ; i++ )
+            for( int j=0 ; j < height ; j++ )
+                newImage.setRGB( width-1-i, j, img.getRGB(j,i) );
 
         img=newImage;
     }
@@ -42,7 +68,7 @@ public class ImageProcessing {
 
         img=newImage;
     }
-    
+    /*l'image est retournée horizontalement*/
     public void flipHorizontally(){
         int         width  = img.getWidth();
         int         height = img.getHeight();
@@ -54,18 +80,25 @@ public class ImageProcessing {
 
         img=newImage;
     }
-    /*éclaircissement de l'image au pourcentage p*/
-    public void brighten(double p){
+    /*éclaircissement de l'image d'un facteur f*/
+    public void brighten(float f){
         int         width  = img.getWidth();
         int         height = img.getHeight();
         
         for( int i=0 ; i < height ; i++ ){
             for( int j=0 ; j < width ; j++ ){
-                String R=String.valueOf((int)(Integer.parseInt(String.valueOf(img.getRGB(i,j)).subSequence(0,3).toString())*(1+p/100)));
-                String G=String.valueOf((int)(Integer.parseInt(String.valueOf(img.getRGB(i,j)).subSequence(3,6).toString())*(1+p/100)));
-                String B=String.valueOf((int)(Integer.parseInt(String.valueOf(img.getRGB(i,j)).subSequence(6,7).toString())*(1+p/100)));
-                int RGB=Integer.parseInt(R+G+B);
-                img.setRGB(i, j,RGB);
+                Color c=new Color(img.getRGB(i, j));
+                int r = c.getRed();
+                int g = c.getGreen();
+                int b = c.getBlue();
+                float[] h=new float[3];
+                Color.RGBtoHSB(r, g, b, h);
+                if(h[2]*(1+f/100)>1)
+                    h[2]=1;
+                else{
+                    h[2]=h[2]*(1+(f/100));
+                }
+                img.setRGB(i, j,Color.HSBtoRGB(h[0],h[1],h[2]));
             }
         }
     }
@@ -76,7 +109,12 @@ public class ImageProcessing {
         
         for( int i=0 ; i < height ; i++ ){
             for( int j=0 ; j < width ; j++ ){
-                img.setRGB(i, j,255255255-img.getRGB(i, j));
+                Color c1=new Color(img.getRGB(i, j));
+                int r = 255-c1.getRed();
+                int g = 255-c1.getGreen();
+                int b = 255-c1.getBlue();
+                Color c= new Color(r,g,b);
+                img.setRGB(i,j,c.getRGB());
             }
         }
     }
@@ -98,4 +136,5 @@ public class ImageProcessing {
     public void setImg(BufferedImage img) {
         this.img = img;
     }
+    
 }
