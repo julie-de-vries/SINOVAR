@@ -20,6 +20,7 @@ public class Accueil extends javax.swing.JFrame {
 
     private SIR sir;
     private final Professionnel currentUser;
+    private ArrayList<Patient> searchResult;
 
     /**
      * Creates new form Accueil
@@ -27,7 +28,7 @@ public class Accueil extends javax.swing.JFrame {
      * @param currentUser : utilisateur actuel connecté au logiciel
      */
     public Accueil(Professionnel currentUser) {
-        String titreDePage="Sinovar";
+        String titreDePage = "Sinovar";
         this.setTitle(titreDePage);
         this.currentUser = currentUser;
         DataBaseLayer DBL = new DataBaseLayer("SELECT * from sinovar.personnel;");
@@ -50,6 +51,9 @@ public class Accueil extends javax.swing.JFrame {
         }
         /*récupération des patients de la BDD*/
         initComponents();
+        /*UserName.setText("Utilisateur : "+ currentUser.getNom());
+        fait un nullPointerException pourquoi ?? (sout currentUser.getNom() ne fait pas de NPE)
+        */
     }
 
     /**
@@ -61,19 +65,52 @@ public class Accueil extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton1 = new javax.swing.JButton();
+        SecondPanel = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        LogOutButton = new javax.swing.JButton();
+        PatientSearchPanel = new javax.swing.JPanel();
         DMRLabel = new javax.swing.JLabel();
         SearchPatientField = new javax.swing.JTextField();
         SearchPatientButton = new javax.swing.JButton();
         ScrollDMR = new javax.swing.JScrollPane();
         DMRTable = new javax.swing.JTable();
-        jPanel2 = new javax.swing.JPanel();
-        CreateDMR = new javax.swing.JButton();
-        LogOutButton = new javax.swing.JButton();
-        ScrollAgenda = new javax.swing.JScrollPane();
-        AgendaTable = new javax.swing.JTable();
+
+        jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(858, 397));
+        setPreferredSize(new java.awt.Dimension(858, 397));
+
+        SecondPanel.setPreferredSize(new java.awt.Dimension(615, 331));
+        SecondPanel.setLayout(new java.awt.BorderLayout());
+
+        jPanel1.setMinimumSize(new java.awt.Dimension(615, 331));
+        jPanel1.setPreferredSize(new java.awt.Dimension(615, 331));
+        jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.LINE_AXIS));
+        SecondPanel.add(jPanel1, java.awt.BorderLayout.EAST);
+
+        jPanel2.setMinimumSize(new java.awt.Dimension(615, 66));
+        jPanel2.setLayout(new java.awt.BorderLayout());
+
+        LogOutButton.setText("log out");
+        LogOutButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                LogOutButtonMouseClicked(evt);
+            }
+        });
+        LogOutButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                LogOutButtonMouseClicked(evt);
+            }
+        });
+        jPanel2.add(LogOutButton, java.awt.BorderLayout.EAST);
+
+        SecondPanel.add(jPanel2, java.awt.BorderLayout.PAGE_END);
+
+        PatientSearchPanel.setMinimumSize(new java.awt.Dimension(230, 331));
+        PatientSearchPanel.setPreferredSize(new java.awt.Dimension(230, 331));
 
         DMRLabel.setText("CONSULTER UN DMR");
 
@@ -129,148 +166,99 @@ public class Accueil extends javax.swing.JFrame {
             }
         ));
         DMRTable.setColumnSelectionAllowed(true);
+        DMRTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                DMRTableMouseClicked(evt);
+            }
+        });
+        DMRTable.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                DMRTableKeyPressed(evt);
+            }
+        });
         ScrollDMR.setViewportView(DMRTable);
         DMRTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout PatientSearchPanelLayout = new javax.swing.GroupLayout(PatientSearchPanel);
+        PatientSearchPanel.setLayout(PatientSearchPanelLayout);
+        PatientSearchPanelLayout.setHorizontalGroup(
+            PatientSearchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PatientSearchPanelLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(PatientSearchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ScrollDMR, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(PatientSearchPanelLayout.createSequentialGroup()
+                        .addGroup(PatientSearchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(DMRLabel)
                             .addComponent(SearchPatientField, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(SearchPatientButton, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        PatientSearchPanelLayout.setVerticalGroup(
+            PatientSearchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PatientSearchPanelLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(PatientSearchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(SearchPatientField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(SearchPatientButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(DMRLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(ScrollDMR, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        CreateDMR.setText("CRÉER UN DMR");
-
-        LogOutButton.setText("log out");
-        LogOutButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                LogOutButtonMouseClicked(evt);
-            }
-        });
-
-        AgendaTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Horaire", "Scanner", "Radiologie", "IRM"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        AgendaTable.setColumnSelectionAllowed(true);
-        ScrollAgenda.setViewportView(AgendaTable);
-        AgendaTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(LogOutButton)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(CreateDMR)
-                        .addGap(251, 251, 251))))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(63, 63, 63)
-                .addComponent(ScrollAgenda, javax.swing.GroupLayout.PREFERRED_SIZE, 513, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 52, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(93, 93, 93)
-                .addComponent(ScrollAgenda, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(CreateDMR)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(LogOutButton)
-                .addContainerGap())
-        );
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(ScrollDMR, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+
+        SecondPanel.add(PatientSearchPanel, java.awt.BorderLayout.CENTER);
+
+        getContentPane().add(SecondPanel, java.awt.BorderLayout.PAGE_START);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void DMRTableKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_DMRTableKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DMRTableKeyPressed
+
+    private void DMRTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DMRTableMouseClicked
+        int row = DMRTable.getSelectedRow();
+        if (searchResult != null && row >= 0 && row < searchResult.size()) {
+            jPanel1.removeAll();
+            jPanel1.add(new DMR(searchResult.get(row)),BorderLayout.CENTER); /*ouvre le DMR du patient selectionne*/
+            jPanel2.removeAll();
+            this.repaint();
+        }
+    }//GEN-LAST:event_DMRTableMouseClicked
+
     private void SearchPatientFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SearchPatientFieldKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            ArrayList<Patient> p = sir.chercherPatient(SearchPatientField.getText());//recherche les patients
+            searchResult = sir.chercherPatient(SearchPatientField.getText());//recherche les patients
             /*vide le tableau*/
-            if (SearchPatientField.getText().trim().equals("")||p.isEmpty()) {
+            if (SearchPatientField.getText().trim().equals("") || searchResult.isEmpty()) {
                 for (int i = 0; i < DMRTable.getRowCount(); i++) {
                     DMRTable.setValueAt("", i, 0);
                     DMRTable.setValueAt("", i, 1);
                 }
             } else {
                 /*remplit les lignes jusqu'à ce qu'il n'y en ait plus ou jusqu'à ce que la liste soit finie*/
-                for (int i = 0; i < Math.min(p.size(), DMRTable.getRowCount()); i++) {
-                    DMRTable.setValueAt(p.get(i).getNomUsuel(), i, 0);
-                    DMRTable.setValueAt(p.get(i).getIdPatient(), i, 1);
+                for (int i = 0; i < Math.min(searchResult.size(), DMRTable.getRowCount()); i++) {
+                    DMRTable.setValueAt(searchResult.get(i).getNomUsuel(), i, 0);
+                    DMRTable.setValueAt(searchResult.get(i).getIdPatient(), i, 1);
                 }
                 /*remplit le reste des lignes si la liste est plus longue que le tableau en ajoutant des lignes*/
-                for (int i = DMRTable.getRowCount(); i < Math.max(p.size(), DMRTable.getRowCount()); i++) {
+                for (int i = DMRTable.getRowCount(); i < Math.max(searchResult.size(), DMRTable.getRowCount()); i++) {
                     //ajouter des lignes ??
-                    DMRTable.setValueAt(p.get(i).getNomUsuel(), i, 0);
-                    DMRTable.setValueAt(p.get(i).getIdPatient(), i, 1);
+                    DMRTable.setValueAt(searchResult.get(i).getNomUsuel(), i, 0);
+                    DMRTable.setValueAt(searchResult.get(i).getIdPatient(), i, 1);
                 }
             }
         }
     }//GEN-LAST:event_SearchPatientFieldKeyPressed
+
+    private void LogOutButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogOutButtonMouseClicked
+        this.dispose();
+        new Connexion().setVisible(true);
+    }//GEN-LAST:event_LogOutButtonMouseClicked
 
     /**
      * @param args the command line arguments
@@ -303,8 +291,12 @@ public class Accueil extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 Accueil a = new Accueil(null);
+                AgendaPanel ap = new AgendaPanel();
+                a.jPanel1.add(ap,BorderLayout.CENTER);
+                a.pack();
                 a.setVisible(true);
                 a.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                
             }
         });
     }
@@ -314,46 +306,43 @@ public class Accueil extends javax.swing.JFrame {
         //.setText("");
     }
 
-
     public void SearchPatientButtonMouseClicked(java.awt.event.MouseEvent evt) {
-        ArrayList<Patient> p = sir.chercherPatient(SearchPatientField.getText());//recherche les patients
+        searchResult = sir.chercherPatient(SearchPatientField.getText());//recherche les patients
         /*vide le tableau*/
-        if (SearchPatientField.getText().trim().equals("")||p.isEmpty()) {
+        if (SearchPatientField.getText().trim().equals("") || searchResult.isEmpty()) {
             for (int i = 0; i < DMRTable.getRowCount(); i++) {
                 DMRTable.setValueAt("", i, 0);
                 DMRTable.setValueAt("", i, 1);
             }
         } else {
             /*remplit les lignes jusqu'à ce qu'il n'y en ait plus ou jusqu'à ce que la liste soit finie*/
-            for (int i = 0; i < Math.min(p.size(), DMRTable.getRowCount()); i++) {
-                DMRTable.setValueAt(p.get(i).getNomUsuel(), i, 0);
-                DMRTable.setValueAt(p.get(i).getIdPatient(), i, 1);
+            for (int i = 0; i < Math.min(searchResult.size(), DMRTable.getRowCount()); i++) {
+                DMRTable.setValueAt(searchResult.get(i).getNomUsuel(), i, 0);
+                DMRTable.setValueAt(searchResult.get(i).getIdPatient(), i, 1);
             }
             /*remplit le reste des lignes si la liste est plus longue que le tableau en ajoutant des lignes*/
-            for (int i = DMRTable.getRowCount(); i < Math.max(p.size(), DMRTable.getRowCount()); i++) {
+            for (int i = DMRTable.getRowCount(); i < Math.max(searchResult.size(), DMRTable.getRowCount()); i++) {
                 //ajouter des lignes ??
-                DMRTable.setValueAt(p.get(i).getNomUsuel(), i, 0);
-                DMRTable.setValueAt(p.get(i).getIdPatient(), i, 1);
+                DMRTable.setValueAt(searchResult.get(i).getNomUsuel(), i, 0);
+                DMRTable.setValueAt(searchResult.get(i).getIdPatient(), i, 1);
             }
         }
     }
 
-    public void LogOutButtonMouseClicked(java.awt.event.MouseEvent evt) {
-        this.dispose();
-        new Connexion().setVisible(true);
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable AgendaTable;
-    private javax.swing.JButton CreateDMR;
     private javax.swing.JLabel DMRLabel;
     private javax.swing.JTable DMRTable;
     private javax.swing.JButton LogOutButton;
-    private javax.swing.JScrollPane ScrollAgenda;
+    private javax.swing.JPanel PatientSearchPanel;
     private javax.swing.JScrollPane ScrollDMR;
     private javax.swing.JButton SearchPatientButton;
     private javax.swing.JTextField SearchPatientField;
+    private javax.swing.JPanel SecondPanel;
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
+
 }
