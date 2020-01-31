@@ -10,6 +10,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
 import javax.swing.*;
+import nf.*;
 
 /**
  *
@@ -214,22 +215,19 @@ public class Connexion extends javax.swing.JFrame {
     private void validerMouseClicked(java.awt.event.MouseEvent evt) {                                         
         String id = entree_id.getText();
         String mdp=String.valueOf(entree_mdp.getPassword());
-        //Identifications c = new Identifications(id, mdp);       
+        Identifications c = new Identifications(id, mdp);       
         
-        System.out.println(id);
-        System.out.println(mdp);
-        if((id.equals("1"))&&(mdp.equals("ab"))){
+        //System.out.println(id);
+        //System.out.println(mdp);
+        //if((id.equals("1"))&&(mdp.equals("ab"))){
+        if(c.isAuth()){
 //            Test t = new Test();            
 //            t.setVisible(true);     
 //            this.remove(jPanel1);
             
-            this.remove(jPanel1);
-            //jPanel1.setVisible(false);
-            Test te = new Test();
-            this.add(te);
-            te.setVisible(true);
-            
-            this.repaint();
+            this.dispose();
+            Accueil a = new Accueil(c.getCurrentUser());
+            a.setVisible(true);
             
             
             
