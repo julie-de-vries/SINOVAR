@@ -10,12 +10,16 @@ package ui;
  * @author Julie
  */
 public class AgendaPanel extends javax.swing.JPanel {
-
+    private Accueil a;
     /**
      * Creates new form NewJPanel
      */
-    public AgendaPanel() {
+    public AgendaPanel(Accueil a) {
+        this.a = a ;
         initComponents();
+        /*UserName.setText("Utilisateur : "+ a.getCurrentUser().getNom());
+        fait un nullPointerException pourquoi ?? (sout currentUser.getNom() ne fait pas de NPE)
+        */
     }
     
     /**
@@ -32,6 +36,10 @@ public class AgendaPanel extends javax.swing.JPanel {
         ScrollAgenda = new javax.swing.JScrollPane();
         AgendaTable = new javax.swing.JTable();
         UserName = new javax.swing.JLabel();
+        logOutButton = new javax.swing.JButton();
+
+        Agenda.setMinimumSize(new java.awt.Dimension(615, 345));
+        Agenda.setPreferredSize(new java.awt.Dimension(615, 345));
 
         CreateDMR.setText("CRÉER UN DMR");
 
@@ -64,14 +72,17 @@ public class AgendaPanel extends javax.swing.JPanel {
 
         UserName.setText("UserName");
 
+        logOutButton.setText("logout");
+        logOutButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                logOutButtonMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout AgendaLayout = new javax.swing.GroupLayout(Agenda);
         Agenda.setLayout(AgendaLayout);
         AgendaLayout.setHorizontalGroup(
             AgendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AgendaLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(CreateDMR)
-                .addGap(251, 251, 251))
             .addGroup(AgendaLayout.createSequentialGroup()
                 .addGroup(AgendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(AgendaLayout.createSequentialGroup()
@@ -81,6 +92,15 @@ public class AgendaPanel extends javax.swing.JPanel {
                         .addGap(102, 102, 102)
                         .addComponent(UserName)))
                 .addGap(0, 39, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AgendaLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(AgendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AgendaLayout.createSequentialGroup()
+                        .addComponent(CreateDMR)
+                        .addGap(251, 251, 251))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AgendaLayout.createSequentialGroup()
+                        .addComponent(logOutButton)
+                        .addContainerGap())))
         );
         AgendaLayout.setVerticalGroup(
             AgendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -91,7 +111,9 @@ public class AgendaPanel extends javax.swing.JPanel {
                 .addComponent(ScrollAgenda, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(CreateDMR)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(logOutButton)
+                .addGap(10, 10, 10))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -107,7 +129,7 @@ public class AgendaPanel extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 331, Short.MAX_VALUE)
+            .addGap(0, 345, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -116,6 +138,10 @@ public class AgendaPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void logOutButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logOutButtonMouseClicked
+        a.logOut();
+    }//GEN-LAST:event_logOutButtonMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Agenda;
@@ -123,5 +149,6 @@ public class AgendaPanel extends javax.swing.JPanel {
     private javax.swing.JButton CreateDMR;
     private javax.swing.JScrollPane ScrollAgenda;
     private javax.swing.JLabel UserName;
+    private javax.swing.JButton logOutButton;
     // End of variables declaration//GEN-END:variables
 }

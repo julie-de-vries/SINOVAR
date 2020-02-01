@@ -51,9 +51,7 @@ public class Accueil extends javax.swing.JFrame {
         }
         /*récupération des patients de la BDD*/
         initComponents();
-        /*UserName.setText("Utilisateur : "+ currentUser.getNom());
-        fait un nullPointerException pourquoi ?? (sout currentUser.getNom() ne fait pas de NPE)
-        */
+        
     }
 
     /**
@@ -68,8 +66,6 @@ public class Accueil extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         SecondPanel = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        LogOutButton = new javax.swing.JButton();
         PatientSearchPanel = new javax.swing.JPanel();
         DMRLabel = new javax.swing.JLabel();
         SearchPatientField = new javax.swing.JTextField();
@@ -80,8 +76,7 @@ public class Accueil extends javax.swing.JFrame {
         jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(858, 397));
-        setPreferredSize(new java.awt.Dimension(858, 397));
+        setMinimumSize(new java.awt.Dimension(858, 331));
 
         SecondPanel.setPreferredSize(new java.awt.Dimension(615, 331));
         SecondPanel.setLayout(new java.awt.BorderLayout());
@@ -90,24 +85,6 @@ public class Accueil extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(615, 331));
         jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.LINE_AXIS));
         SecondPanel.add(jPanel1, java.awt.BorderLayout.EAST);
-
-        jPanel2.setMinimumSize(new java.awt.Dimension(615, 66));
-        jPanel2.setLayout(new java.awt.BorderLayout());
-
-        LogOutButton.setText("log out");
-        LogOutButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                LogOutButtonMouseClicked(evt);
-            }
-        });
-        LogOutButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                LogOutButtonMouseClicked(evt);
-            }
-        });
-        jPanel2.add(LogOutButton, java.awt.BorderLayout.EAST);
-
-        SecondPanel.add(jPanel2, java.awt.BorderLayout.PAGE_END);
 
         PatientSearchPanel.setMinimumSize(new java.awt.Dimension(230, 331));
         PatientSearchPanel.setPreferredSize(new java.awt.Dimension(230, 331));
@@ -224,8 +201,8 @@ public class Accueil extends javax.swing.JFrame {
         int row = DMRTable.getSelectedRow();
         if (searchResult != null && row >= 0 && row < searchResult.size()) {
             jPanel1.removeAll();
-            jPanel1.add(new DMR(searchResult.get(row)),BorderLayout.CENTER); /*ouvre le DMR du patient selectionne*/
-            jPanel2.removeAll();
+            jPanel1.add(new DMR(searchResult.get(row),this),BorderLayout.CENTER); /*ouvre le DMR du patient selectionne*/
+            this.pack();
             this.repaint();
         }
     }//GEN-LAST:event_DMRTableMouseClicked
@@ -254,11 +231,6 @@ public class Accueil extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_SearchPatientFieldKeyPressed
-
-    private void LogOutButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogOutButtonMouseClicked
-        this.dispose();
-        new Connexion().setVisible(true);
-    }//GEN-LAST:event_LogOutButtonMouseClicked
 
     /**
      * @param args the command line arguments
@@ -291,7 +263,7 @@ public class Accueil extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 Accueil a = new Accueil(null);
-                AgendaPanel ap = new AgendaPanel();
+                AgendaPanel ap = new AgendaPanel(a);
                 a.jPanel1.add(ap,BorderLayout.CENTER);
                 a.pack();
                 a.setVisible(true);
@@ -328,13 +300,24 @@ public class Accueil extends javax.swing.JFrame {
             }
         }
     }
+    
+    public void CloseDMR(){
+        jPanel1.removeAll();
+        jPanel1.add(new AgendaPanel(this),BorderLayout.CENTER); /*ouvre le DMR du patient selectionne*/
+        this.pack();
+        this.repaint();
+    }
+    
+    public void logOut(){
+        this.dispose();
+        new Connexion().setVisible(true);
+    }
 
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel DMRLabel;
     private javax.swing.JTable DMRTable;
-    private javax.swing.JButton LogOutButton;
     private javax.swing.JPanel PatientSearchPanel;
     private javax.swing.JScrollPane ScrollDMR;
     private javax.swing.JButton SearchPatientButton;
@@ -342,7 +325,13 @@ public class Accueil extends javax.swing.JFrame {
     private javax.swing.JPanel SecondPanel;
     private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the currentUser
+     */
+    public Professionnel getCurrentUser() {
+        return currentUser;
+    }
 
 }

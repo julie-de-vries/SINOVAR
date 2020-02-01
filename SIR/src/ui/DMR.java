@@ -13,11 +13,13 @@ import nf.*;
  */
 public class DMR extends javax.swing.JPanel {
     private Patient patient;
+    private Accueil a;
     /**
      * Creates new form DMR
      */
-    public DMR(Patient patient) {
+    public DMR(Patient patient, Accueil a) {
         this.patient=patient;
+        this.a = a;
         initComponents();
         idLabel.setText(String.valueOf(patient.getIdPatient()));
         nameLabel.setText(patient.getNomUsuel());
@@ -51,119 +53,73 @@ public class DMR extends javax.swing.JPanel {
         DDNLabel = new javax.swing.JLabel();
         GenderLabel = new javax.swing.JLabel();
         CloseDMR = new javax.swing.JButton();
-        SearchExamField = new javax.swing.JTextField();
-        SearchExamButton = new javax.swing.JButton();
-        jLabel8 = new javax.swing.JLabel();
-        SortChoice = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         ExamTable = new javax.swing.JTable();
         SaveExamButton = new javax.swing.JButton();
+        SortChoice = new javax.swing.JComboBox<>();
+        jLabel8 = new javax.swing.JLabel();
+        SearchExamField = new javax.swing.JTextField();
+        SearchExamButton = new javax.swing.JButton();
+
+        setMinimumSize(new java.awt.Dimension(615, 345));
+        setPreferredSize(new java.awt.Dimension(615, 345));
+
+        jPanel1.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel1.setMinimumSize(new java.awt.Dimension(615, 120));
+        jPanel1.setPreferredSize(new java.awt.Dimension(615, 120));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("DMR PATIENT");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, 80, -1));
 
         jLabel2.setText("Identifiant :");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
 
         jLabel3.setText("Nom :");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
 
         jLabel4.setText("Prénom :");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
 
         jLabel5.setText("N°SS :");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 40, -1, -1));
 
         jLabel6.setText("DDN :");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 70, -1, -1));
 
         jLabel7.setText("Genre :");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 100, -1, -1));
 
         idLabel.setText("idLabel");
+        jPanel1.add(idLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, -1, -1));
 
         nameLabel.setText("nameLabel");
+        jPanel1.add(nameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, -1, -1));
 
         firstNameLabel.setText("firstNameLabel");
+        jPanel1.add(firstNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, -1, -1));
 
         nssLabel.setText("nssLabel");
+        jPanel1.add(nssLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 40, -1, -1));
 
         DDNLabel.setText("DDNLabel");
+        jPanel1.add(DDNLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 70, -1, -1));
 
         GenderLabel.setText("GenderLabel");
+        jPanel1.add(GenderLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 100, -1, -1));
 
         CloseDMR.setText("fermer");
+        CloseDMR.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CloseDMRMouseClicked(evt);
+            }
+        });
+        jPanel1.add(CloseDMR, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 10, -1, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(166, 166, 166)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(CloseDMR)
-                .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(idLabel))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(firstNameLabel))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(nameLabel)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(GenderLabel))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(nssLabel))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(DDNLabel)))
-                .addGap(90, 90, 90))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(CloseDMR))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel2)
-                        .addComponent(idLabel))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel5)
-                        .addComponent(nssLabel)))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel6)
-                    .addComponent(nameLabel)
-                    .addComponent(DDNLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(firstNameLabel)
-                    .addComponent(GenderLabel)
-                    .addComponent(jLabel7))
-                .addContainerGap())
-        );
-
-        SearchExamField.setText("Rechercher");
-
-        jLabel8.setText("EXAMENS");
-
-        SortChoice.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Trier par date", "Trier par nom", "Trier par numéro" }));
+        jPanel2.setMinimumSize(new java.awt.Dimension(615, 225));
+        jPanel2.setPreferredSize(new java.awt.Dimension(615, 225));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         ExamTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -188,65 +144,44 @@ public class DMR extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(ExamTable);
 
-        SaveExamButton.setText("Enregistrer un examen");
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 570, 120));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(SaveExamButton)
-                .addContainerGap())
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(SaveExamButton)
-                .addContainerGap(181, Short.MAX_VALUE))
-        );
+        SaveExamButton.setText("Enregistrer un examen");
+        jPanel2.add(SaveExamButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 180, 170, -1));
+
+        SortChoice.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Trier par date", "Trier par nom", "Trier par numéro" }));
+        jPanel2.add(SortChoice, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 10, -1, -1));
+        SortChoice.getAccessibleContext().setAccessibleParent(jPanel2);
+
+        jLabel8.setText("EXAMENS");
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 10, -1, -1));
+
+        SearchExamField.setText("Rechercher");
+        jPanel2.add(SearchExamField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 102, -1));
+        jPanel2.add(SearchExamButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 20, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(SearchExamField, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(SearchExamButton, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel8)
-                .addGap(34, 34, 34)
-                .addComponent(SortChoice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(SearchExamField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(SearchExamButton, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(SortChoice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void CloseDMRMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CloseDMRMouseClicked
+        a.CloseDMR();
+    }//GEN-LAST:event_CloseDMRMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
