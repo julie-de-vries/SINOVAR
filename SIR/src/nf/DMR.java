@@ -44,28 +44,9 @@ public class DMR {
             Examen e1 = copieExam.get(imin);
             for (int i = 1; i < copieExam.size(); i++) {
                 Examen e2 = copieExam.get(i);
-                //on compare les dates des 2 examens, si le résultat est positif, cela signifie que la date du 2 est anterieure a celle du premier donc on la recupere
-                if (e1.getDate().substring(4, 8).compareTo(e2.getDate().substring(4, 8)) > 0) {
+                if(e1.getDateDebut().compareTo(e2.getDateDebut())>0){
                     imin = i;
-                    e1 = e2;
-                } //si l'annee est la meme, on compare les mois
-                else if (e1.getDate().substring(4, 8).compareTo(e2.getDate().substring(4, 8)) == 0 && e1.getDate().substring(2, 4).compareTo(e2.getDate().substring(2, 4)) > 0) {
-                    imin = i;
-                    e1 = e2;
-                } //si l'annee est le mois sont les mêmes on compare les jours
-                else if (e1.getDate().substring(4, 8).compareTo(e2.getDate().substring(4, 8)) == 0 && e1.getDate().substring(2, 4).compareTo(e2.getDate().substring(2, 4)) == 0
-                        && e1.getDate().substring(0, 2).compareTo(e2.getDate().substring(0, 2)) > 0) {
-                    imin = i;
-                    e1 = e2;
-                } //si la date est la même oncompare les heures
-                else if (e1.getDate().compareTo(e2.getDate()) == 0 && e1.getHeureDebut().substring(0, 2).compareTo(e2.getHeureDebut().substring(0, 2)) > 0) {
-                    imin = i;
-                    e1 = e2;
-                } //si la date est l'heure sont les mêmes, on compare les minutes
-                else if (e1.getDate().compareTo(e2.getDate()) == 0 && e1.getHeureDebut().substring(0, 2).compareTo(e2.getHeureDebut().substring(0, 2)) == 0
-                        && e1.getHeureDebut().substring(2, 4).compareTo(e2.getHeureDebut().substring(2, 4)) > 0) {
-                    imin = i;
-                    e1 = e2;
+                    e1=e2;
                 }
             }
             //on affiche cet examen
