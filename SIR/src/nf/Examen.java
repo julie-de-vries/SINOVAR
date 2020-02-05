@@ -12,7 +12,7 @@ public class Examen {
     private final Date dateDebut;
     private final Date dateFin;
     private final TypeExam appareil;
-    private String nomPracticien;
+    private Professionnel pro;
     private String rapport;
     private final String nomExam;
     private final int id_exam;
@@ -20,12 +20,12 @@ public class Examen {
     private String libelleDose;
     private Code code;
 
-    public Examen(int id_exam, String nomExam, Date dateDebut, Date dateFin, TypeExam appareil, String nomPracticien, String rapport) {
+    public Examen(int id_exam, String nomExam, Date dateDebut, Date dateFin, TypeExam appareil, Professionnel pro, String rapport) {
         this.id_exam = id_exam;
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
         this.appareil = appareil;
-        this.nomPracticien = nomPracticien; //a changer avec les bases de données
+        this.pro = pro; //a changer avec les bases de données
         this.rapport = rapport;
         this.dose = 0;
         this.nomExam = nomExam;
@@ -55,16 +55,16 @@ public class Examen {
         this.rapport = rapport;
     }
 
-    public void setPracticien(String ph) {
-        this.nomPracticien = ph;
+    public void setPracticien(Professionnel ph) {
+        this.pro = ph;
     }
 
     public String getNomExamen() {
         return this.nomExam;
     }
 
-    public String getNomPracticien() {
-        return this.nomPracticien;
+    public Professionnel getNomPracticien() {
+        return this.pro;
     }
 
     public int getIdExam() {
@@ -103,7 +103,7 @@ public class Examen {
         s += "\n\tNumero de l'examen : " + this.id_exam;
         s += "\n\tNom de l'examen : " + this.nomExam;
         s += "\n\tAppareil utilisé : " + this.appareil;
-        s += "\n\tNom du Practicien : " + this.nomPracticien;
+        s += "\n\tNom du Practicien : " + this.pro;
         s += "\n\tCompte rendu : " + this.rapport + "\n";
         return s;
     }
