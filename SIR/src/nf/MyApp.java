@@ -33,7 +33,13 @@ public class MyApp {
         /*ImageProcessing img = new ImageProcessing("C:\\Users\\Julie\\Downloads\\pgm\\pgm\\abdomen\\cor494-i43.pgm");
         System.out.println(img.getImg());
         */
-        System.out.println(Metier.valueOf("Practicien"));
+        //System.out.println(Metier.valueOf("Practicien"));
+        /*Test Tableau des examens*/
+        Date d1=new Date(2020,02,05,8,30);
+        Date d2=new Date(2020,02,05,9,30);
+        Examen e1 = new Examen(1,"Radiographie thoracique",d1,d2,TypeExam.IRM,"Peuillon","");
+        
+        
     }
 
 }

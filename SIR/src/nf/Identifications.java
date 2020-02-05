@@ -45,6 +45,10 @@ public class Identifications {
                 ArrayList<String> row = DBL.getResult().get(0);
                 Metier metier = Metier.valueOf(row.get(5));
                 currentUser = new Professionnel(id,row.get(1),row.get(2),row.get(3),row.get(4),metier);
+        Date d1=new Date(120,1,05,8,30);
+        Date d2=new Date(120,1,05,9,30);
+        Examen e1 = new Examen(1,"Radiographie thoracique",d1,d2,TypeExam.IRM,"Peuillon","");
+                currentUser.ajouterExamen(e1);
                 /*récupère le personnel authetifié*/
                 DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
                 String date=dateFormat.format(new Date());

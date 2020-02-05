@@ -35,7 +35,7 @@ public class SIR {
         return s;
     }
 
-    public String afficherTout() {
+    /*public String afficherTout() {
         String s = "";
         for (int i = 0; i < patients.size(); i++) {
             s += "Patient " + patients.get(i).getNomUsuel() + " :\n";
@@ -49,7 +49,7 @@ public class SIR {
             s += "--------------------";
         }
         return s;
-    }
+    }*/
 
     public String trierNomPatient() {
         ArrayList<Patient> copiePatient = new ArrayList<>(patients);
@@ -127,14 +127,14 @@ public class SIR {
     }
 
     //affiche le DMR d'un patient donne
-    public String afficherDmr(Patient p) {
+    /*public String afficherDmr(Patient p) {
         String s="";
         if (patients.contains(p)) {
             s+=p.afficher();
             s+=p.getDmr().afficherListeExamen();
         }
         return s;
-    }
+    }*/
 
     //afficher la liste des professionnels
     public String afficherListeProfessionnel() {
@@ -144,7 +144,7 @@ public class SIR {
     }
 
     //affiche la liste d'examen qu'un professionnel de sante doit faire
-    public String afficherExamProfessionnel(Professionnel p) {
+    /*public String afficherExamProfessionnel(Professionnel p) {
         String s="";
         //parcourt la liste des patients
         for (int i = 0; i < patients.size(); i++) {
@@ -160,5 +160,5 @@ public class SIR {
 
         }
         return s;
-    }
+    }*/
 }

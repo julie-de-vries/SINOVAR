@@ -5,13 +5,11 @@
         <group>
             <file>file:/C:/Users/Julie/Documents/NetBeansProjects/SIRNOVA/SIR/src/nf/Agenda.java</file>
             <file>file:/C:/Users/Julie/Documents/NetBeansProjects/SIRNOVA/SIR/src/nf/SIR.java</file>
-            <file>file:/C:/Users/Julie/Documents/NetBeansProjects/SIRNOVA/SIR/src/nf/DataBaseLayer.java</file>
-            <file>file:/C:/Users/Julie/Documents/NetBeansProjects/SIRNOVA/SIR/src/ui/ImageRadio.java</file>
             <file>file:/C:/Users/Julie/Documents/NetBeansProjects/SIRNOVA/SIR/src/ui/Accueil.java</file>
-            <file>file:/C:/Users/Julie/Documents/NetBeansProjects/SIRNOVA/SIR/src/nf/Professionnels.java</file>
-            <file>file:/C:/Users/Julie/Documents/NetBeansProjects/SIRNOVA/SIR/src/nf/Professionnel.java</file>
-            <file>file:/C:/Users/Julie/Documents/NetBeansProjects/SIRNOVA/SIR/src/nf/Metier.java</file>
-            <file>file:/C:/Users/Julie/Documents/NetBeansProjects/SIRNOVA/SIR/src/nf/Patient.java</file>
+            <file>file:/C:/Users/Julie/Documents/NetBeansProjects/SIRNOVA/SIR/src/ui/DMR.java</file>
+            <file>file:/C:/Users/Julie/Documents/NetBeansProjects/SIRNOVA/SIR/src/nf/Identifications.java</file>
+            <file>file:/C:/Users/Julie/Documents/NetBeansProjects/SIRNOVA/SIR/src/ui/AgendaPanel.java</file>
+            <file>file:/C:/Users/Julie/Documents/NetBeansProjects/SIRNOVA/SIR/src/ui/Connexion.java</file>
         </group>
     </open-files>
 </project-private>

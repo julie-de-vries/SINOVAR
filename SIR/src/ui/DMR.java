@@ -5,6 +5,7 @@
  */
 package ui;
 
+import javax.swing.table.DefaultTableModel;
 import nf.*;
 
 /**
@@ -27,6 +28,30 @@ public class DMR extends javax.swing.JPanel {
         nssLabel.setText(patient.getNss());
         DDNLabel.setText(patient.getDateDeNaissance());
         GenderLabel.setText(patient.getGenre());
+        nf.DMR dmr = patient.getDmr();
+        int nbExam = dmr.getExamen().size();
+        /*création et remplissage du tableau*/
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Nom");
+        model.addColumn("Date");
+        model.addColumn("Numéro");
+        model.addColumn("Image");
+        model.addColumn("CR");
+        model.addColumn("Facture");
+        model.setRowCount(nbExam);
+        ExamTable.setModel(model);
+        /*remplit les lignes du tableau jusqu'à ce que la liste soit finie*/
+        for (int i = 0; i < nbExam; i++) {
+            ExamTable.setValueAt(dmr.getExamen().get(i).getNomExamen(), i, 0);
+            ExamTable.setValueAt(dmr.getExamen().get(i).getDateDebut(), i, 1);
+            ExamTable.setValueAt(dmr.getExamen().get(i).getIdExam(), i, 2);
+            ExamTable.setValueAt(dmr.getExamen().get(i), i, 3);//image ?
+            ExamTable.setValueAt(dmr.getExamen().get(i), i, 4);//CR ?
+            ExamTable.setValueAt(dmr.getExamen().get(i), i, 5);//Facture ?
+        }
+        
+            
+        
     }
 
     /**
@@ -147,7 +172,7 @@ public class DMR extends javax.swing.JPanel {
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 570, 120));
 
         SaveExamButton.setText("Enregistrer un examen");
-        jPanel2.add(SaveExamButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 180, 170, -1));
+        jPanel2.add(SaveExamButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 170, 170, -1));
 
         SortChoice.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Trier par date", "Trier par nom", "Trier par numéro" }));
         jPanel2.add(SortChoice, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 10, -1, -1));

@@ -75,12 +75,12 @@ public class Professionnel {
     }
     //affiche la liste d'examen que le practicien doit faire
 
-    public String afficherExamen() {
+    /*public String afficherExamen() {
         String s="";
         for(int i=0;i<exam.size();i++){
             s+=exam.get(i).afficherExam();
         }
         return s;
-    }
+    }*/
 
 }

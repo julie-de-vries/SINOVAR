@@ -19,6 +19,7 @@ public class Examen {
     private double dose;
     private String libelleDose;
     private Code code;
+    private int salle=1;
 
     public Examen(int id_exam, String nomExam, Date dateDebut, Date dateFin, TypeExam appareil, Professionnel pro, String rapport) {
         this.id_exam = id_exam;
@@ -91,7 +92,7 @@ public class Examen {
         this.code = code;
     }
 
-    public String afficherExam() {
+    /*public String afficherExam() {
         String s = "";
 //        s += "\t" + this.getDateDebut().substring(4, 8) + "-" + this.getDateDebut().substring(2, 4) + "-" + this.getDateDebut().substring(0, 2); //ajout de la date au bon format
 //        s += "-" + this.getDateDebut().substring(8, 10) + "-" + this.getDateDebut().substring(10, 12);//ajout de l'heure
@@ -106,6 +107,10 @@ public class Examen {
         s += "\n\tNom du Practicien : " + this.pro;
         s += "\n\tCompte rendu : " + this.rapport + "\n";
         return s;
+    }*/
+    
+    public String afficherExamen(SIR sir){
+        return nomExam+"\n"+getPatient(sir);
     }
 
     public String afficherDose() {
@@ -114,9 +119,73 @@ public class Examen {
         s += "\n" + this.getDose();
         return s;
     }
+    
+    public int[] calculTrancheHoraire(){
+        int duree = dateToTH(dateFin)-dateToTH(dateDebut);
+        int[] TH=new int[duree];
+        for(int i=0 ; i<duree ; i++){
+            TH[i]=dateToTH(dateDebut)+i;
+        }
+        return TH;
+    }
+    
+    public int dateToTH(Date d){
+        return d.getHours()*2+Math.round(d.getMinutes()/30);
+    }
+    
 
     public int calculerCout() {
         return code.coutExam();
+    }
+    
+    public Patient getPatient(SIR sir){
+        Patient p=null;
+        /*on récupère le patient grâce à l'id de l'examen*/
+        int i = 0;
+        int j = 0;
+        boolean stop = false;
+        while (i<sir.getPatient().size()||(!stop)){
+            while (j<sir.getPatient().get(i).getDmr().getExamen().size()||(!stop)){
+                if(sir.getPatient().get(i).getDmr().getExamen().get(j).getIdExam()==id_exam){
+                    p=sir.getPatient().get(i);
+                    stop = true;
+                }
+            }
+        i++;
+        }
+        return p;
+    }
+    
+    public int getSalle(){
+        return salle;
+    }
+
+    /**
+     * @return the dateDebut
+     */
+    public Date getDateDebut() {
+        return dateDebut;
+    }
+
+    /**
+     * @param dateDebut the dateDebut to set
+     */
+    public void setDateDebut(Date dateDebut) {
+        this.dateDebut = dateDebut;
+    }
+
+    /**
+     * @return the dateFin
+     */
+    public Date getDateFin() {
+        return dateFin;
+    }
+
+    /**
+     * @param dateFin the dateFin to set
+     */
+    public void setDateFin(Date dateFin) {
+        this.dateFin = dateFin;
     }
 
 }

@@ -5,23 +5,57 @@
  */
 package ui;
 
+import java.awt.event.KeyEvent;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import javax.swing.table.DefaultTableModel;
+import nf.Metier;
+import nf.TypeExam;
+
 /**
  *
  * @author Julie
  */
 public class AgendaPanel extends javax.swing.JPanel {
+
     private Accueil a;
+    private Date dateSelected;
+    private SimpleDateFormat format = new SimpleDateFormat("d/MM/yyyy");
+
     /**
      * Creates new form NewJPanel
      */
     public AgendaPanel(Accueil a) {
-        this.a = a ;
+        this.a = a;
+        dateSelected = new Date();
         initComponents();
+        
+
+
         /*UserName.setText("Utilisateur : "+ a.getCurrentUser().getNom());
         fait un nullPointerException pourquoi ?? (sout currentUser.getNom() ne fait pas de NPE)
-        */
+         */
+ /*Remplit l'agenda selon le professionnel en question*/
+ /*Si c'est une secrétaire on met tous les examens du jour*/
+ /*Si c'est un PH on met ses examens*/
+ /*création et remplissage du tableau*/
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Horaire");
+        /*On suppose un nombre de trois salles pour chaque type d'examen, il est à adapter à l'établissement*/
+        model.addColumn("Salle 1");
+        model.addColumn("Salle 2");
+        model.addColumn("Salle 3");
+        model.setRowCount(48);//nombre de demi-heures dans un jour
+        AgendaTable.setModel(model);
+        for (int i = 0; i < 48; i++) {
+            AgendaTable.setValueAt(Math.round(i / 2) + ":" + (i % 2) * 3 + 0, i, 0);
+        }
+        RemplirTableau();
+
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -37,6 +71,10 @@ public class AgendaPanel extends javax.swing.JPanel {
         AgendaTable = new javax.swing.JTable();
         UserName = new javax.swing.JLabel();
         logOutButton = new javax.swing.JButton();
+        SelectType = new javax.swing.JComboBox<>();
+        dateField = new javax.swing.JFormattedTextField();
+        nextDate = new javax.swing.JButton();
+        previousDate = new javax.swing.JButton();
 
         Agenda.setMinimumSize(new java.awt.Dimension(615, 345));
         Agenda.setPreferredSize(new java.awt.Dimension(615, 345));
@@ -79,19 +117,74 @@ public class AgendaPanel extends javax.swing.JPanel {
             }
         });
 
+        SelectType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Scanner", "IRM", "RadioArgentique", "Mammographe", "Echoendoscope", "Angiographie", "AccelerateurParticule" }));
+        SelectType.setSelectedItem("Scanner");
+        SelectType.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SelectTypeActionPerformed(evt);
+            }
+        });
+        SelectType.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                SelectTypePropertyChange(evt);
+            }
+        });
+
+        dateField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("d MMM yyyy"))));
+        dateField.setText(format.format(dateSelected));
+        dateField.setValue(dateSelected);
+        dateField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                dateFieldMouseClicked(evt);
+            }
+        });
+        dateField.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                dateFieldPropertyChange(evt);
+            }
+        });
+        dateField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                dateFieldKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                dateFieldKeyTyped(evt);
+            }
+        });
+
+        nextDate.setText("plus");
+        nextDate.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                nextDateMouseClicked(evt);
+            }
+        });
+
+        previousDate.setText("moins");
+        previousDate.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                previousDateMouseClicked(evt);
+            }
+        });
+        previousDate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                previousDateActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout AgendaLayout = new javax.swing.GroupLayout(Agenda);
         Agenda.setLayout(AgendaLayout);
         AgendaLayout.setHorizontalGroup(
             AgendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(AgendaLayout.createSequentialGroup()
-                .addGroup(AgendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(AgendaLayout.createSequentialGroup()
-                        .addGap(63, 63, 63)
-                        .addComponent(ScrollAgenda, javax.swing.GroupLayout.PREFERRED_SIZE, 513, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(AgendaLayout.createSequentialGroup()
-                        .addGap(102, 102, 102)
-                        .addComponent(UserName)))
+                .addGap(63, 63, 63)
+                .addComponent(ScrollAgenda, javax.swing.GroupLayout.PREFERRED_SIZE, 513, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 39, Short.MAX_VALUE))
+            .addGroup(AgendaLayout.createSequentialGroup()
+                .addGap(102, 102, 102)
+                .addComponent(UserName)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(SelectType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(88, 88, 88))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AgendaLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(AgendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -100,14 +193,28 @@ public class AgendaPanel extends javax.swing.JPanel {
                         .addGap(251, 251, 251))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AgendaLayout.createSequentialGroup()
                         .addComponent(logOutButton)
-                        .addContainerGap())))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AgendaLayout.createSequentialGroup()
+                        .addComponent(previousDate)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(dateField, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(nextDate)
+                        .addGap(170, 170, 170))))
         );
         AgendaLayout.setVerticalGroup(
             AgendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AgendaLayout.createSequentialGroup()
                 .addGap(34, 34, 34)
-                .addComponent(UserName)
-                .addGap(45, 45, 45)
+                .addGroup(AgendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(UserName)
+                    .addComponent(SelectType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(1, 1, 1)
+                .addGroup(AgendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(dateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nextDate)
+                    .addComponent(previousDate))
+                .addGap(18, 18, 18)
                 .addComponent(ScrollAgenda, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(CreateDMR)
@@ -142,13 +249,98 @@ public class AgendaPanel extends javax.swing.JPanel {
         a.logOut();
     }//GEN-LAST:event_logOutButtonMouseClicked
 
+    private void SelectTypePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_SelectTypePropertyChange
 
+    }//GEN-LAST:event_SelectTypePropertyChange
+
+    private void previousDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_previousDateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_previousDateActionPerformed
+
+    private void dateFieldPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_dateFieldPropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dateFieldPropertyChange
+
+    private void dateFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_dateFieldKeyTyped
+
+    }//GEN-LAST:event_dateFieldKeyTyped
+
+    private void nextDateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextDateMouseClicked
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(dateSelected);
+        calendar.add(Calendar.DAY_OF_YEAR, 1);
+        dateSelected = calendar.getTime();
+        dateField.setValue(dateSelected);
+        RemplirTableau();
+    }//GEN-LAST:event_nextDateMouseClicked
+
+    private void previousDateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_previousDateMouseClicked
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(dateSelected);
+        calendar.add(Calendar.DAY_OF_YEAR, -1);
+        dateSelected = calendar.getTime();
+        dateField.setValue(dateSelected);
+        RemplirTableau();
+    }//GEN-LAST:event_previousDateMouseClicked
+
+    private void dateFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dateFieldMouseClicked
+        dateField.selectAll();
+    }//GEN-LAST:event_dateFieldMouseClicked
+
+    private void dateFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_dateFieldKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            try {
+                dateSelected = format.parse(dateField.getText());
+            } catch (ParseException ex) {
+            }
+            dateField.setValue(dateSelected);
+            RemplirTableau();
+        }
+    }//GEN-LAST:event_dateFieldKeyPressed
+
+    private void SelectTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectTypeActionPerformed
+RemplirTableau();    }//GEN-LAST:event_SelectTypeActionPerformed
+
+    private void RemplirTableau() {
+        int nbExam = a.getCurrentUser().getExam().size();
+        System.out.println(nbExam);
+        for (int i = 0; i < nbExam; i++) {
+            /*on met dans le tableau seulement les examens du type selectionné*/
+            if (a.getCurrentUser().getExam().get(i).getAppareil() == TypeExam.valueOf(SelectType.getSelectedItem().toString())) {
+                /*et seulement de la date selectionnée*/
+                System.out.println("type exam");
+                Date date = a.getCurrentUser().getExam().get(i).getDateDebut();
+                Date d1 = new Date(date.getYear(),date.getMonth(),date.getDate());
+                Date d2 = new Date(dateSelected.getYear(),dateSelected.getMonth(),dateSelected.getDate());
+                //pour comparer les dates sans tenir compte de l'heure
+                System.out.println(date);
+                System.out.println(d1);
+                System.out.println(dateSelected);
+                if (d1.equals(d2)) {
+                    System.out.println("date");
+                    int[] trancheHoraires = a.getCurrentUser().getExam().get(i).calculTrancheHoraire();
+                    int salle = a.getCurrentUser().getExam().get(i).getSalle();
+                    String affichage = a.getCurrentUser().getExam().get(i).afficherExamen(a.getSir());
+                    for (int j = 0; j < trancheHoraires.length; j++) {
+
+                        AgendaTable.setValueAt(affichage, trancheHoraires[j], salle);
+                    }
+                }
+
+            }
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Agenda;
     private javax.swing.JTable AgendaTable;
     private javax.swing.JButton CreateDMR;
     private javax.swing.JScrollPane ScrollAgenda;
+    private javax.swing.JComboBox<String> SelectType;
     private javax.swing.JLabel UserName;
+    private javax.swing.JFormattedTextField dateField;
     private javax.swing.JButton logOutButton;
+    private javax.swing.JButton nextDate;
+    private javax.swing.JButton previousDate;
     // End of variables declaration//GEN-END:variables
 }

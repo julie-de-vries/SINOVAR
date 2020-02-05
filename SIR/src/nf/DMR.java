@@ -23,7 +23,7 @@ public class DMR {
         examens.add(e);
     }
 
-    public String afficherListeExamen() {
+    /*public String afficherListeExamen() {
         String s="";
         for (int i = 0; i < examens.size(); i++) {
             s+="Examen " + examens.get(i).getIdExam() + " : \n";
@@ -31,10 +31,10 @@ public class DMR {
             s+="---------------------------------------";
         }
         return s;
-    }
+    }*/
 
     //On trie tous les examens par date
-    public String trierParDates() {
+    /*public String trierParDates() {
         //on copie la liste d'examen dans une nouvelle liste afin de ne rien supprimer dans la principale
         ArrayList<Examen> copieExam = new ArrayList<Examen>(examens);
         String s="";
@@ -81,7 +81,7 @@ public class DMR {
             copieExam.remove(imin);
         }
         return s;
-    }
+    }*/
 
     //trier par numero d'archivage
 //    public void trierParNumArchivage() {

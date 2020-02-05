@@ -134,13 +134,13 @@ public class Connexion extends javax.swing.JFrame {
                         .addComponent(entree_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(texte_indicatifLayout.createSequentialGroup()
                         .addGap(216, 216, 216)
-                        .addComponent(texte_mdp)
-                        .addGap(161, 161, 161)
-                        .addComponent(entree_mdp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(texte_indicatifLayout.createSequentialGroup()
-                        .addGap(812, 812, 812)
-                        .addComponent(valider)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(texte_indicatifLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(valider)
+                            .addGroup(texte_indicatifLayout.createSequentialGroup()
+                                .addComponent(texte_mdp)
+                                .addGap(161, 161, 161)
+                                .addComponent(entree_mdp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(1220, Short.MAX_VALUE))
         );
         texte_indicatifLayout.setVerticalGroup(
             texte_indicatifLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -159,9 +159,9 @@ public class Connexion extends javax.swing.JFrame {
                 .addGroup(texte_indicatifLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(texte_mdp)
                     .addComponent(entree_mdp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(112, 112, 112)
+                .addGap(31, 31, 31)
                 .addComponent(valider)
-                .addGap(123, 123, 123))
+                .addGap(204, 204, 204))
         );
 
         valider.addMouseListener(new java.awt.event.MouseAdapter() {

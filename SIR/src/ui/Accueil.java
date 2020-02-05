@@ -9,6 +9,7 @@ import com.sun.glass.events.KeyEvent;
 import com.sun.glass.events.MouseEvent;
 import java.awt.BorderLayout;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.JFrame;
 import nf.*;
 
@@ -28,6 +29,9 @@ public class Accueil extends javax.swing.JFrame {
      * @param currentUser : utilisateur actuel connecté au logiciel
      */
     public Accueil(Professionnel currentUser) {
+        Date d1=new Date(120,1,05,8,30);
+        Date d2=new Date(120,1,05,9,30);
+        Examen e1 = new Examen(1,"Radiographie thoracique",d1,d2,TypeExam.IRM,"Peuillon","");
         String titreDePage = "Sinovar";
         this.setTitle(titreDePage);
         this.currentUser = currentUser;
@@ -38,6 +42,7 @@ public class Accueil extends javax.swing.JFrame {
             int id = Integer.parseInt(row.get(0));
             Metier m = Metier.valueOf(row.get(5));
             Professionnel p = new Professionnel(id, row.get(1), row.get(2), row.get(3), row.get(4), m);
+            p.ajouterExamen(e1);
             pros.ajouterProfessionnel(p);
         }
         /*récupération du personnel de la BDD*/
@@ -50,8 +55,15 @@ public class Accueil extends javax.swing.JFrame {
             sir.ajouterPatient(p);
         }
         /*récupération des patients de la BDD*/
-        initComponents();
         
+        sir.getPatient().get(0).getDmr().ajouterExamen(e1);
+        
+        initComponents();
+        AgendaPanel ap = new AgendaPanel(this);
+        this.jPanel1.add(ap,BorderLayout.CENTER);
+        this.pack();
+        this.setVisible(true);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     /**
@@ -209,7 +221,7 @@ public class Accueil extends javax.swing.JFrame {
 
     private void SearchPatientFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SearchPatientFieldKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            searchResult = sir.chercherPatient(SearchPatientField.getText());//recherche les patients
+            searchResult = getSir().chercherPatient(SearchPatientField.getText());//recherche les patients
             /*vide le tableau*/
             if (SearchPatientField.getText().trim().equals("") || searchResult.isEmpty()) {
                 for (int i = 0; i < DMRTable.getRowCount(); i++) {
@@ -279,7 +291,7 @@ public class Accueil extends javax.swing.JFrame {
     }
 
     public void SearchPatientButtonMouseClicked(java.awt.event.MouseEvent evt) {
-        searchResult = sir.chercherPatient(SearchPatientField.getText());//recherche les patients
+        searchResult = getSir().chercherPatient(SearchPatientField.getText());//recherche les patients
         /*vide le tableau*/
         if (SearchPatientField.getText().trim().equals("") || searchResult.isEmpty()) {
             for (int i = 0; i < DMRTable.getRowCount(); i++) {
@@ -332,6 +344,13 @@ public class Accueil extends javax.swing.JFrame {
      */
     public Professionnel getCurrentUser() {
         return currentUser;
+    }
+
+    /**
+     * @return the sir
+     */
+    public SIR getSir() {
+        return sir;
     }
 
 }
