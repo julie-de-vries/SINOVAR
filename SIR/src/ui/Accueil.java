@@ -6,10 +6,13 @@
 package ui;
 
 import com.sun.glass.events.KeyEvent;
-import com.sun.glass.events.MouseEvent;
 import java.awt.BorderLayout;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import nf.*;
 
@@ -29,9 +32,6 @@ public class Accueil extends javax.swing.JFrame {
      * @param currentUser : utilisateur actuel connecté au logiciel
      */
     public Accueil(Professionnel currentUser) {
-        Date d1=new Date(120,1,05,8,30);
-        Date d2=new Date(120,1,05,9,30);
-        Examen e1 = new Examen(1,"Radiographie thoracique",d1,d2,TypeExam.IRM,"Peuillon","");
         String titreDePage = "Sinovar";
         this.setTitle(titreDePage);
         this.currentUser = currentUser;
@@ -42,21 +42,38 @@ public class Accueil extends javax.swing.JFrame {
             int id = Integer.parseInt(row.get(0));
             Metier m = Metier.valueOf(row.get(5));
             Professionnel p = new Professionnel(id, row.get(1), row.get(2), row.get(3), row.get(4), m);
-            p.ajouterExamen(e1);
             pros.ajouterProfessionnel(p);
         }
         /*récupération du personnel de la BDD*/
         sir = new SIR(pros);
-        DBL = new DataBaseLayer("SELECT * from sinovar.patient;");
+        DBL = new DataBaseLayer("SELECT * from sinovar.patient join sinovar.examen on id=identifiant_patient;");
+        ArrayList<String> row=null;
         for (int i = 1; i < DBL.getResult().size(); i++) {
-            ArrayList<String> row = DBL.getResult().get(i);
+            row = DBL.getResult().get(i);
             int id = Integer.parseInt(row.get(2));
             Patient p = new Patient(row.get(0), row.get(1), id, row.get(3), row.get(4), row.get(5), row.get(6));
+            DataBaseLayer DBL1 = new DataBaseLayer("SELECT * from sinovar.examen where identifiant_patient="+id+";");
+            for (int j = 1 ; j < DBL1.getResult().size() ; j++){
+                row = DBL1.getResult().get(j);
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                try {
+                    Date d1 = format.parse(row.get(3));
+                    Date d2 = format.parse(row.get(3));
+                    Professionnel pro = sir.chercherProfessionnel(row.get(5));
+                    //Examen e = new Examen(Integer.parseInt(row.get(0)), row.get(1), d1, d2, TypeExam.valueOf(row.get(4)), pro, row.get(6));
+                    //en commentaire tant qu'il n'y a pas accord sur Examen (bdd, ui et nf)
+                    d1 = new Date(120,01,05,8,30);
+                    d2 = new Date(120,01,05,9,0);
+                    Examen e = new Examen(1,"examen de ta mère",d1,d2,TypeExam.IRM,this.currentUser,"");
+                    p.getDmr().ajouterExamen(e);
+                } catch (ParseException ex) {
+                    Logger.getLogger(Accueil.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+            }
             sir.ajouterPatient(p);
         }
-        /*récupération des patients de la BDD*/
-        
-        sir.getPatient().get(0).getDmr().ajouterExamen(e1);
+        /*récupération des patients de la BDD avec leur examens respectifs*/
         
         initComponents();
         AgendaPanel ap = new AgendaPanel(this);

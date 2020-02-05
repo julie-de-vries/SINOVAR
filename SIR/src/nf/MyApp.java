@@ -35,9 +35,6 @@ public class MyApp {
         */
         //System.out.println(Metier.valueOf("Practicien"));
         /*Test Tableau des examens*/
-        Date d1=new Date(2020,02,05,8,30);
-        Date d2=new Date(2020,02,05,9,30);
-        Examen e1 = new Examen(1,"Radiographie thoracique",d1,d2,TypeExam.IRM,"Peuillon","");
         
         
     }

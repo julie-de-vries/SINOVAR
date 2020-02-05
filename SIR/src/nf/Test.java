@@ -18,7 +18,7 @@ public class Test {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws ParseException {
-        Patient p = new Patient("Tran", "Laura", 1, "23081998", "F", "199056908104853", "25 chemin des Combes");
+        /*Patient p = new Patient("Tran", "Laura", 1, "23081998", "F", "199056908104853", "25 chemin des Combes");
         Patient p2 = new Patient("Pontille", "Thomas", 2, "26041965", "H", "199056908104853", "38 Rue des ponts");
         Patient p3 = new Patient("Decker", "Amandine", 3, "21091998", "F", "199056908104853", "1 rue Jules Valles");
 
@@ -134,7 +134,7 @@ public class Test {
         //System.out.println(exam1.calculerCout());
         //sir.afficherExamProfessionnel(pro5);
 
-//        agenda.afficherAgenda(pro1, "04041959");
+//        agenda.afficherAgenda(pro1, "04041959");*/
     }
 
 }

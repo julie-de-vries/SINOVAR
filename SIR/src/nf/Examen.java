@@ -64,7 +64,7 @@ public class Examen {
         return this.nomExam;
     }
 
-    public Professionnel getNomPracticien() {
+    public Professionnel getPro() {
         return this.pro;
     }
 
@@ -110,7 +110,7 @@ public class Examen {
     }*/
     
     public String afficherExamen(SIR sir){
-        return nomExam+"\n"+getPatient(sir);
+        return nomExam+", "+getPatient(sir).getNomUsuel();
     }
 
     public String afficherDose() {
@@ -144,8 +144,8 @@ public class Examen {
         int i = 0;
         int j = 0;
         boolean stop = false;
-        while (i<sir.getPatient().size()||(!stop)){
-            while (j<sir.getPatient().get(i).getDmr().getExamen().size()||(!stop)){
+        while (i<sir.getPatient().size()&&(!stop)){
+            while (j<sir.getPatient().get(i).getDmr().getExamen().size()&&(!stop)){
                 if(sir.getPatient().get(i).getDmr().getExamen().get(j).getIdExam()==id_exam){
                     p=sir.getPatient().get(i);
                     stop = true;
@@ -155,37 +155,13 @@ public class Examen {
         }
         return p;
     }
-    
-    public int getSalle(){
+
+    /**
+     * @return the salle
+     */
+    public int getSalle() {
         return salle;
     }
-
-    /**
-     * @return the dateDebut
-     */
-    public Date getDateDebut() {
-        return dateDebut;
-    }
-
-    /**
-     * @param dateDebut the dateDebut to set
-     */
-    public void setDateDebut(Date dateDebut) {
-        this.dateDebut = dateDebut;
-    }
-
-    /**
-     * @return the dateFin
-     */
-    public Date getDateFin() {
-        return dateFin;
-    }
-
-    /**
-     * @param dateFin the dateFin to set
-     */
-    public void setDateFin(Date dateFin) {
-        this.dateFin = dateFin;
-    }
+    
 
 }

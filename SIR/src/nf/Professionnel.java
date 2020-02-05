@@ -19,7 +19,6 @@ public class Professionnel {
     private final String motDePasse;
     private final String departement;
     private final Metier metier;
-    private ArrayList<Examen> exam;
 
     public Professionnel(int id, String nom, String prenom, String motDePasse, String departement, Metier metier) {
         this.id_pro = id;
@@ -28,7 +27,6 @@ public class Professionnel {
         this.motDePasse = motDePasse;
         this.departement = departement;
         this.metier = metier;
-        this.exam = new ArrayList<>();
     }
 
     public int getId_pro() {
@@ -54,24 +52,22 @@ public class Professionnel {
     public Metier getMetier() {
         return this.metier;
     }
-    
-    public ArrayList<Examen> getExam(){
-        return this.exam;
-    }
 
     public String afficher() {
         String s = "";
         s += this.prenom + " " + this.nom + "\n" + this.metier + "\n" + this.departement;
         return s;
     }
-
-    //ajouter un examen dans la liste d'un professionnel
-    public void ajouterExamen(Examen e) {
-        if (this.nom.equals(e.getNomPracticien())) {
-            this.exam.add(e);
-        } else {
-            System.out.println("ce n'est pas le bon medecin");
+    
+    public ArrayList<Examen> getExam(SIR sir){
+        ArrayList<Examen> exam = new ArrayList();
+        for(int i=0 ; i<sir.getPatient().size(); i++){
+            for(int j=0 ; j<sir.getPatient().get(i).getDmr().getExamen().size() ; j++){
+                if(sir.getPatient().get(i).getDmr().getExamen().get(j).getPro().getId_pro()==id_pro)
+                    exam.add(sir.getPatient().get(i).getDmr().getExamen().get(j));
+            }
         }
+        return exam;
     }
     //affiche la liste d'examen que le practicien doit faire
 

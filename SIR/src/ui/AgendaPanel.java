@@ -303,14 +303,17 @@ public class AgendaPanel extends javax.swing.JPanel {
 RemplirTableau();    }//GEN-LAST:event_SelectTypeActionPerformed
 
     private void RemplirTableau() {
-        int nbExam = a.getCurrentUser().getExam().size();
+        /*On cherche les examens du ph utilisateur*/
+        
+        
+        int nbExam = a.getCurrentUser().getExam(a.getSir()).size();
         System.out.println(nbExam);
         for (int i = 0; i < nbExam; i++) {
             /*on met dans le tableau seulement les examens du type selectionné*/
-            if (a.getCurrentUser().getExam().get(i).getAppareil() == TypeExam.valueOf(SelectType.getSelectedItem().toString())) {
+            if (a.getCurrentUser().getExam(a.getSir()).get(i).getAppareil() == TypeExam.valueOf(SelectType.getSelectedItem().toString())) {
                 /*et seulement de la date selectionnée*/
                 System.out.println("type exam");
-                Date date = a.getCurrentUser().getExam().get(i).getDateDebut();
+                Date date = a.getCurrentUser().getExam(a.getSir()).get(i).getDateDebut();
                 Date d1 = new Date(date.getYear(),date.getMonth(),date.getDate());
                 Date d2 = new Date(dateSelected.getYear(),dateSelected.getMonth(),dateSelected.getDate());
                 //pour comparer les dates sans tenir compte de l'heure
@@ -319,9 +322,9 @@ RemplirTableau();    }//GEN-LAST:event_SelectTypeActionPerformed
                 System.out.println(dateSelected);
                 if (d1.equals(d2)) {
                     System.out.println("date");
-                    int[] trancheHoraires = a.getCurrentUser().getExam().get(i).calculTrancheHoraire();
-                    int salle = a.getCurrentUser().getExam().get(i).getSalle();
-                    String affichage = a.getCurrentUser().getExam().get(i).afficherExamen(a.getSir());
+                    int[] trancheHoraires = a.getCurrentUser().getExam(a.getSir()).get(i).calculTrancheHoraire();
+                    int salle = a.getCurrentUser().getExam(a.getSir()).get(i).getSalle();
+                    String affichage = a.getCurrentUser().getExam(a.getSir()).get(i).afficherExamen(a.getSir());
                     for (int j = 0; j < trancheHoraires.length; j++) {
 
                         AgendaTable.setValueAt(affichage, trancheHoraires[j], salle);

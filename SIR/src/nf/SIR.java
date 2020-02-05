@@ -125,7 +125,17 @@ public class SIR {
         }
         return p;
     }
-
+//cherche un professionnel en particulier grace a son id
+    public Professionnel chercherProfessionnel(String id) {
+        int idInt = Integer.parseInt(id);
+        Professionnel p = null;
+        for (int i = 0; i < listePro.getListePro().size(); i++) {
+            if (listePro.getListePro().get(i).getId_pro()==idInt) {
+                p = listePro.getListePro().get(i);
+            }
+        }
+        return p;
+    }
     //affiche le DMR d'un patient donne
     /*public String afficherDmr(Patient p) {
         String s="";
