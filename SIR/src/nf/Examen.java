@@ -5,11 +5,12 @@
  */
 package nf;
 
+import java.util.Date;
+
 public class Examen {
 
-    private String date;
-    private String heureDebut;
-    private String heureFin;
+    private final Date dateDebut;
+    private final Date dateFin;
     private final TypeExam appareil;
     private String nomPracticien;
     private String rapport;
@@ -19,11 +20,10 @@ public class Examen {
     private String libelleDose;
     private Code code;
 
-    public Examen(int id_exam, String nomExam, String date, String heureDebut, String heureFin, TypeExam appareil, String nomPracticien, String rapport) {
+    public Examen(int id_exam, String nomExam, Date dateDebut, Date dateFin, TypeExam appareil, String nomPracticien, String rapport) {
         this.id_exam = id_exam;
-        this.date = date;
-        this.heureDebut = heureDebut;
-        this.heureFin = heureFin;
+        this.dateDebut = dateDebut;
+        this.dateFin = dateFin;
         this.appareil = appareil;
         this.nomPracticien = nomPracticien; //a changer avec les bases de données
         this.rapport = rapport;
@@ -32,25 +32,16 @@ public class Examen {
         this.code = Code.ENREGISTREMENT;
     }
 
-    public String getDate() {
-        return this.date;
+    
+
+    public Date getDateDebut() {
+        return this.dateDebut;
     }
 
-    public String getHeureDebut() {
-        return this.heureDebut;
+    public Date getDateFin() {
+        return this.dateFin;
     }
 
-    public String getHeureFin() {
-        return this.heureFin;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public void setHeure(String heure) {
-        this.heureDebut = heure;
-    }
 
     public TypeExam getAppareil() {
         return this.appareil;
@@ -102,15 +93,18 @@ public class Examen {
 
     public String afficherExam() {
         String s = "";
-        s += "\t" + this.getDate().substring(4, 8) + "-" + this.getDate().substring(2, 4) + "-" + this.getDate().substring(0, 2); //ajout de la date au bon format
-        s += "-" + this.getHeureDebut().substring(0, 2) + "-" + this.getHeureDebut().substring(3, 5);//ajout de l'heure
-        s += "  " + this.getHeureFin().substring(0, 2) + "-" + this.getHeureFin().substring(3, 5);//ajout heure de fin
+//        s += "\t" + this.getDateDebut().substring(4, 8) + "-" + this.getDateDebut().substring(2, 4) + "-" + this.getDateDebut().substring(0, 2); //ajout de la date au bon format
+//        s += "-" + this.getDateDebut().substring(8, 10) + "-" + this.getDateDebut().substring(10, 12);//ajout de l'heure
+//        s += "  " + this.getDateFin().substring(8, 10) + "-" + this.getDateFin().substring(10, 12);//ajout heure de fin
+//        Integer.parseInt(s);
+        s+= getDateDebut() + "\n";
+        s+= getDateFin();
 
         s += "\n\tNumero de l'examen : " + this.id_exam;
         s += "\n\tNom de l'examen : " + this.nomExam;
         s += "\n\tAppareil utilisé : " + this.appareil;
         s += "\n\tNom du Practicien : " + this.nomPracticien;
-        s += "\n\tCompte rendu : " + this.rapport;
+        s += "\n\tCompte rendu : " + this.rapport + "\n";
         return s;
     }
 
