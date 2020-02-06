@@ -124,15 +124,4 @@ public class DMR {
         return e;
     }
 
-    public String afficherRapport(Examen e) {
-        String s="";
-        if (examens.contains(e)) {
-            s+=e.getRapport();
-        }
-        else {
-            System.out.println("Cet examen n'est pas dans le dossier");
-        }
-        return s;
-    }
-
 }

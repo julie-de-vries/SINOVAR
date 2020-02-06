@@ -11,11 +11,9 @@ package nf;
  */
 public enum TypeExam {
     Scanner,
-    Angiographie,
+    Radiographie,
     IRM,
-    RadioArgentique,
-    AccelerateurParticule,
-    Echoendoscope,
-    Mammographe,
+    Echographie,
+    Scintigraphie
     
 }

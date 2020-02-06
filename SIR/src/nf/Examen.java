@@ -11,26 +11,27 @@ public class Examen {
 
     private final Date dateDebut;
     private final Date dateFin;
-    private final TypeExam appareil;
-    private Professionnel pro;
-    private String rapport;
-    private final String nomExam;
+    private final TypeExam type;
+    private final Professionnel pro;
+    private CompteRendu cr;
     private final int id_exam;
+    private final LocalisationExamen localisation_examen;
     private double dose;
     private String libelleDose;
-    private Code code;
-    private int salle=1;
+    private final Code code;
+    private String facture;
+    private final int salle;
+    private String notes;
 
-    public Examen(int id_exam, String nomExam, Date dateDebut, Date dateFin, TypeExam appareil, Professionnel pro, String rapport) {
+    public Examen(int id_exam, Date dateDebut, Date dateFin, TypeExam type, Professionnel pro, Code code, int salle, LocalisationExamen localisation_examen) {
         this.id_exam = id_exam;
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
-        this.appareil = appareil;
-        this.pro = pro; //a changer avec les bases de données
-        this.rapport = rapport;
-        this.dose = 0;
-        this.nomExam = nomExam;
-        this.code = Code.ENREGISTREMENT;
+        this.type = type;
+        this.pro = pro; 
+        this.salle = salle;
+        this.code = code;
+        this.localisation_examen = localisation_examen;
     }
 
     
@@ -41,27 +42,6 @@ public class Examen {
 
     public Date getDateFin() {
         return this.dateFin;
-    }
-
-
-    public TypeExam getAppareil() {
-        return this.appareil;
-    }
-
-    public String getRapport() {
-        return this.rapport;
-    }
-
-    public void setRapport(String rapport) {
-        this.rapport = rapport;
-    }
-
-    public void setPracticien(Professionnel ph) {
-        this.pro = ph;
-    }
-
-    public String getNomExamen() {
-        return this.nomExam;
     }
 
     public Professionnel getPro() {
@@ -81,16 +61,14 @@ public class Examen {
     }
 
     public String getLibelle() {
-        return this.libelleDose;
+        return this.getLibelleDose();
     }
 
     public void setLibelle(String libelle) {
-        this.libelleDose = libelle;
+        this.setLibelleDose(libelle);
     }
 
-    public void setCode(Code code) {
-        this.code = code;
-    }
+
 
     /*public String afficherExam() {
         String s = "";
@@ -110,7 +88,7 @@ public class Examen {
     }*/
     
     public String afficherExamen(SIR sir){
-        return nomExam+", "+getPatient(sir).getNomUsuel();
+        return type+" "+localisation_examen+", "+getPatient(sir).getNomUsuel();
     }
 
     public String afficherDose() {
@@ -121,10 +99,10 @@ public class Examen {
     }
     
     public int[] calculTrancheHoraire(){
-        int duree = dateToTH(dateFin)-dateToTH(dateDebut);
+        int duree = dateToTH(getDateFin())-dateToTH(getDateDebut());
         int[] TH=new int[duree];
         for(int i=0 ; i<duree ; i++){
-            TH[i]=dateToTH(dateDebut)+i;
+            TH[i]=dateToTH(getDateDebut())+i;
         }
         return TH;
     }
@@ -135,7 +113,7 @@ public class Examen {
     
 
     public int calculerCout() {
-        return code.coutExam();
+        return getCode().coutExam();
     }
     
     public Patient getPatient(SIR sir){
@@ -146,7 +124,7 @@ public class Examen {
         boolean stop = false;
         while (i<sir.getPatient().size()&&(!stop)){
             while (j<sir.getPatient().get(i).getDmr().getExamen().size()&&(!stop)){
-                if(sir.getPatient().get(i).getDmr().getExamen().get(j).getIdExam()==id_exam){
+                if(sir.getPatient().get(i).getDmr().getExamen().get(j).getIdExam()==getId_exam()){
                     p=sir.getPatient().get(i);
                     stop = true;
                 }
@@ -161,6 +139,84 @@ public class Examen {
      */
     public int getSalle() {
         return salle;
+    }
+
+    /**
+     * @return the type
+     */
+    public TypeExam getType() {
+        return type;
+    }
+    /**
+     * @return the cr
+     */
+    public CompteRendu getCr() {
+        return cr;
+    }
+
+    /**
+     * @param cr the cr to set
+     */
+    public void setCr(CompteRendu cr) {
+        this.cr = cr;
+    }
+
+    /**
+     * @return the id_exam
+     */
+    public int getId_exam() {
+        return id_exam;
+    }
+
+
+    /**
+     * @return the libelleDose
+     */
+    public String getLibelleDose() {
+        return libelleDose;
+    }
+
+    /**
+     * @param libelleDose the libelleDose to set
+     */
+    public void setLibelleDose(String libelleDose) {
+        this.libelleDose = libelleDose;
+    }
+
+    /**
+     * @return the code
+     */
+    public Code getCode() {
+        return code;
+    }
+
+    /**
+     * @return the facture
+     */
+    public String getFacture() {
+        return facture;
+    }
+
+    /**
+     * @param facture the facture to set
+     */
+    public void setFacture(String facture) {
+        this.facture = facture;
+    }
+
+
+    /**
+     * @return the notes
+     */
+    public String getNotes() {
+        return notes;
+    }
+
+    /**
+     * @param notes the notes to set
+     */
+    public void setNotes(String notes) {
+        this.notes = notes;
     }
     
 
