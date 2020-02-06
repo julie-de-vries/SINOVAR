@@ -17,6 +17,10 @@ public class Image extends javax.swing.JFrame {
     public Image() {
         initComponents();
     }
+    
+    public Image(String id_image){
+        initComponents();
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

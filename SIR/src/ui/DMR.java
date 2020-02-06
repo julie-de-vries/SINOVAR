@@ -16,6 +16,7 @@ public class DMR extends javax.swing.JPanel {
 
     private Patient patient;
     private Accueil a;
+    private nf.DMR dmr;
 
     /**
      * Creates new form DMR
@@ -30,7 +31,7 @@ public class DMR extends javax.swing.JPanel {
         nssLabel.setText(patient.getNss());
         DDNLabel.setText(patient.getDateDeNaissance());
         GenderLabel.setText(patient.getGenre());
-        nf.DMR dmr = patient.getDmr();
+        dmr = patient.getDmr();
         int nbExam = dmr.getExamen().size();
         /*création et remplissage du tableau*/
         DefaultTableModel model = new DefaultTableModel();
@@ -47,6 +48,7 @@ public class DMR extends javax.swing.JPanel {
             ExamTable.setValueAt(dmr.getExamen().get(i).getNomExamen(), i, 0);
             ExamTable.setValueAt(dmr.getExamen().get(i).getDateDebut(), i, 1);
             ExamTable.setValueAt(dmr.getExamen().get(i).getIdExam(), i, 2);
+            //mettre des icônes à la place des String
             if (dmr.getExamen().get(i).getImage() != null) {
                 ExamTable.setValueAt("image", i, 3);
             } else {
@@ -57,7 +59,7 @@ public class DMR extends javax.swing.JPanel {
             } else {
                 ExamTable.setValueAt("écrire", i, 4);
             }
-            ExamTable.setValueAt("facture", i, 5);//Facture ?
+            ExamTable.setValueAt("facture", i, 5);
         }
 
     }
@@ -224,26 +226,27 @@ public class DMR extends javax.swing.JPanel {
     private void ExamTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExamTableMouseClicked
         int row = ExamTable.getSelectedRow();
         int column = ExamTable.getSelectedColumn();
+        Examen e = dmr.getExamen().get(row);
         /*si on clique sur la case image*/
         if (column == 2) {
             /*soit ça ouvre la fenêtre de numérisation*/
-            if (ExamTable.getValueAt(row, column).equals("numériser")) {
-
+            if (e.getImage()==null) {
+                new NumeriserExamen().setVisible(true);
             } 
             /*soit ça ouvre l'image (jframe image)*/ 
             else {
-
+                new Image(e.getImage()).setVisible(true);
             }
         }
         /*si on clique sur la case CR*/
         if (column == 3) {
             /*soit ça ouvre la fenêtre ajouter CR*/
-            if (ExamTable.getValueAt(row, column).equals("écrire")) {
-
+            if (e.getCr()==null) {
+                new EcrireCR().setVisible(true);
             }
             /*soit ça ouvre le CR*/
             else {
-
+                new CR(e.getCr()).setVisible(true);
             }
         }
     }//GEN-LAST:event_ExamTableMouseClicked
