@@ -9,9 +9,17 @@ package nf;
  *
  * @author Peuillon
  */
-public class CompteRendu {
+public enum LocalisationExamen {
+    cérébral,
+    cervical,
+    membre_supérieur,
+    membre_inférieur,
+    thoracique,
+    abdomino_pelvien,
+    abdominal,
+    pelvien,
+    osseux,
+    cardiaque,
     
-    private int id_cr;
-    private String contenu;
-    private Professionnel professionnels;
+    
 }
