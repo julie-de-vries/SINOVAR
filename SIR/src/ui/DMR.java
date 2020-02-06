@@ -13,13 +13,15 @@ import nf.*;
  * @author Julie
  */
 public class DMR extends javax.swing.JPanel {
+
     private Patient patient;
     private Accueil a;
+
     /**
      * Creates new form DMR
      */
     public DMR(Patient patient, Accueil a) {
-        this.patient=patient;
+        this.patient = patient;
         this.a = a;
         initComponents();
         idLabel.setText(String.valueOf(patient.getIdPatient()));
@@ -45,13 +47,19 @@ public class DMR extends javax.swing.JPanel {
             ExamTable.setValueAt(dmr.getExamen().get(i).getNomExamen(), i, 0);
             ExamTable.setValueAt(dmr.getExamen().get(i).getDateDebut(), i, 1);
             ExamTable.setValueAt(dmr.getExamen().get(i).getIdExam(), i, 2);
-            ExamTable.setValueAt(dmr.getExamen().get(i), i, 3);//image ?
-            ExamTable.setValueAt(dmr.getExamen().get(i), i, 4);//CR ?
-            ExamTable.setValueAt(dmr.getExamen().get(i), i, 5);//Facture ?
+            if (dmr.getExamen().get(i).getImage() != null) {
+                ExamTable.setValueAt("image", i, 3);
+            } else {
+                ExamTable.setValueAt("numériser", i, 3);
+            }
+            if (dmr.getExamen().get(i).getCr() != null) {
+                ExamTable.setValueAt("CR", i, 4);
+            } else {
+                ExamTable.setValueAt("écrire", i, 4);
+            }
+            ExamTable.setValueAt("facture", i, 5);//Facture ?
         }
-        
-            
-        
+
     }
 
     /**
@@ -167,6 +175,11 @@ public class DMR extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        ExamTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ExamTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(ExamTable);
 
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 570, 120));
@@ -207,6 +220,33 @@ public class DMR extends javax.swing.JPanel {
     private void CloseDMRMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CloseDMRMouseClicked
         a.CloseDMR();
     }//GEN-LAST:event_CloseDMRMouseClicked
+
+    private void ExamTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExamTableMouseClicked
+        int row = ExamTable.getSelectedRow();
+        int column = ExamTable.getSelectedColumn();
+        /*si on clique sur la case image*/
+        if (column == 2) {
+            /*soit ça ouvre la fenêtre de numérisation*/
+            if (ExamTable.getValueAt(row, column).equals("numériser")) {
+
+            } 
+            /*soit ça ouvre l'image (jframe image)*/ 
+            else {
+
+            }
+        }
+        /*si on clique sur la case CR*/
+        if (column == 3) {
+            /*soit ça ouvre la fenêtre ajouter CR*/
+            if (ExamTable.getValueAt(row, column).equals("écrire")) {
+
+            }
+            /*soit ça ouvre le CR*/
+            else {
+
+            }
+        }
+    }//GEN-LAST:event_ExamTableMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -60,11 +60,11 @@ public class Accueil extends javax.swing.JFrame {
                     Date d1 = format.parse(row.get(3));
                     Date d2 = format.parse(row.get(3));
                     Professionnel pro = sir.chercherProfessionnel(row.get(5));
-                    //Examen e = new Examen(Integer.parseInt(row.get(0)), row.get(1), d1, d2, TypeExam.valueOf(row.get(4)), pro, row.get(6));
+                    Examen e = new Examen(Integer.parseInt(row.get(0)), d1, d2, TypeExam.valueOf(row.get(4)), pro,Code.valueOf(row.get(5)), Integer.parseInt(row.get(6)),LocalisationExamen.valueOf(row.get(7)));
                     //en commentaire tant qu'il n'y a pas accord sur Examen (bdd, ui et nf)
-                    d1 = new Date(120,01,05,8,30);
+                    /*d1 = new Date(120,01,05,8,30);
                     d2 = new Date(120,01,05,9,0);
-                    Examen e = new Examen(1,"examen de ta mère",d1,d2,TypeExam.IRM,this.currentUser,"");
+                    Examen e = new Examen(1,"examen de ta mère",d1,d2,TypeExam.IRM,this.currentUser,"");*/
                     p.getDmr().ajouterExamen(e);
                 } catch (ParseException ex) {
                     Logger.getLogger(Accueil.class.getName()).log(Level.SEVERE, null, ex);

@@ -59,12 +59,24 @@ public class Professionnel {
         return s;
     }
     
+    /*retourne les examens
+    si c'est une secrétaire on met tous les examens du jour
+    si c'est un PH on met ses examens*/
     public ArrayList<Examen> getExam(SIR sir){
         ArrayList<Examen> exam = new ArrayList();
-        for(int i=0 ; i<sir.getPatient().size(); i++){
-            for(int j=0 ; j<sir.getPatient().get(i).getDmr().getExamen().size() ; j++){
-                if(sir.getPatient().get(i).getDmr().getExamen().get(j).getPro().getId_pro()==id_pro)
+        if(metier==Metier.SecretairesMedicales){
+            for(int i=0 ; i<sir.getPatient().size(); i++){
+                for(int j=0 ; j<sir.getPatient().get(i).getDmr().getExamen().size() ; j++){
                     exam.add(sir.getPatient().get(i).getDmr().getExamen().get(j));
+                }
+            }
+        }
+        else{
+            for(int i=0 ; i<sir.getPatient().size(); i++){
+                for(int j=0 ; j<sir.getPatient().get(i).getDmr().getExamen().size() ; j++){
+                    if(sir.getPatient().get(i).getDmr().getExamen().get(j).getPro().getId_pro()==id_pro)
+                        exam.add(sir.getPatient().get(i).getDmr().getExamen().get(j));
+                }
             }
         }
         return exam;

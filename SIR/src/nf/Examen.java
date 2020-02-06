@@ -13,15 +13,15 @@ public class Examen {
     private final Date dateFin;
     private final TypeExam type;
     private final Professionnel pro;
-    private CompteRendu cr;
     private final int id_exam;
     private final LocalisationExamen localisation_examen;
     private double dose;
     private String libelleDose;
     private final Code code;
-    private String facture;
     private final int salle;
     private String notes;
+    private String image;
+    private String cr;
 
     public Examen(int id_exam, Date dateDebut, Date dateFin, TypeExam type, Professionnel pro, Code code, int salle, LocalisationExamen localisation_examen) {
         this.id_exam = id_exam;
@@ -32,6 +32,8 @@ public class Examen {
         this.salle = salle;
         this.code = code;
         this.localisation_examen = localisation_examen;
+        image = null;
+        cr = null;
     }
 
     
@@ -90,6 +92,10 @@ public class Examen {
     public String afficherExamen(SIR sir){
         return type+" "+localisation_examen+", "+getPatient(sir).getNomUsuel();
     }
+    
+    public String getNomExamen(){
+        return type+" "+localisation_examen;
+    }
 
     public String afficherDose() {
         String s = "";
@@ -133,6 +139,7 @@ public class Examen {
         }
         return p;
     }
+    
 
     /**
      * @return the salle
@@ -147,20 +154,7 @@ public class Examen {
     public TypeExam getType() {
         return type;
     }
-    /**
-     * @return the cr
-     */
-    public CompteRendu getCr() {
-        return cr;
-    }
-
-    /**
-     * @param cr the cr to set
-     */
-    public void setCr(CompteRendu cr) {
-        this.cr = cr;
-    }
-
+    
     /**
      * @return the id_exam
      */
@@ -194,14 +188,8 @@ public class Examen {
      * @return the facture
      */
     public String getFacture() {
+        String facture="";
         return facture;
-    }
-
-    /**
-     * @param facture the facture to set
-     */
-    public void setFacture(String facture) {
-        this.facture = facture;
     }
 
 
@@ -218,6 +206,36 @@ public class Examen {
     public void setNotes(String notes) {
         this.notes = notes;
     }
+
+    /**
+     * @return the image
+     */
+    public String getImage() {
+        return image;
+    }
+
+    /**
+     * @param image the image to set
+     */
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    /**
+     * @return the cr
+     */
+    public String getCr() {
+        return cr;
+    }
+
+    /**
+     * @param cr the cr to set
+     */
+    public void setCr(String cr) {
+        this.cr = cr;
+    }
+
+    
     
 
 }
