@@ -11,7 +11,7 @@ package nf;
  */
 public class CompteRendu {
     
-    private String titre;
+    private int id_cr;
     private String contenu;
     private Professionnel professionnels;
 }
