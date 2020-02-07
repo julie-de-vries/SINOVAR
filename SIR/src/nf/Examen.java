@@ -68,7 +68,9 @@ public class Examen {
         this.setLibelleDose(libelle);
     }
 
-
+    public String getNomExamen(){
+        return type + " " +localisation_examen;
+    }
 
     /*public String afficherExam() {
         String s = "";

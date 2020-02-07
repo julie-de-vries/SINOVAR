@@ -11,7 +11,6 @@ public class SIR {
 
     private ArrayList<Patient> patients;
     private Professionnels listePro;
-//    private Agenda agenda;
 
     public SIR(Professionnels p) {
         patients = new ArrayList<>();

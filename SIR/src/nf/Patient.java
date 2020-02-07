@@ -20,7 +20,6 @@ public class Patient {
     private final String lieuDeNaissance;
     private DMR dmr;
     private String nss;
-//Ajouter un lien vers le PACS
     
     public Patient(String nom, String prenom, int id_patient, String dateDeNaissance, String genre, String nss, String adresse) {
         this.nomUsuel = nom;

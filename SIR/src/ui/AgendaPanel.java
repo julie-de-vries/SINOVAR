@@ -20,12 +20,13 @@ import nf.TypeExam;
  */
 public class AgendaPanel extends javax.swing.JPanel {
 
-    private Accueil a;
+    private final Accueil a;
     private Date dateSelected;
-    private SimpleDateFormat format = new SimpleDateFormat("d/MM/yyyy");
+    private final SimpleDateFormat format = new SimpleDateFormat("d/MM/yyyy");
 
     /**
      * Creates new form NewJPanel
+     * @param a
      */
     public AgendaPanel(Accueil a) {
         this.a = a;
@@ -310,7 +311,7 @@ RemplirTableau();    }//GEN-LAST:event_SelectTypeActionPerformed
         System.out.println(nbExam);
         for (int i = 0; i < nbExam; i++) {
             /*on met dans le tableau seulement les examens du type selectionné*/
-            if (a.getCurrentUser().getExam(a.getSir()).get(i).getAppareil() == TypeExam.valueOf(SelectType.getSelectedItem().toString())) {
+            if (a.getCurrentUser().getExam(a.getSir()).get(i).getType() == TypeExam.valueOf(SelectType.getSelectedItem().toString())) {
                 /*et seulement de la date selectionnée*/
                 System.out.println("type exam");
                 Date date = a.getCurrentUser().getExam(a.getSir()).get(i).getDateDebut();
