@@ -7,6 +7,7 @@ package ui;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import nf.Patient;
 
 /**
  *
@@ -57,7 +58,7 @@ public class CreerDMR extends javax.swing.JFrame {
         prenom_label = new javax.swing.JLabel();
         id_label = new javax.swing.JLabel();
         prenom_field = new javax.swing.JTextField();
-        id_field = new javax.swing.JTextField();
+        nss_field = new javax.swing.JTextField();
         date_label = new javax.swing.JLabel();
         lieu_naiss_label = new javax.swing.JLabel();
         date_field = new javax.swing.JTextField();
@@ -67,8 +68,8 @@ public class CreerDMR extends javax.swing.JFrame {
         f_check = new javax.swing.JCheckBox();
         h_check = new javax.swing.JCheckBox();
         bouton_panel = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        Valider = new javax.swing.JButton();
+        Annuler = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.PAGE_AXIS));
@@ -119,14 +120,14 @@ public class CreerDMR extends javax.swing.JFrame {
         form_panel.add(prenom_label);
 
         id_label.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        id_label.setText("Identifiant");
+        id_label.setText("Numéro de sécurité de sociale");
         form_panel.add(id_label);
 
         prenom_field.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         form_panel.add(prenom_field);
 
-        id_field.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        form_panel.add(id_field);
+        nss_field.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        form_panel.add(nss_field);
 
         date_label.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         date_label.setText("Date de naissance (JJ/MM/AAAA)");
@@ -160,16 +161,26 @@ public class CreerDMR extends javax.swing.JFrame {
         bouton_panel.setBackground(new java.awt.Color(185, 221, 227));
         bouton_panel.setLayout(new java.awt.GridBagLayout());
 
-        jButton1.setBackground(new java.awt.Color(117, 212, 129));
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
-        jButton1.setText("VALIDER");
+        Valider.setBackground(new java.awt.Color(117, 212, 129));
+        Valider.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        Valider.setText("VALIDER");
+        Valider.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ValiderMouseClicked(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 100);
-        bouton_panel.add(jButton1, gridBagConstraints);
+        bouton_panel.add(Valider, gridBagConstraints);
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
-        jButton2.setText("ANNULER");
-        bouton_panel.add(jButton2, new java.awt.GridBagConstraints());
+        Annuler.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        Annuler.setText("ANNULER");
+        Annuler.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AnnulerMouseClicked(evt);
+            }
+        });
+        bouton_panel.add(Annuler, new java.awt.GridBagConstraints());
 
         javax.swing.GroupLayout box_panelLayout = new javax.swing.GroupLayout(box_panel);
         box_panel.setLayout(box_panelLayout);
@@ -210,6 +221,24 @@ public class CreerDMR extends javax.swing.JFrame {
     private void nom_naiss_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nom_naiss_fieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_nom_naiss_fieldActionPerformed
+
+    private void ValiderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ValiderMouseClicked
+        String nom = nom_usuel_field.getText();
+        String prenom = prenom_field.getText();
+        int id_patient = Integer.parseInt(nss_field.getText());
+        String dateDeNaissance = date_field.getText();
+        String genre = ""; //buttongroup;
+        String nss = nss_field.getText();
+        String adresse = lieu_naiss_field.getText();
+        
+        Patient p = new Patient(nom, prenom, id_patient, dateDeNaissance, genre, nss, adresse);
+        p.setNomNaissance(nom_naiss_field.getText());
+        
+    }//GEN-LAST:event_ValiderMouseClicked
+
+    private void AnnulerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AnnulerMouseClicked
+        this.dispose();
+    }//GEN-LAST:event_AnnulerMouseClicked
 
     /**
      * @param args the command line arguments
@@ -292,6 +321,8 @@ public class CreerDMR extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Annuler;
+    private javax.swing.JButton Valider;
     private javax.swing.JPanel bouton_panel;
     private javax.swing.JPanel box_panel;
     private javax.swing.JTextField date_field;
@@ -300,10 +331,7 @@ public class CreerDMR extends javax.swing.JFrame {
     private javax.swing.JPanel form_panel;
     private javax.swing.JLabel genre_label;
     private javax.swing.JCheckBox h_check;
-    private javax.swing.JTextField id_field;
     private javax.swing.JLabel id_label;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField lieu_naiss_field;
     private javax.swing.JLabel lieu_naiss_label;
@@ -311,6 +339,7 @@ public class CreerDMR extends javax.swing.JFrame {
     private javax.swing.JLabel nom_naiss_label;
     private javax.swing.JTextField nom_usuel_field;
     private javax.swing.JLabel nom_usuel_label;
+    private javax.swing.JTextField nss_field;
     private javax.swing.JTextField prenom_field;
     private javax.swing.JLabel prenom_label;
     private javax.swing.JPanel sexe_panel;

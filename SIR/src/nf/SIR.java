@@ -22,7 +22,13 @@ public class SIR {
     }
 
     public void ajouterPatient(Patient p) {
-        this.patients.add(p);
+        DataBaseLayer DBL = new DataBaseLayer("Select * from sinovar.patient where numero_SS= "+p.getNss()+";");
+        DBL.getResult().remove(0);
+        if(!DBL.getResult().isEmpty()){
+            this.patients.add(p);
+            DBL = new DataBaseLayer("Insert into sinovar.patient values('"+p.getNomNaissance()+"','"+p.getPrenom()+"','"+p.getNss()+"','"+p.getLieuDeNaissance()+"','"+p.getDateDeNaissance()+"','"+p.getGenre()+"';");
+            
+        }
     }
 
     public String afficherListePatients() {
