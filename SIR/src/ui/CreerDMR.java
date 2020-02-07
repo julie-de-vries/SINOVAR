@@ -65,8 +65,6 @@ public class CreerDMR extends javax.swing.JFrame {
         lieu_naiss_field = new javax.swing.JTextField();
         sexe_panel = new javax.swing.JPanel();
         genre_label = new javax.swing.JLabel();
-        f_check = new javax.swing.JCheckBox();
-        h_check = new javax.swing.JCheckBox();
         bouton_panel = new javax.swing.JPanel();
         Valider = new javax.swing.JButton();
         Annuler = new javax.swing.JButton();
@@ -134,7 +132,7 @@ public class CreerDMR extends javax.swing.JFrame {
         form_panel.add(date_label);
 
         lieu_naiss_label.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        lieu_naiss_label.setText("Lieu de naissance");
+        lieu_naiss_label.setText("Numéro de Sécurité Sociale");
         form_panel.add(lieu_naiss_label);
 
         date_field.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
@@ -149,14 +147,6 @@ public class CreerDMR extends javax.swing.JFrame {
         genre_label.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         genre_label.setText("Genre :");
         sexe_panel.add(genre_label);
-
-        f_check.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        f_check.setText("Femme");
-        sexe_panel.add(f_check);
-
-        h_check.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        h_check.setText("Homme");
-        sexe_panel.add(h_check);
 
         bouton_panel.setBackground(new java.awt.Color(185, 221, 227));
         bouton_panel.setLayout(new java.awt.GridBagLayout());
@@ -327,10 +317,9 @@ public class CreerDMR extends javax.swing.JFrame {
     private javax.swing.JPanel box_panel;
     private javax.swing.JTextField date_field;
     private javax.swing.JLabel date_label;
-    private javax.swing.JCheckBox f_check;
     private javax.swing.JPanel form_panel;
     private javax.swing.JLabel genre_label;
-    private javax.swing.JCheckBox h_check;
+    private javax.swing.JTextField id_field;
     private javax.swing.JLabel id_label;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField lieu_naiss_field;

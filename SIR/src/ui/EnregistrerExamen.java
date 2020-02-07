@@ -26,22 +26,237 @@ public class EnregistrerExamen extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
+
+        jPanel1 = new javax.swing.JPanel();
+        EnregistrerText = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
+        NomExamen = new javax.swing.JLabel();
+        DoseExamen = new javax.swing.JLabel();
+        TypeExamen = new javax.swing.JComboBox<>();
+        ValeurDose = new javax.swing.JTextField();
+        typeDose = new javax.swing.JLabel();
+        DateExamenLabel = new javax.swing.JLabel();
+        DateExamenTextField = new javax.swing.JTextField();
+        NumeroArchivageLabel = new javax.swing.JLabel();
+        NumeroArchivageField = new javax.swing.JTextField();
+        MedecinLabel = new javax.swing.JLabel();
+        MedecinField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+        EnregistrerText.setText("ENREGISTRER UN EXAMEN");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(396, 396, 396)
+                .addComponent(EnregistrerText, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(283, Short.MAX_VALUE))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addComponent(EnregistrerText, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(38, Short.MAX_VALUE))
         );
+
+        getContentPane().add(jPanel1, java.awt.BorderLayout.PAGE_START);
+
+        jPanel2.setMinimumSize(new java.awt.Dimension(160, 100));
+        jPanel2.setLayout(new java.awt.GridBagLayout());
+
+        jButton1.setText("VALIDER");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.insets = new java.awt.Insets(1, 0, 1, 20);
+        jPanel2.add(jButton1, gridBagConstraints);
+
+        jButton2.setText("ANNULER");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.insets = new java.awt.Insets(0, 26, 0, 0);
+        jPanel2.add(jButton2, gridBagConstraints);
+
+        getContentPane().add(jPanel2, java.awt.BorderLayout.PAGE_END);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 395, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(jPanel3, java.awt.BorderLayout.LINE_START);
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 395, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(jPanel4, java.awt.BorderLayout.LINE_END);
+
+        NomExamen.setText("Nom de l'examen");
+
+        DoseExamen.setText("Dose de l'examen");
+
+        TypeExamen.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Radiographie Thoracique" }));
+        TypeExamen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TypeExamenActionPerformed(evt);
+            }
+        });
+
+        ValeurDose.setText("0");
+        ValeurDose.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ValeurDoseActionPerformed(evt);
+            }
+        });
+
+        typeDose.setText("mSv");
+
+        DateExamenLabel.setText("Date de l'examen (JJ/MM/AAAA)");
+
+        DateExamenTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DateExamenTextFieldActionPerformed(evt);
+            }
+        });
+
+        NumeroArchivageLabel.setText("Numéro d'archivage de l'examen ");
+
+        NumeroArchivageField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NumeroArchivageFieldActionPerformed(evt);
+            }
+        });
+
+        MedecinLabel.setText("Médecin prescripteur");
+
+        MedecinField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MedecinFieldActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(85, 85, 85)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(DateExamenLabel)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(NumeroArchivageField)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(TypeExamen, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(NomExamen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(DoseExamen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(ValeurDose))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(typeDose))
+                            .addComponent(DateExamenTextField)
+                            .addComponent(MedecinLabel)
+                            .addComponent(NumeroArchivageLabel)
+                            .addComponent(MedecinField))
+                        .addGap(109, 109, 109))))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(65, 65, 65)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(NomExamen)
+                    .addComponent(DoseExamen))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TypeExamen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ValeurDose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(typeDose))
+                .addGap(28, 28, 28)
+                .addComponent(DateExamenLabel)
+                .addGap(18, 18, 18)
+                .addComponent(DateExamenTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(NumeroArchivageLabel)
+                .addGap(18, 18, 18)
+                .addComponent(NumeroArchivageField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(MedecinLabel)
+                .addGap(18, 18, 18)
+                .addComponent(MedecinField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(jPanel5, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void TypeExamenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TypeExamenActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TypeExamenActionPerformed
+
+    private void ValeurDoseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ValeurDoseActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ValeurDoseActionPerformed
+
+    private void DateExamenTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DateExamenTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DateExamenTextFieldActionPerformed
+
+    private void NumeroArchivageFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NumeroArchivageFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NumeroArchivageFieldActionPerformed
+
+    private void MedecinFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MedecinFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MedecinFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +294,24 @@ public class EnregistrerExamen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel DateExamenLabel;
+    private javax.swing.JTextField DateExamenTextField;
+    private javax.swing.JLabel DoseExamen;
+    private javax.swing.JLabel EnregistrerText;
+    private javax.swing.JTextField MedecinField;
+    private javax.swing.JLabel MedecinLabel;
+    private javax.swing.JLabel NomExamen;
+    private javax.swing.JTextField NumeroArchivageField;
+    private javax.swing.JLabel NumeroArchivageLabel;
+    private javax.swing.JComboBox<String> TypeExamen;
+    private javax.swing.JTextField ValeurDose;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JLabel typeDose;
     // End of variables declaration//GEN-END:variables
 }
