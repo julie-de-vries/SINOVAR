@@ -5,12 +5,10 @@
  */
 package ui;
 
-import java.awt.*;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Toolkit;
-import javax.swing.*;
-import nf.*;
+import javax.swing.JOptionPane;
+import nf.Identifications;
 
 /**
  *
@@ -19,7 +17,7 @@ import nf.*;
 public class Connexion extends javax.swing.JFrame {
 
     /**
-     * Creates new form Connexion
+     * Creates new form DefConnexion
      */
     public Connexion() {
         initComponents();
@@ -30,42 +28,16 @@ public class Connexion extends javax.swing.JFrame {
         int hauteur = tailleMoniteur.height * 2/3;
         //régler la taille de JFrame à 2/3 la taille de l'écran
         this.setSize(longueur, hauteur);
-        this.setLocationRelativeTo(null);
         
         this.setTitle("Se connecter au SIR 1.0");
         
-        //Centrer le carré de texte
-        texte_indicatif.setSize(longueur, hauteur);
-        this.getContentPane().add(texte_indicatif, SwingConstants.CENTER);
-        
-        //Couleur de la Jpanel
-        texte_indicatif.setBackground(new Color(241,184,185));
-        
-        texte_indicatif.add(texte1);
-        texte_indicatif.add(texte2);
-        
-        texte1.setFont(new java.awt.Font(Font.SERIF,Font.BOLD,30));
-        texte2.setFont(new java.awt.Font(Font.SERIF,Font.BOLD,30));
-        
-        texte1.setHorizontalAlignment(SwingConstants.CENTER);
-        texte2.setHorizontalAlignment(SwingConstants.CENTER);
-        
-        texte_connexion.setFont(new java.awt.Font(Font.SERIF,Font.BOLD,30));
-        texte_id.setFont(new java.awt.Font(Font.SERIF,Font.BOLD,30));
-        texte_mdp.setFont(new java.awt.Font(Font.SERIF,Font.BOLD,30));
-        
-        entree_mdp.setFont(new java.awt.Font(Font.SERIF,Font.BOLD,30));
-        entree_id.setFont(new java.awt.Font(Font.SERIF,Font.BOLD,30));
-//        //Centrer les textes d'indications
-//                jLabel2.setHorizontalAlignment(SwingConstants.CENTER);
-//
-//        jLabel1.setHorizontalAlignment(SwingConstants.CENTER);
-//        
-//        //Changer la police
-//        jLabel1.setFont(new java.awt.Font(Font.SERIF,Font.BOLD,30));
-//        jLabel2.setFont(new java.awt.Font(Font.SANS_SERIF,Font.ITALIC,30));
-
-        
+         // set the jframe size and location, and make it visible
+        this.setPreferredSize(new Dimension(400, 300));
+        this.setMinimumSize(new Dimension(longueur,hauteur));
+        this.pack();
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
+        this.setResizable(false);
     }
 
     /**
@@ -76,177 +48,190 @@ public class Connexion extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
-        texte_indicatif = new javax.swing.JPanel();
-        texte1 = new javax.swing.JLabel();
-        texte2 = new javax.swing.JLabel();
-        texte_connexion = new javax.swing.JLabel();
-        texte_id = new javax.swing.JLabel();
-        entree_id = new javax.swing.JTextField();
-        texte_mdp = new javax.swing.JLabel();
-        entree_mdp = new javax.swing.JPasswordField();
-        valider = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
+        message_panel = new javax.swing.JPanel();
+        texte_panel = new javax.swing.JPanel();
+        text1_label = new javax.swing.JLabel();
+        text2_label = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        logo1 = new javax.swing.JLabel();
+        connexion_panel = new javax.swing.JPanel();
+        sepa_1 = new javax.swing.JPanel();
+        seconnecter_panel = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        id_label = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        id_field = new javax.swing.JTextField();
+        jPasswordField1 = new javax.swing.JPasswordField();
+        jButton1 = new javax.swing.JButton();
+        sepa_2 = new javax.swing.JPanel();
+        deco_panel = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.Y_AXIS));
 
-        texte1.setText("Le Système d'Information Radiologique n'est accessible qu'aux Praticiens Hospitaliers,");
+        message_panel.setBackground(new java.awt.Color(247, 250, 253));
+        message_panel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 100, 5));
 
-        texte2.setText("manipulateurs(trices) en électroradiologie médicale et secrétaires médicales");
+        texte_panel.setBackground(new java.awt.Color(241, 184, 185));
+        texte_panel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        texte_panel.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        texte_panel.setName(""); // NOI18N
+        texte_panel.setLayout(new java.awt.GridBagLayout());
 
-        texte_connexion.setText("Connexion");
+        text1_label.setFont(new java.awt.Font("Tahoma", 0, 30)); // NOI18N
+        text1_label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        text1_label.setText("Le Systeme d'Information Radiologique n'est accessible qu'aux Praticiens Hospitaliers,");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.insets = new java.awt.Insets(30, 30, 0, 30);
+        texte_panel.add(text1_label, gridBagConstraints);
 
-        texte_id.setText("Identifiant");
+        text2_label.setFont(new java.awt.Font("Tahoma", 0, 30)); // NOI18N
+        text2_label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        text2_label.setText("manipulateurs(trices) en électroradiologie médicale et secrétaires médicales");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.insets = new java.awt.Insets(0, 30, 30, 30);
+        texte_panel.add(text2_label, gridBagConstraints);
 
-        entree_id.setText("jTextField1");
+        message_panel.add(texte_panel);
 
-        texte_mdp.setText("Mot de passe");
+        jPanel2.setBackground(new java.awt.Color(247, 250, 253));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        message_panel.add(jPanel2);
 
-        entree_mdp.setText("jPasswordField1");
-        entree_mdp.addActionListener(new java.awt.event.ActionListener() {
+        logo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/Copie de SINOVAR.png"))); // NOI18N
+        message_panel.add(logo1);
+
+        getContentPane().add(message_panel);
+
+        connexion_panel.setBackground(new java.awt.Color(247, 250, 253));
+        connexion_panel.setLayout(new javax.swing.BoxLayout(connexion_panel, javax.swing.BoxLayout.LINE_AXIS));
+
+        sepa_1.setBackground(new java.awt.Color(247, 250, 253));
+        sepa_1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        connexion_panel.add(sepa_1);
+
+        seconnecter_panel.setBackground(new java.awt.Color(217, 217, 217));
+        seconnecter_panel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        seconnecter_panel.setMinimumSize(new java.awt.Dimension(8, 373));
+        seconnecter_panel.setName(""); // NOI18N
+        seconnecter_panel.setPreferredSize(new java.awt.Dimension(200, 373));
+        seconnecter_panel.setLayout(new java.awt.GridBagLayout());
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
+        jLabel1.setText("CONNEXION");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        seconnecter_panel.add(jLabel1, gridBagConstraints);
+
+        id_label.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        id_label.setText("Identifiant :");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(50, 0, 0, 50);
+        seconnecter_panel.add(id_label, gridBagConstraints);
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel2.setText("Mot de passe :");
+        jLabel2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.insets = new java.awt.Insets(50, 0, 0, 50);
+        seconnecter_panel.add(jLabel2, gridBagConstraints);
+
+        id_field.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        id_field.setText("Entrez votre id");
+        id_field.setMinimumSize(new java.awt.Dimension(600, 36));
+        id_field.setPreferredSize(new java.awt.Dimension(300, 40));
+        id_field.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                entree_mdpActionPerformed(evt);
+                id_fieldActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.insets = new java.awt.Insets(50, 0, 0, 0);
+        seconnecter_panel.add(id_field, gridBagConstraints);
 
-        valider.setText("Valider");
+        jPasswordField1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jPasswordField1.setMinimumSize(new java.awt.Dimension(60, 32));
+        jPasswordField1.setPreferredSize(new java.awt.Dimension(300, 40));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.insets = new java.awt.Insets(50, 0, 0, 0);
+        seconnecter_panel.add(jPasswordField1, gridBagConstraints);
 
-        javax.swing.GroupLayout texte_indicatifLayout = new javax.swing.GroupLayout(texte_indicatif);
-        texte_indicatif.setLayout(texte_indicatifLayout);
-        texte_indicatifLayout.setHorizontalGroup(
-            texte_indicatifLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(texte_indicatifLayout.createSequentialGroup()
-                .addGap(279, 279, 279)
-                .addComponent(texte1, javax.swing.GroupLayout.DEFAULT_SIZE, 1301, Short.MAX_VALUE)
-                .addGap(337, 337, 337))
-            .addGroup(texte_indicatifLayout.createSequentialGroup()
-                .addGroup(texte_indicatifLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(texte_indicatifLayout.createSequentialGroup()
-                        .addGap(337, 337, 337)
-                        .addComponent(texte2))
-                    .addGroup(texte_indicatifLayout.createSequentialGroup()
-                        .addGap(112, 112, 112)
-                        .addComponent(texte_connexion))
-                    .addGroup(texte_indicatifLayout.createSequentialGroup()
-                        .addGap(225, 225, 225)
-                        .addComponent(texte_id)
-                        .addGap(197, 197, 197)
-                        .addComponent(entree_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(texte_indicatifLayout.createSequentialGroup()
-                        .addGap(216, 216, 216)
-                        .addGroup(texte_indicatifLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(valider)
-                            .addGroup(texte_indicatifLayout.createSequentialGroup()
-                                .addComponent(texte_mdp)
-                                .addGap(161, 161, 161)
-                                .addComponent(entree_mdp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(1220, Short.MAX_VALUE))
-        );
-        texte_indicatifLayout.setVerticalGroup(
-            texte_indicatifLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(texte_indicatifLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(texte1)
-                .addGap(29, 29, 29)
-                .addComponent(texte2)
-                .addGap(140, 140, 140)
-                .addComponent(texte_connexion)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 193, Short.MAX_VALUE)
-                .addGroup(texte_indicatifLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(texte_id)
-                    .addComponent(entree_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(81, 81, 81)
-                .addGroup(texte_indicatifLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(texte_mdp)
-                    .addComponent(entree_mdp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
-                .addComponent(valider)
-                .addGap(204, 204, 204))
-        );
-
-        valider.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                validerMouseClicked(evt);
+        jButton1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jButton1.setText("Se connecter");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.insets = new java.awt.Insets(70, 0, 0, 0);
+        seconnecter_panel.add(jButton1, gridBagConstraints);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+        connexion_panel.add(seconnecter_panel);
+
+        sepa_2.setBackground(new java.awt.Color(247, 250, 253));
+        sepa_2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        connexion_panel.add(sepa_2);
+
+        getContentPane().add(connexion_panel);
+
+        deco_panel.setBackground(new java.awt.Color(247, 250, 253));
+
+        jLabel3.setBackground(new java.awt.Color(247, 250, 253));
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/Connexion_SINOVAR.png"))); // NOI18N
+
+        javax.swing.GroupLayout deco_panelLayout = new javax.swing.GroupLayout(deco_panel);
+        deco_panel.setLayout(deco_panelLayout);
+        deco_panelLayout.setHorizontalGroup(
+            deco_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+        deco_panelLayout.setVerticalGroup(
+            deco_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(138, 138, 138))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(texte_indicatif, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(13, 13, 13)
-                .addComponent(texte_indicatif, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+        getContentPane().add(deco_panel);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void entree_mdpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entree_mdpActionPerformed
+    private void id_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_id_fieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_entree_mdpActionPerformed
+    }//GEN-LAST:event_id_fieldActionPerformed
 
-    private void validerMouseClicked(java.awt.event.MouseEvent evt) {                                         
-        String id = entree_id.getText();
-        String mdp=String.valueOf(entree_mdp.getPassword());
-        Identifications c = new Identifications(id, mdp);       
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String id = id_field.getText();
+        String mdp = String.valueOf(jPasswordField1.getPassword());
+        Identifications c = new Identifications(id, mdp);
         
-        //System.out.println(id);
-        //System.out.println(mdp);
-        //if((id.equals("1"))&&(mdp.equals("ab"))){
         if(c.isAuth()){
-//            Test t = new Test();            
-//            t.setVisible(true);     
-//            this.remove(jPanel1);
-            
             this.dispose();
             Accueil a = new Accueil(c.getCurrentUser());
             a.setVisible(true);
-            
-            
-            
-//            javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-//                getContentPane().setLayout(layout);
-//                layout.setHorizontalGroup(
-//                        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-//                                .addComponent(t, javax.swing.GroupLayout.DEFAULT_SIZE, 870, Short.MAX_VALUE)
-//                );
-//                layout.setVerticalGroup(
-//                        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-//                                .addComponent(t, javax.swing.GroupLayout.DEFAULT_SIZE, 651, Short.MAX_VALUE)
-//                );
-            
-        }  else{
-                JOptionPane.showMessageDialog(null, "Identifiant/Mot de passe incorrect(s)");
-        
-    }
-    }
+        } else {             
+            JOptionPane.showMessageDialog(null, "Identifiant/Mot de passe incorrect(s)");
+        }
+     }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -273,6 +258,21 @@ public class Connexion extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Connexion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -283,15 +283,23 @@ public class Connexion extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField entree_id;
-    private javax.swing.JPasswordField entree_mdp;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel texte1;
-    private javax.swing.JLabel texte2;
-    private javax.swing.JLabel texte_connexion;
-    private javax.swing.JLabel texte_id;
-    private javax.swing.JPanel texte_indicatif;
-    private javax.swing.JLabel texte_mdp;
-    private javax.swing.JButton valider;
+    private javax.swing.JPanel connexion_panel;
+    private javax.swing.JPanel deco_panel;
+    private javax.swing.JTextField id_field;
+    private javax.swing.JLabel id_label;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JLabel logo1;
+    private javax.swing.JPanel message_panel;
+    private javax.swing.JPanel seconnecter_panel;
+    private javax.swing.JPanel sepa_1;
+    private javax.swing.JPanel sepa_2;
+    private javax.swing.JLabel text1_label;
+    private javax.swing.JLabel text2_label;
+    private javax.swing.JPanel texte_panel;
     // End of variables declaration//GEN-END:variables
 }

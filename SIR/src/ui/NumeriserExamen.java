@@ -5,17 +5,36 @@
  */
 package ui;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+
 /**
  *
- * @author Julie
+ * @author laura
  */
 public class NumeriserExamen extends javax.swing.JFrame {
 
     /**
-     * Creates new form NumeriserExamen
+     * Creates new form numerisation
      */
     public NumeriserExamen() {
         initComponents();
+          //récuperer la dimension de l'écran
+        Dimension tailleMoniteur = Toolkit.getDefaultToolkit().getScreenSize();
+        int longueur = tailleMoniteur.width * 2/3;
+        int hauteur = tailleMoniteur.height * 2/3;
+        
+        this.setSize(longueur, hauteur);
+        
+        this.setTitle("Numériser");
+        
+         // set the jframe size and location, and make it visible
+   
+        this.setPreferredSize(new Dimension(longueur, hauteur));
+        this.setMinimumSize(new Dimension(longueur,hauteur));
+        this.pack();
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
     }
 
     /**
@@ -26,22 +45,128 @@ public class NumeriserExamen extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
+
+        titre_panel = new javax.swing.JPanel();
+        titre_label = new javax.swing.JLabel();
+        choix_panel = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jPanel5 = new javax.swing.JPanel();
+        résol_panel = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        bouton_panel = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(204, 255, 153));
+        getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.PAGE_AXIS));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+        titre_panel.setLayout(new java.awt.GridBagLayout());
+
+        titre_label.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        titre_label.setText("NUMÉRISER UN EXAMEN");
+        titre_panel.add(titre_label, new java.awt.GridBagConstraints());
+
+        getContentPane().add(titre_panel);
+
+        choix_panel.setLayout(new java.awt.GridLayout(1, 3, 0, 20));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 364, Short.MAX_VALUE)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 176, Short.MAX_VALUE)
         );
+
+        choix_panel.add(jPanel1);
+
+        jPanel4.setBackground(new java.awt.Color(210, 232, 255));
+        jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel4.setLayout(new java.awt.GridBagLayout());
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel1.setText("Choisir un numériseur");
+        jPanel4.add(jLabel1, new java.awt.GridBagConstraints());
+
+        jComboBox1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ACME D30-X", "EPSON SCAN", "HP SMART", "CANON", " " }));
+        jComboBox1.setMinimumSize(new java.awt.Dimension(120, 35));
+        jComboBox1.setName(""); // NOI18N
+        jComboBox1.setPreferredSize(new Dimension(250,35));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.insets = new java.awt.Insets(30, 0, 0, 0);
+        jPanel4.add(jComboBox1, gridBagConstraints);
+
+        choix_panel.add(jPanel4);
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 364, Short.MAX_VALUE)
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 176, Short.MAX_VALUE)
+        );
+
+        choix_panel.add(jPanel5);
+
+        getContentPane().add(choix_panel);
+
+        résol_panel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 20, 20));
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Résolution :");
+        résol_panel.add(jLabel2);
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 2, 24)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("10 pixels/mm");
+        jLabel3.setMinimumSize(new java.awt.Dimension(220, 44));
+        jLabel3.setPreferredSize(new java.awt.Dimension(220, 44));
+        jLabel3.setRequestFocusEnabled(false);
+        résol_panel.add(jLabel3);
+
+        getContentPane().add(résol_panel);
+
+        bouton_panel.setLayout(new java.awt.GridBagLayout());
+
+        jButton1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jButton1.setText("VALIDER");
+        jButton1.setToolTipText("");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 50);
+        bouton_panel.add(jButton1, gridBagConstraints);
+
+        jButton2.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jButton2.setText("ANNULER");
+        bouton_panel.add(jButton2, new java.awt.GridBagConstraints());
+
+        getContentPane().add(bouton_panel);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -69,6 +194,21 @@ public class NumeriserExamen extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(NumeriserExamen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -79,5 +219,19 @@ public class NumeriserExamen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel bouton_panel;
+    private javax.swing.JPanel choix_panel;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel résol_panel;
+    private javax.swing.JLabel titre_label;
+    private javax.swing.JPanel titre_panel;
     // End of variables declaration//GEN-END:variables
 }
