@@ -95,10 +95,6 @@ public class Examen {
         return type+" "+localisation_examen+", "+getPatient(sir).getNomUsuel();
     }
     
-    public String getNomExamen(){
-        return type+" "+localisation_examen;
-    }
-
     public String afficherDose() {
         String s = "";
         s += this.getLibelle();
