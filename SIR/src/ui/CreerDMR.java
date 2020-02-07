@@ -12,12 +12,12 @@ import java.awt.Toolkit;
  *
  * @author laura
  */
-public class CréerDMR extends javax.swing.JFrame {
+public class CreerDMR extends javax.swing.JFrame {
 
     /**
      * Creates new form createDMR
      */
-    public CréerDMR() {
+    public CreerDMR() {
         initComponents();
         
          //récuperer la dimension de l'écran
@@ -64,8 +64,6 @@ public class CréerDMR extends javax.swing.JFrame {
         lieu_naiss_field = new javax.swing.JTextField();
         sexe_panel = new javax.swing.JPanel();
         genre_label = new javax.swing.JLabel();
-        f_check = new javax.swing.JCheckBox();
-        h_check = new javax.swing.JCheckBox();
         bouton_panel = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -133,7 +131,7 @@ public class CréerDMR extends javax.swing.JFrame {
         form_panel.add(date_label);
 
         lieu_naiss_label.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        lieu_naiss_label.setText("Lieu de naissance");
+        lieu_naiss_label.setText("Numéro de Sécurité Sociale");
         form_panel.add(lieu_naiss_label);
 
         date_field.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
@@ -148,14 +146,6 @@ public class CréerDMR extends javax.swing.JFrame {
         genre_label.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         genre_label.setText("Genre :");
         sexe_panel.add(genre_label);
-
-        f_check.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        f_check.setText("Femme");
-        sexe_panel.add(f_check);
-
-        h_check.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        h_check.setText("Homme");
-        sexe_panel.add(h_check);
 
         bouton_panel.setBackground(new java.awt.Color(185, 221, 227));
         bouton_panel.setLayout(new java.awt.GridBagLayout());
@@ -228,14 +218,52 @@ public class CréerDMR extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CréerDMR.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CreerDMR.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CréerDMR.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CreerDMR.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CréerDMR.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CreerDMR.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CréerDMR.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CreerDMR.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -248,7 +276,7 @@ public class CréerDMR extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CréerDMR().setVisible(true);
+                new CreerDMR().setVisible(true);
             }
         });
     }
@@ -258,10 +286,8 @@ public class CréerDMR extends javax.swing.JFrame {
     private javax.swing.JPanel box_panel;
     private javax.swing.JTextField date_field;
     private javax.swing.JLabel date_label;
-    private javax.swing.JCheckBox f_check;
     private javax.swing.JPanel form_panel;
     private javax.swing.JLabel genre_label;
-    private javax.swing.JCheckBox h_check;
     private javax.swing.JTextField id_field;
     private javax.swing.JLabel id_label;
     private javax.swing.JButton jButton1;
