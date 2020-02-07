@@ -8,9 +8,11 @@ package ui;
 import java.awt.event.KeyEvent;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.table.DefaultTableModel;
+import nf.Examen;
 import nf.Metier;
 import nf.TypeExam;
 
@@ -32,15 +34,10 @@ public class AgendaPanel extends javax.swing.JPanel {
         this.a = a;
         dateSelected = new Date();
         initComponents();
-        
-
 
         /*UserName.setText("Utilisateur : "+ a.getCurrentUser().getNom());
         fait un nullPointerException pourquoi ?? (sout currentUser.getNom() ne fait pas de NPE)
          */
- /*Remplit l'agenda selon le professionnel en question*/
- /*Si c'est une secrétaire on met tous les examens du jour*/
- /*Si c'est un PH on met ses examens*/
  /*création et remplissage du tableau*/
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("Horaire");
@@ -301,31 +298,32 @@ public class AgendaPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_dateFieldKeyPressed
 
     private void SelectTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectTypeActionPerformed
-RemplirTableau();    }//GEN-LAST:event_SelectTypeActionPerformed
+        RemplirTableau();    }//GEN-LAST:event_SelectTypeActionPerformed
 
     private void RemplirTableau() {
         /*On cherche les examens du ph utilisateur*/
-        
-        
+
+        ArrayList<Examen> listeExamens = new ArrayList();
         int nbExam = a.getCurrentUser().getExam(a.getSir()).size();
+        listeExamens = a.getCurrentUser().getExam(a.getSir());
         System.out.println(nbExam);
         for (int i = 0; i < nbExam; i++) {
             /*on met dans le tableau seulement les examens du type selectionné*/
-            if (a.getCurrentUser().getExam(a.getSir()).get(i).getType() == TypeExam.valueOf(SelectType.getSelectedItem().toString())) {
+            if (listeExamens.get(i).getType() == TypeExam.valueOf(SelectType.getSelectedItem().toString())) {
                 /*et seulement de la date selectionnée*/
                 System.out.println("type exam");
-                Date date = a.getCurrentUser().getExam(a.getSir()).get(i).getDateDebut();
-                Date d1 = new Date(date.getYear(),date.getMonth(),date.getDate());
-                Date d2 = new Date(dateSelected.getYear(),dateSelected.getMonth(),dateSelected.getDate());
+                Date date = listeExamens.get(i).getDateDebut();
+                Date d1 = new Date(date.getYear(), date.getMonth(), date.getDate());
+                Date d2 = new Date(dateSelected.getYear(), dateSelected.getMonth(), dateSelected.getDate());
                 //pour comparer les dates sans tenir compte de l'heure
                 System.out.println(date);
                 System.out.println(d1);
                 System.out.println(dateSelected);
                 if (d1.equals(d2)) {
                     System.out.println("date");
-                    int[] trancheHoraires = a.getCurrentUser().getExam(a.getSir()).get(i).calculTrancheHoraire();
-                    int salle = a.getCurrentUser().getExam(a.getSir()).get(i).getSalle();
-                    String affichage = a.getCurrentUser().getExam(a.getSir()).get(i).afficherExamen(a.getSir());
+                    int[] trancheHoraires = listeExamens.get(i).calculTrancheHoraire();
+                    int salle = listeExamens.get(i).getSalle();
+                    String affichage = listeExamens.get(i).afficherExamen(a.getSir());
                     for (int j = 0; j < trancheHoraires.length; j++) {
 
                         AgendaTable.setValueAt(affichage, trancheHoraires[j], salle);
