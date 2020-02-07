@@ -24,8 +24,8 @@ public class Connexion extends javax.swing.JFrame {
         
         //récuperer la dimension de l'écran
         Dimension tailleMoniteur = Toolkit.getDefaultToolkit().getScreenSize();
-        int longueur = tailleMoniteur.width * 2/3;
-        int hauteur = tailleMoniteur.height * 2/3;
+        int longueur = tailleMoniteur.width; //* 2/3;
+        int hauteur = tailleMoniteur.height; //* 2/3;
         //régler la taille de JFrame à 2/3 la taille de l'écran
         this.setSize(longueur, hauteur);
         

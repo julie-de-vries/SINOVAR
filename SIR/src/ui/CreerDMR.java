@@ -5,17 +5,34 @@
  */
 package ui;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+
 /**
  *
- * @author Julie
+ * @author laura
  */
 public class CreerDMR extends javax.swing.JFrame {
 
     /**
-     * Creates new form CreerDMR
+     * Creates new form createDMR
      */
     public CreerDMR() {
         initComponents();
+        
+         //récuperer la dimension de l'écran
+        Dimension tailleMoniteur = Toolkit.getDefaultToolkit().getScreenSize();
+        int longueur = tailleMoniteur.width;
+        int hauteur = tailleMoniteur.height;
+        //régler la taille de JFrame à 2/3 la taille de l'écran
+        this.setSize(longueur, hauteur);
+        
+        this.setTitle("Création d'un DMR");
+        
+         // set the jframe size and location, and make it visible
+        this.pack();
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
     }
 
     /**
@@ -26,22 +43,173 @@ public class CreerDMR extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
+
+        box_panel = new javax.swing.JPanel();
+        titre_panel = new javax.swing.JPanel();
+        titre_label = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        form_panel = new javax.swing.JPanel();
+        nom_naiss_label = new javax.swing.JLabel();
+        nom_usuel_label = new javax.swing.JLabel();
+        nom_naiss_field = new javax.swing.JTextField();
+        nom_usuel_field = new javax.swing.JTextField();
+        prenom_label = new javax.swing.JLabel();
+        id_label = new javax.swing.JLabel();
+        prenom_field = new javax.swing.JTextField();
+        id_field = new javax.swing.JTextField();
+        date_label = new javax.swing.JLabel();
+        lieu_naiss_label = new javax.swing.JLabel();
+        date_field = new javax.swing.JTextField();
+        lieu_naiss_field = new javax.swing.JTextField();
+        sexe_panel = new javax.swing.JPanel();
+        genre_label = new javax.swing.JLabel();
+        f_check = new javax.swing.JCheckBox();
+        h_check = new javax.swing.JCheckBox();
+        bouton_panel = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.PAGE_AXIS));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+        box_panel.setBackground(new java.awt.Color(204, 204, 204));
+        box_panel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+
+        titre_panel.setBackground(new java.awt.Color(185, 221, 227));
+        titre_panel.setLayout(new java.awt.GridBagLayout());
+
+        titre_label.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        titre_label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        titre_label.setText("CRÉER UN DOSSIER MÉDICAL RADIOLOGIQUE");
+        titre_panel.add(titre_label, new java.awt.GridBagConstraints());
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel1.setText("Veuillez renseigner les informations concernant le patient");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.insets = new java.awt.Insets(29, 0, 73, 0);
+        titre_panel.add(jLabel1, gridBagConstraints);
+
+        form_panel.setBackground(new java.awt.Color(185, 221, 227));
+        form_panel.setLayout(new java.awt.GridLayout(6, 2, 100, 10));
+
+        nom_naiss_label.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        nom_naiss_label.setText("Nom de naissance");
+        form_panel.add(nom_naiss_label);
+
+        nom_usuel_label.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        nom_usuel_label.setText("Nom usuel");
+        form_panel.add(nom_usuel_label);
+
+        nom_naiss_field.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        nom_naiss_field.setPreferredSize(new java.awt.Dimension(80, 32));
+        nom_naiss_field.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nom_naiss_fieldActionPerformed(evt);
+            }
+        });
+        form_panel.add(nom_naiss_field);
+
+        nom_usuel_field.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        form_panel.add(nom_usuel_field);
+
+        prenom_label.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        prenom_label.setText("Prénom");
+        form_panel.add(prenom_label);
+
+        id_label.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        id_label.setText("Identifiant");
+        form_panel.add(id_label);
+
+        prenom_field.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        form_panel.add(prenom_field);
+
+        id_field.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        form_panel.add(id_field);
+
+        date_label.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        date_label.setText("Date de naissance (JJ/MM/AAAA)");
+        form_panel.add(date_label);
+
+        lieu_naiss_label.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        lieu_naiss_label.setText("Lieu de naissance");
+        form_panel.add(lieu_naiss_label);
+
+        date_field.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        form_panel.add(date_field);
+
+        lieu_naiss_field.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        form_panel.add(lieu_naiss_field);
+
+        sexe_panel.setBackground(new java.awt.Color(185, 221, 227));
+        sexe_panel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 100, 50));
+
+        genre_label.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        genre_label.setText("Genre :");
+        sexe_panel.add(genre_label);
+
+        f_check.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        f_check.setText("Femme");
+        sexe_panel.add(f_check);
+
+        h_check.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        h_check.setText("Homme");
+        sexe_panel.add(h_check);
+
+        bouton_panel.setBackground(new java.awt.Color(185, 221, 227));
+        bouton_panel.setLayout(new java.awt.GridBagLayout());
+
+        jButton1.setBackground(new java.awt.Color(117, 212, 129));
+        jButton1.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        jButton1.setText("VALIDER");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 100);
+        bouton_panel.add(jButton1, gridBagConstraints);
+
+        jButton2.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        jButton2.setText("ANNULER");
+        bouton_panel.add(jButton2, new java.awt.GridBagConstraints());
+
+        javax.swing.GroupLayout box_panelLayout = new javax.swing.GroupLayout(box_panel);
+        box_panel.setLayout(box_panelLayout);
+        box_panelLayout.setHorizontalGroup(
+            box_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 2256, Short.MAX_VALUE)
+            .addGroup(box_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(box_panelLayout.createSequentialGroup()
+                    .addGap(0, 8, Short.MAX_VALUE)
+                    .addGroup(box_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(form_panel, javax.swing.GroupLayout.DEFAULT_SIZE, 2239, Short.MAX_VALUE)
+                        .addComponent(sexe_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(bouton_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(titre_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGap(0, 9, Short.MAX_VALUE)))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+        box_panelLayout.setVerticalGroup(
+            box_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 892, Short.MAX_VALUE)
+            .addGroup(box_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(box_panelLayout.createSequentialGroup()
+                    .addGap(0, 59, Short.MAX_VALUE)
+                    .addComponent(titre_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, 0)
+                    .addComponent(form_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, 0)
+                    .addComponent(sexe_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, 0)
+                    .addComponent(bouton_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 59, Short.MAX_VALUE)))
         );
+
+        getContentPane().add(box_panel);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void nom_naiss_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nom_naiss_fieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nom_naiss_fieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -69,6 +237,21 @@ public class CreerDMR extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(CreerDMR.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -79,5 +262,29 @@ public class CreerDMR extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel bouton_panel;
+    private javax.swing.JPanel box_panel;
+    private javax.swing.JTextField date_field;
+    private javax.swing.JLabel date_label;
+    private javax.swing.JCheckBox f_check;
+    private javax.swing.JPanel form_panel;
+    private javax.swing.JLabel genre_label;
+    private javax.swing.JCheckBox h_check;
+    private javax.swing.JTextField id_field;
+    private javax.swing.JLabel id_label;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JTextField lieu_naiss_field;
+    private javax.swing.JLabel lieu_naiss_label;
+    private javax.swing.JTextField nom_naiss_field;
+    private javax.swing.JLabel nom_naiss_label;
+    private javax.swing.JTextField nom_usuel_field;
+    private javax.swing.JLabel nom_usuel_label;
+    private javax.swing.JTextField prenom_field;
+    private javax.swing.JLabel prenom_label;
+    private javax.swing.JPanel sexe_panel;
+    private javax.swing.JLabel titre_label;
+    private javax.swing.JPanel titre_panel;
     // End of variables declaration//GEN-END:variables
 }
