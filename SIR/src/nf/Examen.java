@@ -94,6 +94,7 @@ public class Examen {
     public String afficherExamen(SIR sir){
         return type+" "+localisation_examen+", "+getPatient(sir).getNomUsuel();
     }
+
     
     public String afficherDose() {
         String s = "";
