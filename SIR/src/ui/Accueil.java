@@ -35,32 +35,32 @@ public class Accueil extends javax.swing.JFrame {
         String titreDePage = "Sinovar";
         this.setTitle(titreDePage);
         this.currentUser = currentUser;
-        DataBaseLayer DBL = new DataBaseLayer("SELECT * from sinovar.personnel;");
+        DataBaseLayer DBL = new DataBaseLayer("SELECT * from database_sinovar.personnel;");
         Professionnels pros = new Professionnels();
         for (int i = 1; i < DBL.getResult().size(); i++) {
             ArrayList<String> row = DBL.getResult().get(i);
-            int id = Integer.parseInt(row.get(0));
-            Metier m = Metier.valueOf(row.get(5));
-            Professionnel p = new Professionnel(id, row.get(1), row.get(2), row.get(3), row.get(4), m);
+            long id = Long.parseLong(row.get(0));
+            Metier m = Metier.valueOf(row.get(4));
+            Professionnel p = new Professionnel(id, row.get(1), row.get(2), row.get(3), m, row.get(5), row.get(6), row.get(7));
             pros.ajouterProfessionnel(p);
         }
         /*récupération du personnel de la BDD*/
         sir = new SIR(pros);
-        DBL = new DataBaseLayer("SELECT * from sinovar.patient join sinovar.examen on id=identifiant_patient;");
-        ArrayList<String> row=null;
+        DBL = new DataBaseLayer("SELECT * from database_sinovar.patient;");
+        ArrayList<String> row = null;
         for (int i = 1; i < DBL.getResult().size(); i++) {
             row = DBL.getResult().get(i);
-            int id = Integer.parseInt(row.get(2));
-            Patient p = new Patient(row.get(0), row.get(1), id, row.get(3), row.get(4), row.get(5), row.get(6));
-            DataBaseLayer DBL1 = new DataBaseLayer("SELECT * from sinovar.examen where identifiant_patient="+id+";");
-            for (int j = 1 ; j < DBL1.getResult().size() ; j++){
+            int id = Integer.parseInt(row.get(0));
+            Patient p = new Patient(id, row.get(1), row.get(2), row.get(3), row.get(4), row.get(5), row.get(6), row.get(7), row.get(8));
+            DataBaseLayer DBL1 = new DataBaseLayer("SELECT * from database_sinovar.examen where identifiant_patient=" + id + ";");
+            for (int j = 1; j < DBL1.getResult().size(); j++) {
                 row = DBL1.getResult().get(j);
                 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
                 try {
-                    Date d1 = format.parse(row.get(3));
-                    Date d2 = format.parse(row.get(3));
-                    Professionnel pro = sir.chercherProfessionnel(row.get(5));
-                    Examen e = new Examen(Integer.parseInt(row.get(0)), d1, d2, TypeExam.valueOf(row.get(4)), pro,Code.valueOf(row.get(5)), Integer.parseInt(row.get(6)),LocalisationExamen.valueOf(row.get(7)));
+                    Date d1 = format.parse(row.get(4));
+                    Date d2 = format.parse(row.get(5));
+                    Professionnel pro = sir.chercherProfessionnel(row.get(9));
+                    Examen e = new Examen(Integer.parseInt(row.get(0)), TypeExam.valueOf(row.get(1)), LocalisationExamen.valueOf(row.get(2)), row.get(3), d1, d2, Integer.parseInt(row.get(6)), Double.parseDouble(row.get(7)), row.get(8), pro, Integer.parseInt(row.get(10)), Code.valueOf(row.get(11)), Integer.parseInt(row.get(12)));
                     //en commentaire tant qu'il n'y a pas accord sur Examen (bdd, ui et nf)
                     /*d1 = new Date(120,01,05,8,30);
                     d2 = new Date(120,01,05,9,0);
@@ -69,15 +69,16 @@ public class Accueil extends javax.swing.JFrame {
                 } catch (ParseException ex) {
                     Logger.getLogger(Accueil.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                
+
             }
+            
             sir.ajouterPatient(p);
         }
         /*récupération des patients de la BDD avec leur examens respectifs*/
-        
+
         initComponents();
         AgendaPanel ap = new AgendaPanel(this);
-        this.jPanel1.add(ap,BorderLayout.CENTER);
+        this.jPanel1.add(ap, BorderLayout.CENTER);
         this.pack();
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -230,7 +231,8 @@ public class Accueil extends javax.swing.JFrame {
         int row = DMRTable.getSelectedRow();
         if (searchResult != null && row >= 0 && row < searchResult.size()) {
             jPanel1.removeAll();
-            jPanel1.add(new DMR(searchResult.get(row),this),BorderLayout.CENTER); /*ouvre le DMR du patient selectionne*/
+            jPanel1.add(new DMR(searchResult.get(row), this), BorderLayout.CENTER);
+            /*ouvre le DMR du patient selectionne*/
             this.pack();
             this.repaint();
         }
@@ -238,9 +240,9 @@ public class Accueil extends javax.swing.JFrame {
 
     private void SearchPatientFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SearchPatientFieldKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            searchResult = getSir().chercherPatient(SearchPatientField.getText());//recherche les patients
+            searchResult = sir.chercherPatient(SearchPatientField.getText());//recherche les patients
             /*vide le tableau*/
-            if (SearchPatientField.getText().trim().equals("") || searchResult.isEmpty()) {
+            if (SearchPatientField.getText().isEmpty() || searchResult.isEmpty()) {
                 for (int i = 0; i < DMRTable.getRowCount(); i++) {
                     DMRTable.setValueAt("", i, 0);
                     DMRTable.setValueAt("", i, 1);
@@ -293,11 +295,11 @@ public class Accueil extends javax.swing.JFrame {
             public void run() {
                 Accueil a = new Accueil(null);
                 AgendaPanel ap = new AgendaPanel(a);
-                a.jPanel1.add(ap,BorderLayout.CENTER);
+                a.jPanel1.add(ap, BorderLayout.CENTER);
                 a.pack();
                 a.setVisible(true);
                 a.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                
+
             }
         });
     }
@@ -329,20 +331,20 @@ public class Accueil extends javax.swing.JFrame {
             }
         }
     }
-    
-    public void CloseDMR(){
+
+    public void CloseDMR() {
         jPanel1.removeAll();
-        jPanel1.add(new AgendaPanel(this),BorderLayout.CENTER); /*ouvre le DMR du patient selectionne*/
+        jPanel1.add(new AgendaPanel(this), BorderLayout.CENTER);
+        /*ouvre le DMR du patient selectionne*/
         this.pack();
         this.repaint();
     }
-    
-    public void logOut(){
+
+    public void logOut() {
         this.dispose();
         new Connexion().setVisible(true);
     }
 
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel DMRLabel;

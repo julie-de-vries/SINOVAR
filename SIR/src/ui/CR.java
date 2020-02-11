@@ -18,7 +18,7 @@ public class CR extends javax.swing.JFrame {
         initComponents();
     }
     
-    public CR(String id_CR){
+    public CR(int id_CR){
         initComponents();
     }
 

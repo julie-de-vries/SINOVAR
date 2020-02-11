@@ -135,6 +135,13 @@ public class Test {
         //sir.afficherExamProfessionnel(pro5);
 
 //        agenda.afficherAgenda(pro1, "04041959");*/
+        DataBaseLayer DBL = new DataBaseLayer("Select * from database_sinovar.patient where numero_SS= '"+29806+"';");
+        DBL.getResult().remove(0);
+        System.out.println(DBL.getResult().isEmpty());
+        for (int i=0; i<DBL.getResult().size();i++)
+            for(int j=0; j<DBL.getResult().get(i).size();j++)
+                System.out.println(DBL.getResult().get(i).get(j));
+        
     }
 
 }

@@ -46,7 +46,7 @@ public class DataBaseLayer {
        try {
             /* Création de l'objet gérant les requêtes */
             /* Exécution d'une requête de lecture */
-            if (requete.startsWith("SELECT")){
+            if (requete.toUpperCase().startsWith("SELECT")){
                 /*selon si la requête est une lecture ou une modification*/
                 ResultSet resultSet = statement.executeQuery( requete );
                 //String nom = result.getString(TABLE_USERS_NAME_COLUMN_NAME);

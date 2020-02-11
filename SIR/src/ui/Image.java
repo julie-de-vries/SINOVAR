@@ -18,7 +18,7 @@ public class Image extends javax.swing.JFrame {
         initComponents();
     }
     
-    public Image(String id_image){
+    public Image(int id_image){
         initComponents();
     }
 

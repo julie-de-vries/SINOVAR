@@ -15,5 +15,4 @@ public enum TypeExam {
     IRM,
     échographie,
     scintigraphie,
-    
 }

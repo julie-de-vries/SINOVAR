@@ -13,23 +13,27 @@ import java.util.ArrayList;
  */
 public class Professionnel {
 
-    private final int id_pro;
+    private final long id_pro;
     private final String nom;
     private final String prenom;
     private final String motDePasse;
     private final String departement;
     private final Metier metier;
+    private final String tel;
+    private final String mail;
 
-    public Professionnel(int id, String nom, String prenom, String motDePasse, String departement, Metier metier) {
+    public Professionnel(long id, String motDePasse, String nom, String prenom, Metier metier, String departement, String tel, String mail) {
         this.id_pro = id;
         this.nom = nom;
         this.prenom = prenom;
         this.motDePasse = motDePasse;
         this.departement = departement;
         this.metier = metier;
+        this.tel = tel;
+        this.mail = mail;
     }
 
-    public int getId_pro() {
+    public long getId_pro() {
         return id_pro;
     }
 

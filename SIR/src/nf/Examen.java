@@ -20,10 +20,10 @@ public class Examen {
     private final Code code;
     private final int salle;
     private String notes;
-    private String image;
-    private String cr;
+    private int image;
+    private int cr;
 
-    public Examen(int id_exam, Date dateDebut, Date dateFin, TypeExam type, Professionnel pro, Code code, int salle, LocalisationExamen localisation_examen) {
+    public Examen(int id_exam, TypeExam type, LocalisationExamen localisation_examen,String notes, Date dateDebut, Date dateFin, int salle, double dose, String libelleDose, Professionnel pro, int image, Code code, int cr) {
         this.id_exam = id_exam;
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
@@ -32,8 +32,8 @@ public class Examen {
         this.salle = salle;
         this.code = code;
         this.localisation_examen = localisation_examen;
-        image = null;
-        cr = null;
+        this.image = image;
+        this.cr = cr;
     }
 
     
@@ -209,28 +209,28 @@ public class Examen {
     /**
      * @return the image
      */
-    public String getImage() {
+    public int getImage() {
         return image;
     }
 
     /**
      * @param image the image to set
      */
-    public void setImage(String image) {
+    public void setImage(int image) {
         this.image = image;
     }
 
     /**
      * @return the cr
      */
-    public String getCr() {
+    public int getCr() {
         return cr;
     }
 
     /**
      * @param cr the cr to set
      */
-    public void setCr(String cr) {
+    public void setCr(int cr) {
         this.cr = cr;
     }
 

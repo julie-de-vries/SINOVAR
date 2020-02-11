@@ -17,7 +17,7 @@ public class Erreur extends javax.swing.JFrame {
     public Erreur(String text) {
         initComponents();
         this.setTitle("Erreur");
-        Ok.setText(text);
+        jLabel1.setText(text);
     }
 
     /**
@@ -32,9 +32,14 @@ public class Erreur extends javax.swing.JFrame {
         Ok = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         Ok.setText("Ok");
+        Ok.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                OkMouseClicked(evt);
+            }
+        });
 
         jLabel1.setText("jLabel1");
 
@@ -61,6 +66,10 @@ public class Erreur extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void OkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OkMouseClicked
+        this.dispose();
+    }//GEN-LAST:event_OkMouseClicked
 
     /**
      * @param args the command line arguments

@@ -21,14 +21,21 @@ public class SIR {
         return this.patients;
     }
 
-    public void ajouterPatient(Patient p) {
-        DataBaseLayer DBL = new DataBaseLayer("Select * from sinovar.patient where numero_SS= "+p.getNss()+";");
+    public boolean ajouterPatientBDD(String nomNaissance,String nomUsuel, String prenom,String nss,String tel, String adresse,  String dateDeNaissance, String genre) {
+        DataBaseLayer DBL = new DataBaseLayer("Select * from database_sinovar.patient where numero_SS= '"+nss+"';");
         DBL.getResult().remove(0);
-        if(!DBL.getResult().isEmpty()){
-            this.patients.add(p);
-            DBL = new DataBaseLayer("Insert into sinovar.patient values('"+p.getNomNaissance()+"','"+p.getPrenom()+"','"+p.getNss()+"','"+p.getLieuDeNaissance()+"','"+p.getDateDeNaissance()+"','"+p.getGenre()+"';");
-            
+        boolean modif=false;
+        if(DBL.getResult().isEmpty()){
+            DBL = new DataBaseLayer("Insert into database_sinovar.patient(nom_naissance_patient,nom_usuel_patient,prenom_patient,numero_SS,adresse,tel_patient,date_de_naissance,genre) values('"+nomNaissance+"','"+nomUsuel+"','"+prenom+"','"+nss+"','"+tel+"','"+adresse+"','"+dateDeNaissance+"','"+genre+"');");
+            modif=true;
         }
+        
+        return modif;
+        
+    }
+    
+    public void ajouterPatient(Patient p){
+        patients.add(p);
     }
 
     public String afficherListePatients() {
@@ -134,10 +141,15 @@ public class SIR {
     public Professionnel chercherProfessionnel(String id) {
         long idInt = Long.parseLong(id);
         Professionnel p = null;
-        for (int i = 0; i < listePro.getListePro().size(); i++) {
+        int i=0;
+        boolean stop=false;
+        while( i < listePro.getListePro().size()&&(!stop)) {
+            
             if (listePro.getListePro().get(i).getId_pro()==idInt) {
                 p = listePro.getListePro().get(i);
+                stop=true;
             }
+            i++;
         }
         return p;
     }

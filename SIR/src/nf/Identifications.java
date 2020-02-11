@@ -36,19 +36,19 @@ public class Identifications {
     
     
     public Identifications(String ids, String password){
-        int id =Integer.parseInt(ids);
-        DataBaseLayer DBL = new DataBaseLayer("SELECT * FROM sinovar.personnel WHERE id ="+id+" AND motDePasse='"+password+"';");
+        long id = Long.parseLong(ids);
+        DataBaseLayer DBL = new DataBaseLayer("SELECT * FROM database_sinovar.personnel WHERE identifiant_personnel ="+id+" AND mdp_personnel='"+password+"';");
         ArrayList<ArrayList<String>> result=DBL.getResult();
             result.remove(0);
             auth = !result.isEmpty(); /*vérifie si une personne a été authentifiée*/
             if(auth){
                 ArrayList<String> row = DBL.getResult().get(0);
-                Metier metier = Metier.valueOf(row.get(5));
-                currentUser = new Professionnel(id,row.get(1),row.get(2),row.get(3),row.get(4),metier);
+                Metier metier = Metier.valueOf(row.get(4));
+                currentUser = new Professionnel(id,row.get(1),row.get(2),row.get(3),metier, row.get(5), row.get(6),row.get(7));
                 /*récupère le personnel authetifié*/
                 DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
                 String date=dateFormat.format(new Date());
-                DBL = new DataBaseLayer("INSERT INTO connections VALUES('"+date+"','"+id+"');");/*ajoute la connection à la base de données*/
+                DBL = new DataBaseLayer("INSERT INTO sinovar.connections VALUES('"+date+"','"+id+"');");/*ajoute la connection à la base de données*/
                 int m = DBL.getModification();
                 ajoutTableConnections=(m>0);/*vrai si la modification a bien été effectuée*/
             }

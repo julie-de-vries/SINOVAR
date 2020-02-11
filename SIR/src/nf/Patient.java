@@ -17,36 +17,24 @@ public class Patient {
     private String dateDeNaissance;
     private final String genre;
     private final int id_patient;
-    private final String lieuDeNaissance;
+    private final String adresse;
     private DMR dmr;
     private String nss;
+    private String tel;
     
-    public Patient(String nom, String prenom, int id_patient, String dateDeNaissance, String genre, String nss, String adresse) {
-        this.nomUsuel = nom;
+    public Patient(int id_patient,String nomNaissance,String nomUsuel, String prenom,String nss,String tel, String adresse,  String dateDeNaissance, String genre) {
+        this.tel =tel;
+        this.nomNaissance = nomNaissance;
+        this.nomUsuel = nomUsuel;
         this.prenom = prenom;
         this.dateDeNaissance = dateDeNaissance;
         this.genre = genre;
-        if ("H".equals(genre)) {
-            this.nomNaissance = this.nomUsuel;
-        } else {
-            this.nomNaissance = "";
-        }
         this.id_patient = id_patient;
         this.nss = nss;
         dmr = new DMR();
-        this.lieuDeNaissance = adresse;
+        this.adresse = adresse;
     }
 
-    public String afficher() {
-        String s = "";
-        s += this.getPrenom() + " " + this.getNomUsuel() + "\n" + this.getGenre() + "\nDate de Naissance : " + this.getDateDeNaissance() + "\nLieu de Naissance : "
-                + this.getLieuDeNaissance() + "\nNumero de Securite Sociale : " + this.getNss();
-        if (!this.getNomNaissance().equals("") && !this.getNomNaissance().equals(this.getNomUsuel())) {
-            s += "\nNom De Naissance : " + this.getNomNaissance();
-        }
-        s += "\n--------------------";
-        return s;
-    }
 
     public String getNomUsuel() {
         return nomUsuel;
@@ -84,8 +72,8 @@ public class Patient {
         this.dateDeNaissance = dateDeNaissance;
     }
 
-    public String getLieuDeNaissance() {
-        return this.lieuDeNaissance;
+    public String getAdresse() {
+        return this.adresse;
     }
 
     public void setNomNaissance(String nom) {
@@ -98,6 +86,9 @@ public class Patient {
 
     public void setDmr(DMR dmr) {
         this.dmr = dmr;
+    }
+    public String afficher(){
+        return "";
     }
 
     public boolean nssValide() { //verifie si le numero de Securite Sociale est valide ou non
