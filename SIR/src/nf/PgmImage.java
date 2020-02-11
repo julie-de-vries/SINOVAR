@@ -31,7 +31,7 @@ public class PgmImage{
 				getImg().setRGB(col, row, ((255<<24) | (g << 16) | (g <<8) | g));		
 			}
 	}
-
+        
 	// default constructor with a 3 by 4 image
 	public PgmImage(){
 		int[][] defaultPixels = {{0, 1, 2, 3}, {4, 5, 6, 7},{8, 9, 10, 11}};

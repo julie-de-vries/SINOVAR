@@ -64,7 +64,7 @@ public class Professionnel {
     si c'est un PH on met ses examens*/
     public ArrayList<Examen> getExam(SIR sir){
         ArrayList<Examen> exam = new ArrayList();
-        if(metier==Metier.SecretairesMedicales){
+        if(metier==Metier.secrétaire){
             for(int i=0 ; i<sir.getPatient().size(); i++){
                 for(int j=0 ; j<sir.getPatient().get(i).getDmr().getExamen().size() ; j++){
                     exam.add(sir.getPatient().get(i).getDmr().getExamen().get(j));

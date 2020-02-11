@@ -132,7 +132,7 @@ public class SIR {
     }
 //cherche un professionnel en particulier grace a son id
     public Professionnel chercherProfessionnel(String id) {
-        int idInt = Integer.parseInt(id);
+        long idInt = Long.parseLong(id);
         Professionnel p = null;
         for (int i = 0; i < listePro.getListePro().size(); i++) {
             if (listePro.getListePro().get(i).getId_pro()==idInt) {
