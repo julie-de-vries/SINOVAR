@@ -10,7 +10,7 @@ package nf;
  * @author Peuillon
  */
 public enum Metier {
-    Practicien,
-    SecretairesMedicales,
-    Manipulateurs,
+    praticien,
+    secrétaire,
+    manipulateur,
 }

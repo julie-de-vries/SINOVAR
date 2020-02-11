@@ -10,10 +10,10 @@ package nf;
  * @author Peuillon
  */
 public enum TypeExam {
-    Scanner,
-    Radiographie,
+    scanner,
+    radiographie,
     IRM,
-    Echographie,
-    Scintigraphie
+    échographie,
+    scintigraphie
     
 }

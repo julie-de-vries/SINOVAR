@@ -22,10 +22,10 @@ public class SIR {
     }
 
     public void ajouterPatientBDD(String nomNaissance,String nomUsuel, String prenom,String nss,String tel, String adresse,  String dateDeNaissance, String genre) {
-        DataBaseLayer DBL = new DataBaseLayer("Select * from sinovar.patient where numero_SS= "+nss+";");
+        DataBaseLayer DBL = new DataBaseLayer("Select * from database_sinovar.patient where numero_SS= "+nss+";");
         DBL.getResult().remove(0);
         if(!DBL.getResult().isEmpty()){
-            DBL = new DataBaseLayer("Insert into sinovar.patient values('"+nomNaissance+"','"+nomUsuel+"','"+prenom+"','"+nss+"','"+tel+"','"+adresse+"','"+dateDeNaissance+"','"+genre+"';");
+            DBL = new DataBaseLayer("Insert into database_sinovar.patient values('"+nomNaissance+"','"+nomUsuel+"','"+prenom+"','"+nss+"','"+tel+"','"+adresse+"','"+dateDeNaissance+"','"+genre+"';");
             
         }
     }
@@ -135,12 +135,17 @@ public class SIR {
     }
 //cherche un professionnel en particulier grace a son id
     public Professionnel chercherProfessionnel(String id) {
-        int idInt = Integer.parseInt(id);
+        long idInt = Long.parseLong(id);
         Professionnel p = null;
-        for (int i = 0; i < listePro.getListePro().size(); i++) {
+        int i=0;
+        boolean stop=false;
+        while( i < listePro.getListePro().size()&&(!stop)) {
+            
             if (listePro.getListePro().get(i).getId_pro()==idInt) {
                 p = listePro.getListePro().get(i);
+                stop=true;
             }
+            i++;
         }
         return p;
     }

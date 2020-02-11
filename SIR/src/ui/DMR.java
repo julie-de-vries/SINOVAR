@@ -49,12 +49,12 @@ public class DMR extends javax.swing.JPanel {
             ExamTable.setValueAt(dmr.getExamen().get(i).getDateDebut(), i, 1);
             ExamTable.setValueAt(dmr.getExamen().get(i).getIdExam(), i, 2);
             //mettre des icônes à la place des String
-            if (dmr.getExamen().get(i).getImage() != null) {
+            if (dmr.getExamen().get(i).getImage() != 0) {
                 ExamTable.setValueAt("image", i, 3);
             } else {
                 ExamTable.setValueAt("numériser", i, 3);
             }
-            if (dmr.getExamen().get(i).getCr() != null) {
+            if (dmr.getExamen().get(i).getCr() != 0) {
                 ExamTable.setValueAt("CR", i, 4);
             } else {
                 ExamTable.setValueAt("écrire", i, 4);
@@ -230,7 +230,7 @@ public class DMR extends javax.swing.JPanel {
         /*si on clique sur la case image*/
         if (column == 2) {
             /*soit ça ouvre la fenêtre de numérisation*/
-            if (e.getImage()==null) {
+            if (e.getImage()==0) {
                 new NumeriserExamen().setVisible(true);
             } 
             /*soit ça ouvre l'image (jframe image)*/ 
@@ -241,7 +241,7 @@ public class DMR extends javax.swing.JPanel {
         /*si on clique sur la case CR*/
         if (column == 3) {
             /*soit ça ouvre la fenêtre ajouter CR*/
-            if (e.getCr()==null) {
+            if (e.getCr()==0) {
                 new EcrireCR().setVisible(true);
             }
             /*soit ça ouvre le CR*/

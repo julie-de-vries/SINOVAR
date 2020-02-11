@@ -13,23 +13,27 @@ import java.util.ArrayList;
  */
 public class Professionnel {
 
-    private final int id_pro;
+    private final long id_pro;
     private final String nom;
     private final String prenom;
     private final String motDePasse;
     private final String departement;
     private final Metier metier;
+    private final String tel;
+    private final String mail;
 
-    public Professionnel(int id, String nom, String prenom, String motDePasse, String departement, Metier metier) {
+    public Professionnel(long id, String motDePasse, String nom, String prenom, Metier metier, String departement, String tel, String mail) {
         this.id_pro = id;
         this.nom = nom;
         this.prenom = prenom;
         this.motDePasse = motDePasse;
         this.departement = departement;
         this.metier = metier;
+        this.tel = tel;
+        this.mail = mail;
     }
 
-    public int getId_pro() {
+    public long getId_pro() {
         return id_pro;
     }
 
@@ -64,7 +68,7 @@ public class Professionnel {
     si c'est un PH on met ses examens*/
     public ArrayList<Examen> getExam(SIR sir){
         ArrayList<Examen> exam = new ArrayList();
-        if(metier==Metier.SecretairesMedicales){
+        if(metier==Metier.secrétaire){
             for(int i=0 ; i<sir.getPatient().size(); i++){
                 for(int j=0 ; j<sir.getPatient().get(i).getDmr().getExamen().size() ; j++){
                     exam.add(sir.getPatient().get(i).getDmr().getExamen().get(j));
