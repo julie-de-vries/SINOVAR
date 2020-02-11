@@ -5,8 +5,12 @@
  */
 package ui;
 
-import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import nf.Professionnel;
 
 /**
@@ -15,16 +19,18 @@ import nf.Professionnel;
  */
 public class CreerDMR extends javax.swing.JFrame {
     Accueil a;
+    int longueur = Toolkit.getDefaultToolkit().getScreenSize().width;
+    int hauteur = Toolkit.getDefaultToolkit().getScreenSize().height;
     /**
      * Creates new form createDMR
      */
     public CreerDMR(Accueil a) {
+//        //récuperer la dimension de l'écran
+//        Dimension tailleMoniteur = Toolkit.getDefaultToolkit().getScreenSize();
+//        int longueur = tailleMoniteur.width;
+//        int hauteur = tailleMoniteur.height;
         initComponents();
         this.a = a ;
-        //récuperer la dimension de l'écran
-        Dimension tailleMoniteur = Toolkit.getDefaultToolkit().getScreenSize();
-        int longueur = tailleMoniteur.width;
-        int hauteur = tailleMoniteur.height;
         //régler la taille de JFrame à 2/3 la taille de l'écran
         this.setSize(longueur, hauteur);
 
@@ -51,6 +57,7 @@ public class CreerDMR extends javax.swing.JFrame {
         titre_panel = new javax.swing.JPanel();
         titre_label = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        Valider = new javax.swing.JButton();
         form_panel = new javax.swing.JPanel();
         nom_naiss_label = new javax.swing.JLabel();
         nom_usuel_label = new javax.swing.JLabel();
@@ -71,16 +78,16 @@ public class CreerDMR extends javax.swing.JFrame {
         lieu_naiss_label1 = new javax.swing.JLabel();
         tel_field = new javax.swing.JTextField();
         bouton_panel = new javax.swing.JPanel();
-        Valider = new javax.swing.JButton();
         Annuler = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.PAGE_AXIS));
 
         box_panel.setBackground(new java.awt.Color(204, 204, 204));
         box_panel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         titre_panel.setBackground(new java.awt.Color(185, 221, 227));
+        titre_panel.setMinimumSize(new java.awt.Dimension(0, 0));
         titre_panel.setLayout(new java.awt.GridBagLayout());
 
         titre_label.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
@@ -95,7 +102,18 @@ public class CreerDMR extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(29, 0, 73, 0);
         titre_panel.add(jLabel1, gridBagConstraints);
 
+        Valider.setBackground(new java.awt.Color(117, 212, 129));
+        Valider.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        Valider.setText("VALIDER");
+        Valider.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ValiderMouseClicked(evt);
+            }
+        });
+        titre_panel.add(Valider, new java.awt.GridBagConstraints());
+
         form_panel.setBackground(new java.awt.Color(185, 221, 227));
+        form_panel.setMinimumSize(new java.awt.Dimension(0, 0));
         form_panel.setLayout(new java.awt.GridLayout(6, 2, 100, 10));
 
         nom_naiss_label.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
@@ -147,6 +165,7 @@ public class CreerDMR extends javax.swing.JFrame {
         form_panel.add(adresse_field);
 
         sexe_panel.setBackground(new java.awt.Color(185, 221, 227));
+        sexe_panel.setMinimumSize(new java.awt.Dimension(0, 0));
         sexe_panel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 100, 50));
 
         genre_label.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
@@ -170,30 +189,13 @@ public class CreerDMR extends javax.swing.JFrame {
         lieu_naiss_label1.setText("Téléphone");
         sexe_panel.add(lieu_naiss_label1);
 
-        tel_field.setText("                                                      ");
-        tel_field.setMinimumSize(new java.awt.Dimension(6, 50));
-        tel_field.setPreferredSize(new java.awt.Dimension(6, 50));
-        tel_field.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tel_fieldActionPerformed(evt);
-            }
-        });
+        tel_field.setMinimumSize(new java.awt.Dimension(150, 50));
+        tel_field.setPreferredSize(new java.awt.Dimension(150, 50));
         sexe_panel.add(tel_field);
 
         bouton_panel.setBackground(new java.awt.Color(185, 221, 227));
+        bouton_panel.setMinimumSize(new java.awt.Dimension(0, 0));
         bouton_panel.setLayout(new java.awt.GridBagLayout());
-
-        Valider.setBackground(new java.awt.Color(117, 212, 129));
-        Valider.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
-        Valider.setText("VALIDER");
-        Valider.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                ValiderMouseClicked(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 100);
-        bouton_panel.add(Valider, gridBagConstraints);
 
         Annuler.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         Annuler.setText("ANNULER");
@@ -208,23 +210,23 @@ public class CreerDMR extends javax.swing.JFrame {
         box_panel.setLayout(box_panelLayout);
         box_panelLayout.setHorizontalGroup(
             box_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 2256, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
             .addGroup(box_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(box_panelLayout.createSequentialGroup()
-                    .addGap(0, 8, Short.MAX_VALUE)
+                    .addGap(0, 0, Short.MAX_VALUE)
                     .addGroup(box_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(form_panel, javax.swing.GroupLayout.DEFAULT_SIZE, 2239, Short.MAX_VALUE)
+                        .addComponent(form_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(sexe_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(bouton_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(titre_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGap(0, 9, Short.MAX_VALUE)))
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         box_panelLayout.setVerticalGroup(
             box_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 893, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
             .addGroup(box_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(box_panelLayout.createSequentialGroup()
-                    .addGap(0, 61, Short.MAX_VALUE)
+                    .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(titre_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, 0)
                     .addComponent(form_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -232,7 +234,7 @@ public class CreerDMR extends javax.swing.JFrame {
                     .addComponent(sexe_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, 0)
                     .addComponent(bouton_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 61, Short.MAX_VALUE)))
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         getContentPane().add(box_panel);
@@ -265,12 +267,26 @@ public class CreerDMR extends javax.swing.JFrame {
         if (prenom.length() > 30){
             champsTropLongs += "Le prénom ne doit pas dépasser 30 caractères";
         }
+        SimpleDateFormat formatFormulaire = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat formatBDD = new SimpleDateFormat("yyyy-MM-dd");
+        String dateDeNaissance="";
+        try {
+            Date date=formatFormulaire.parse(date_field.getText());
+            dateDeNaissance=formatBDD.format(date);
+        } catch (ParseException ex) {
+            Logger.getLogger(CreerDMR.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
-        String dateDeNaissance = date_field.getText();
         if (dateDeNaissance.isEmpty()) {
             champsVides += "\nNom usuel";
         }
-        String genre = "";
+        String genre ;
+        if(FemmeRadioButton.isSelected()){
+        genre = "Femme";
+        }
+        else{
+            genre = "Homme";
+        }
         String nss = nss_field.getText();
         if (nss.isEmpty()) {
             champsVides += "\nNuméro de sécurité sociale";
@@ -294,9 +310,17 @@ public class CreerDMR extends javax.swing.JFrame {
             }
         if (champsVides.equals("") && champsTropLongs.equals("")) {
             //récupere l'id patient a partir de la base de donnees
-            a.getSir().ajouterPatientBDD(nomNaissance, nomUsuel, prenom, nss, tel, adresse, dateDeNaissance, genre);
+            boolean b = a.getSir().ajouterPatientBDD(nomNaissance, nomUsuel, prenom, nss, tel, adresse, dateDeNaissance, genre);
+            if(b){
             Professionnel p = a.getCurrentUser();
+            a.dispose();
             a = new Accueil(p);
+            a.setVisible(true);
+            this.dispose();
+            }
+            else{
+                new Erreur("Le patient a déjà été rentré");
+            }
         }
         else {
             champsVides="Les champs suivants n'ont pas été renseignés :"+champsVides;
@@ -311,10 +335,6 @@ public class CreerDMR extends javax.swing.JFrame {
     private void HommeRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HommeRadioButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_HommeRadioButtonActionPerformed
-
-    private void tel_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tel_fieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tel_fieldActionPerformed
 
     /**
      * @param args the command line arguments

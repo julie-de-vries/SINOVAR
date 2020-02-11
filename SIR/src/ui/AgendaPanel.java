@@ -78,6 +78,11 @@ public class AgendaPanel extends javax.swing.JPanel {
         Agenda.setPreferredSize(new java.awt.Dimension(615, 345));
 
         CreateDMR.setText("CRÉER UN DMR");
+        CreateDMR.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CreateDMRMouseClicked(evt);
+            }
+        });
 
         AgendaTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -300,27 +305,25 @@ public class AgendaPanel extends javax.swing.JPanel {
     private void SelectTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectTypeActionPerformed
         RemplirTableau();    }//GEN-LAST:event_SelectTypeActionPerformed
 
+    private void CreateDMRMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CreateDMRMouseClicked
+        new CreerDMR(a).setVisible(true);
+    }//GEN-LAST:event_CreateDMRMouseClicked
+
     private void RemplirTableau() {
         /*On cherche les examens du ph utilisateur*/
 
         ArrayList<Examen> listeExamens = new ArrayList();
         int nbExam = a.getCurrentUser().getExam(a.getSir()).size();
         listeExamens = a.getCurrentUser().getExam(a.getSir());
-        System.out.println(nbExam);
         for (int i = 0; i < nbExam; i++) {
             /*on met dans le tableau seulement les examens du type selectionné*/
             if (listeExamens.get(i).getType() == TypeExam.valueOf(SelectType.getSelectedItem().toString())) {
                 /*et seulement de la date selectionnée*/
-                System.out.println("type exam");
                 Date date = listeExamens.get(i).getDateDebut();
                 Date d1 = new Date(date.getYear(), date.getMonth(), date.getDate());
                 Date d2 = new Date(dateSelected.getYear(), dateSelected.getMonth(), dateSelected.getDate());
                 //pour comparer les dates sans tenir compte de l'heure
-                System.out.println(date);
-                System.out.println(d1);
-                System.out.println(dateSelected);
                 if (d1.equals(d2)) {
-                    System.out.println("date");
                     int[] trancheHoraires = listeExamens.get(i).calculTrancheHoraire();
                     int salle = listeExamens.get(i).getSalle();
                     String affichage = listeExamens.get(i).afficherExamen(a.getSir());

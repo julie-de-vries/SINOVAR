@@ -118,6 +118,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="CR&#xc9;ER UN DMR"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="CreateDMRMouseClicked"/>
+          </Events>
         </Component>
         <Container class="javax.swing.JScrollPane" name="ScrollAgenda">
           <AuxValues>
