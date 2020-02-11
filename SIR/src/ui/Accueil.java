@@ -45,13 +45,13 @@ public class Accueil extends javax.swing.JFrame {
             pros.ajouterProfessionnel(p);
         }
         /*récupération du personnel de la BDD*/
-        sir = new SIR(pros);
+        SIR sir = new SIR(pros);
         DBL = new DataBaseLayer("SELECT * from sinovar.patient join sinovar.examen on id=identifiant_patient;");
         ArrayList<String> row=null;
         for (int i = 1; i < DBL.getResult().size(); i++) {
             row = DBL.getResult().get(i);
-            int id = Integer.parseInt(row.get(2));
-            Patient p = new Patient(row.get(0), row.get(1), id, row.get(3), row.get(4), row.get(5), row.get(6));
+            int id = Integer.parseInt(row.get(0));
+            Patient p = new Patient(id,row.get(1), row.get(2), row.get(3), row.get(4), row.get(5), row.get(6),row.get(7),row.get(8));
             DataBaseLayer DBL1 = new DataBaseLayer("SELECT * from sinovar.examen where identifiant_patient="+id+";");
             for (int j = 1 ; j < DBL1.getResult().size() ; j++){
                 row = DBL1.getResult().get(j);
@@ -72,7 +72,7 @@ public class Accueil extends javax.swing.JFrame {
                 
             }
             sir.ajouterPatient(p);
-        }
+        } 
         /*récupération des patients de la BDD avec leur examens respectifs*/
         
         initComponents();

@@ -7,30 +7,30 @@ package ui;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import nf.Patient;
+import nf.Professionnel;
 
 /**
  *
  * @author laura
  */
 public class CreerDMR extends javax.swing.JFrame {
-
+    Accueil a;
     /**
      * Creates new form createDMR
      */
-    public CreerDMR() {
+    public CreerDMR(Accueil a) {
         initComponents();
-        
-         //récuperer la dimension de l'écran
+        this.a = a ;
+        //récuperer la dimension de l'écran
         Dimension tailleMoniteur = Toolkit.getDefaultToolkit().getScreenSize();
         int longueur = tailleMoniteur.width;
         int hauteur = tailleMoniteur.height;
         //régler la taille de JFrame à 2/3 la taille de l'écran
         this.setSize(longueur, hauteur);
-        
+
         this.setTitle("Création d'un DMR");
-        
-         // set the jframe size and location, and make it visible
+
+        // set the jframe size and location, and make it visible
         this.pack();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
@@ -46,6 +46,7 @@ public class CreerDMR extends javax.swing.JFrame {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
+        SexeSelection = new javax.swing.ButtonGroup();
         box_panel = new javax.swing.JPanel();
         titre_panel = new javax.swing.JPanel();
         titre_label = new javax.swing.JLabel();
@@ -62,9 +63,13 @@ public class CreerDMR extends javax.swing.JFrame {
         date_label = new javax.swing.JLabel();
         lieu_naiss_label = new javax.swing.JLabel();
         date_field = new javax.swing.JTextField();
-        lieu_naiss_field = new javax.swing.JTextField();
+        adresse_field = new javax.swing.JTextField();
         sexe_panel = new javax.swing.JPanel();
         genre_label = new javax.swing.JLabel();
+        FemmeRadioButton = new javax.swing.JRadioButton();
+        HommeRadioButton = new javax.swing.JRadioButton();
+        lieu_naiss_label1 = new javax.swing.JLabel();
+        tel_field = new javax.swing.JTextField();
         bouton_panel = new javax.swing.JPanel();
         Valider = new javax.swing.JButton();
         Annuler = new javax.swing.JButton();
@@ -132,14 +137,14 @@ public class CreerDMR extends javax.swing.JFrame {
         form_panel.add(date_label);
 
         lieu_naiss_label.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        lieu_naiss_label.setText("Numéro de Sécurité Sociale");
+        lieu_naiss_label.setText("Adresse");
         form_panel.add(lieu_naiss_label);
 
         date_field.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         form_panel.add(date_field);
 
-        lieu_naiss_field.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        form_panel.add(lieu_naiss_field);
+        adresse_field.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        form_panel.add(adresse_field);
 
         sexe_panel.setBackground(new java.awt.Color(185, 221, 227));
         sexe_panel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 100, 50));
@@ -147,6 +152,33 @@ public class CreerDMR extends javax.swing.JFrame {
         genre_label.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         genre_label.setText("Genre :");
         sexe_panel.add(genre_label);
+
+        SexeSelection.add(FemmeRadioButton);
+        FemmeRadioButton.setText("Femme");
+        sexe_panel.add(FemmeRadioButton);
+
+        SexeSelection.add(HommeRadioButton);
+        HommeRadioButton.setText("Homme");
+        HommeRadioButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HommeRadioButtonActionPerformed(evt);
+            }
+        });
+        sexe_panel.add(HommeRadioButton);
+
+        lieu_naiss_label1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        lieu_naiss_label1.setText("Téléphone");
+        sexe_panel.add(lieu_naiss_label1);
+
+        tel_field.setText("                                                      ");
+        tel_field.setMinimumSize(new java.awt.Dimension(6, 50));
+        tel_field.setPreferredSize(new java.awt.Dimension(6, 50));
+        tel_field.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tel_fieldActionPerformed(evt);
+            }
+        });
+        sexe_panel.add(tel_field);
 
         bouton_panel.setBackground(new java.awt.Color(185, 221, 227));
         bouton_panel.setLayout(new java.awt.GridBagLayout());
@@ -189,10 +221,10 @@ public class CreerDMR extends javax.swing.JFrame {
         );
         box_panelLayout.setVerticalGroup(
             box_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 892, Short.MAX_VALUE)
+            .addGap(0, 893, Short.MAX_VALUE)
             .addGroup(box_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(box_panelLayout.createSequentialGroup()
-                    .addGap(0, 59, Short.MAX_VALUE)
+                    .addGap(0, 61, Short.MAX_VALUE)
                     .addComponent(titre_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, 0)
                     .addComponent(form_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -200,7 +232,7 @@ public class CreerDMR extends javax.swing.JFrame {
                     .addComponent(sexe_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, 0)
                     .addComponent(bouton_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 59, Short.MAX_VALUE)))
+                    .addGap(0, 61, Short.MAX_VALUE)))
         );
 
         getContentPane().add(box_panel);
@@ -213,22 +245,76 @@ public class CreerDMR extends javax.swing.JFrame {
     }//GEN-LAST:event_nom_naiss_fieldActionPerformed
 
     private void ValiderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ValiderMouseClicked
-        String nom = nom_usuel_field.getText();
+        String champsVides = "";
+        String champsTropLongs = "";
+        String nomNaissance = nom_naiss_field.getText();
+        if (nomNaissance.length() > 30) {
+            champsTropLongs += "Le nom de naissance ne doit pas dépasser 30 caractères";
+        }
+        String nomUsuel = nom_usuel_field.getText();
+        if (nomUsuel.isEmpty()) {
+            champsVides += "\nNom usuel";
+        }
+        if (nomUsuel.length() > 30) {
+            champsTropLongs += "Le nom usuel ne doit pas dépasser 30 caractères";
+        }
         String prenom = prenom_field.getText();
-        int id_patient = Integer.parseInt(nss_field.getText());
+        if (prenom.isEmpty()) {
+            champsVides += "\nPrenom";
+        }
+        if (prenom.length() > 30){
+            champsTropLongs += "Le prénom ne doit pas dépasser 30 caractères";
+        }
+        
         String dateDeNaissance = date_field.getText();
-        String genre = ""; //buttongroup;
+        if (dateDeNaissance.isEmpty()) {
+            champsVides += "\nNom usuel";
+        }
+        String genre = "";
         String nss = nss_field.getText();
-        String adresse = lieu_naiss_field.getText();
-        
-        Patient p = new Patient(nom, prenom, id_patient, dateDeNaissance, genre, nss, adresse);
-        p.setNomNaissance(nom_naiss_field.getText());
-        
+        if (nss.isEmpty()) {
+            champsVides += "\nNuméro de sécurité sociale";
+        }
+        if (nss.length() > 45) {
+                champsTropLongs += "Le numéro ne doit pas dépasser 60 caractère";
+            }
+        String tel = tel_field.getText();
+        if (tel.isEmpty()) {
+            champsVides += "\nTéléphone";
+        }
+        if (tel.length() > 10) {
+                champsTropLongs += "Le téléphone ne doit pas dépasser 10 caractère";
+            }
+        String adresse = adresse_field.getText();
+        if (adresse.isEmpty()) {
+            champsVides += "\nLieu de naissance";
+        }
+        if (adresse.length() > 60) {
+                champsTropLongs += "L'adresse ne doit pas dépasser 60 caractère";
+            }
+        if (champsVides.equals("") && champsTropLongs.equals("")) {
+            //récupere l'id patient a partir de la base de donnees
+            a.getSir().ajouterPatientBDD(nomNaissance, nomUsuel, prenom, nss, tel, adresse, dateDeNaissance, genre);
+            Professionnel p = a.getCurrentUser();
+            a = new Accueil(p);
+        }
+        else {
+            champsVides="Les champs suivants n'ont pas été renseignés :"+champsVides;
+            new Erreur(champsVides+"\n"+champsTropLongs).setVisible(true);
+        }
     }//GEN-LAST:event_ValiderMouseClicked
 
     private void AnnulerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AnnulerMouseClicked
         this.dispose();
     }//GEN-LAST:event_AnnulerMouseClicked
+
+    private void HommeRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HommeRadioButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_HommeRadioButtonActionPerformed
+
+    private void tel_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tel_fieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tel_fieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -305,25 +391,28 @@ public class CreerDMR extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CreerDMR().setVisible(true);
+                //new CreerDMR().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Annuler;
+    private javax.swing.JRadioButton FemmeRadioButton;
+    private javax.swing.JRadioButton HommeRadioButton;
+    private javax.swing.ButtonGroup SexeSelection;
     private javax.swing.JButton Valider;
+    private javax.swing.JTextField adresse_field;
     private javax.swing.JPanel bouton_panel;
     private javax.swing.JPanel box_panel;
     private javax.swing.JTextField date_field;
     private javax.swing.JLabel date_label;
     private javax.swing.JPanel form_panel;
     private javax.swing.JLabel genre_label;
-    private javax.swing.JTextField id_field;
     private javax.swing.JLabel id_label;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField lieu_naiss_field;
     private javax.swing.JLabel lieu_naiss_label;
+    private javax.swing.JLabel lieu_naiss_label1;
     private javax.swing.JTextField nom_naiss_field;
     private javax.swing.JLabel nom_naiss_label;
     private javax.swing.JTextField nom_usuel_field;
@@ -332,6 +421,7 @@ public class CreerDMR extends javax.swing.JFrame {
     private javax.swing.JTextField prenom_field;
     private javax.swing.JLabel prenom_label;
     private javax.swing.JPanel sexe_panel;
+    private javax.swing.JTextField tel_field;
     private javax.swing.JLabel titre_label;
     private javax.swing.JPanel titre_panel;
     // End of variables declaration//GEN-END:variables
