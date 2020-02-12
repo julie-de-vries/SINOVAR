@@ -39,9 +39,8 @@ public class Accueil extends javax.swing.JFrame {
         Professionnels pros = new Professionnels();
         for (int i = 1; i < DBL.getResult().size(); i++) {
             ArrayList<String> row = DBL.getResult().get(i);
-            long id = Long.parseLong(row.get(0));
             Metier m = Metier.valueOf(row.get(4));
-            Professionnel p = new Professionnel(id, row.get(1), row.get(2), row.get(3), m, row.get(5), row.get(6), row.get(7));
+            Professionnel p = new Professionnel(row.get(0), row.get(1), row.get(2), row.get(3), m, row.get(5), row.get(6), row.get(7));
             pros.ajouterProfessionnel(p);
         }
         /*récupération du personnel de la BDD*/
@@ -60,7 +59,15 @@ public class Accueil extends javax.swing.JFrame {
                     Date d1 = format.parse(row.get(4));
                     Date d2 = format.parse(row.get(5));
                     Professionnel pro = sir.chercherProfessionnel(row.get(10));
-                    Examen e = new Examen(Integer.parseInt(row.get(0)), TypeExam.valueOf(row.get(1)), LocalisationExamen.valueOf(row.get(2)), row.get(3), d1, d2, Integer.parseInt(row.get(6)), Double.parseDouble(row.get(7)), row.get(8), pro, Integer.parseInt(row.get(11)), Code.valueOf(row.get(12).toUpperCase()), Integer.parseInt(row.get(13)));
+                    int image=0;
+                    if(row.get(11)!=null){
+                        image=Integer.parseInt(row.get(11));
+                    }
+                    int cr=0;
+                    if(row.get(13)!=null){
+                        cr=Integer.parseInt(row.get(13));
+                    }
+                    Examen e = new Examen(Integer.parseInt(row.get(0)), TypeExam.valueOf(row.get(1)), LocalisationExamen.valueOf(row.get(2)), row.get(3), d1, d2, Integer.parseInt(row.get(6)), Double.parseDouble(row.get(7)), row.get(8), pro, image, Code.valueOf(row.get(12).toUpperCase()),cr);
                     //en commentaire tant qu'il n'y a pas accord sur Examen (bdd, ui et nf)
                     /*d1 = new Date(120,01,05,8,30);
                     d2 = new Date(120,01,05,9,0);

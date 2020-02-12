@@ -316,10 +316,11 @@ public class EnregistrerExamen extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(DoseExamen)
                         .addGap(18, 18, 18)))
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ValeurDose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(typeDose)
-                    .addComponent(salleField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(typeDose)
+                        .addComponent(salleField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(21, 21, 21)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(DateExamenLabel)
@@ -378,7 +379,7 @@ public class EnregistrerExamen extends javax.swing.JFrame {
         String dateFinBDD = formatDateTimeBDD.format(dateFin);
         Professionnel medecin = a.getSir().chercherProfessionnel(MedecinFieldNom.getText(),MedecinFieldPrenom.getText());//relier BDD
         TypeExam type = TypeExam.valueOf(TypeExamen.getSelectedItem().toString());
-        a.getSir().ajouterExamBDD(type,localisation_examen,notes,dateDebutBDD,dateFinBDD,salle,dose_exam,libelleDose,p.getIdPatient(),medecin, 0, Code.ENREGISTREMENT, 0);
+        a.getSir().ajouterExamBDD(type,localisation_examen,notes,dateDebutBDD,dateFinBDD,salle,dose_exam,libelleDose,p.getIdPatient(),medecin, Code.ENREGISTREMENT);
         this.dispose();
         Professionnel p = a.getCurrentUser();
         a.dispose();

@@ -230,7 +230,7 @@ public class DMR extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void CloseDMRMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CloseDMRMouseClicked
-        a.CloseDMR();
+        getA().CloseDMR();
     }//GEN-LAST:event_CloseDMRMouseClicked
 
     private void ExamTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExamTableMouseClicked
@@ -252,7 +252,7 @@ public class DMR extends javax.swing.JPanel {
         if (column == 4) {
             /*soit ça ouvre la fenêtre ajouter CR*/
             if (e.getCr()==0) {
-                new EcrireCR().setVisible(true);
+                new EcrireCR(e.getId_exam(),this).setVisible(true);
             }
             /*soit ça ouvre le CR*/
             else {
@@ -262,7 +262,7 @@ public class DMR extends javax.swing.JPanel {
     }//GEN-LAST:event_ExamTableMouseClicked
 
     private void SaveExamButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SaveExamButtonMouseClicked
-        new EnregistrerExamen(a,patient).setVisible(true);
+        new EnregistrerExamen(getA(), getPatient()).setVisible(true);
     }//GEN-LAST:event_SaveExamButtonMouseClicked
 
 
@@ -291,4 +291,18 @@ public class DMR extends javax.swing.JPanel {
     private javax.swing.JLabel nameLabel;
     private javax.swing.JLabel nssLabel;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the patient
+     */
+    public Patient getPatient() {
+        return patient;
+    }
+
+    /**
+     * @return the a
+     */
+    public Accueil getA() {
+        return a;
+    }
 }

@@ -44,7 +44,7 @@ public class Identifications {
             if(auth){
                 ArrayList<String> row = DBL.getResult().get(0);
                 Metier metier = Metier.valueOf(row.get(4));
-                currentUser = new Professionnel(id,row.get(1),row.get(2),row.get(3),metier, row.get(5), row.get(6),row.get(7));
+                currentUser = new Professionnel(row.get(0),row.get(1),row.get(2),row.get(3),metier, row.get(5), row.get(6),row.get(7));
                 /*récupère le personnel authetifié*/
                 DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
                 String date=dateFormat.format(new Date());

@@ -44,9 +44,8 @@ public class Controleur {
         Professionnels pros = new Professionnels();
         for (int i = 1; i < DBL.getResult().size(); i++) {
             ArrayList<String> row = DBL.getResult().get(i);
-            int id = Integer.parseInt(row.get(0));
             Metier m = Metier.valueOf(row.get(4));
-            Professionnel p = new Professionnel(id, row.get(1), row.get(2), row.get(3),m, row.get(5), row.get(6),row.get(7));
+            Professionnel p = new Professionnel(row.get(0), row.get(1), row.get(2), row.get(3),m, row.get(5), row.get(6),row.get(7));
             pros.ajouterProfessionnel(p);
         }
         /*récupération du personnel de la BDD*/
@@ -90,11 +89,18 @@ public class Controleur {
             if(auth){
                 ArrayList<String> row = DBL.getResult().get(0);
                 Metier metier = Metier.valueOf(row.get(4));
-                currentUser = new Professionnel(id,row.get(1),row.get(2),row.get(3),metier, row.get(5), row.get(6),row.get(7));
+                currentUser = new Professionnel(row.get(0),row.get(1),row.get(2),row.get(3),metier, row.get(5), row.get(6),row.get(7));
                 /*récupère le personnel authetifié*/
                 DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
                 String date=dateFormat.format(new Date());
                 DBL = new DataBaseLayer("INSERT INTO database_connexions VALUES('"+date+"','"+id+"');");/*ajoute la connection à la base de données*/
             }
     } 
+    
+    public void ajouterCR(int idExam,String title, String content) {
+        DataBaseLayer DBL = new DataBaseLayer("Insert into database_sinovar.compte_rendu(titre,contenu) values('"+title+"','"+content+"');"); 
+        DBL = new DataBaseLayer("SELECT id_compte_rendu FROM compte_rendu ORDER BY id_compte_rendu DESC;");
+        String id_cr = DBL.getResult().get(0).get(0);
+        DBL = new DataBaseLayer("UPDATE examen SET `id_compte_rendu` ="+id_cr+" WHERE `id_examen`="+idExam+";");
+    }
 }

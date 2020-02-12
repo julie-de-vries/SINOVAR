@@ -35,8 +35,15 @@ public class SIR {
         
     }
     
-    public void ajouterExamBDD(TypeExam type, LocalisationExamen localisation_examen,String notes, String dateDebut, String dateFin, int salle, double dose, String libelleDose,int id_patient, Professionnel pro, int image, Code code, int cr) {
-        DataBaseLayer DBL = new DataBaseLayer("Insert into database_sinovar.examen(type_examen,localisation_examen,note_examen,date_debut,date_fin,salle,dose_examen,libelle_dose,identifiant_patient,identifiant_personnel,numero_archivage,code_cout,id_compte_rendu) values('"+type.toString()+"','"+localisation_examen+"','"+notes+"','"+dateDebut+"','"+dateFin+"','"+salle+"','"+dose+"','"+libelleDose+"','"+id_patient+"','"+pro.getId_pro()+"','"+image+"','"+code.toString()+"','"+cr+"');"); 
+    public void ajouterExamBDD(TypeExam type, LocalisationExamen localisation_examen,String notes, String dateDebut, String dateFin, int salle, double dose, String libelleDose,int id_patient, Professionnel pro, Code code) {
+        DataBaseLayer DBL = new DataBaseLayer("Insert into database_sinovar.examen(type_examen,localisation_examen,note_examen,date_debut,date_fin,salle,dose_examen,libelle_dose,identifiant_patient,identifiant_personnel,numero_archivage,code_cout,id_compte_rendu) values('"+type.toString()+"','"+localisation_examen+"','"+notes+"','"+dateDebut+"','"+dateFin+"','"+salle+"','"+dose+"','"+libelleDose+"','"+id_patient+"','"+pro.getId_pro()+"',null,'"+code.toString()+"',null);"); 
+    }
+    
+    public void ajouterCR(int idExam,String title, String content) {
+        DataBaseLayer DBL = new DataBaseLayer("Insert into database_sinovar.compte_rendu(titre,contenu) values('"+title+"','"+content+"');"); 
+        DBL = new DataBaseLayer("SELECT id_compte_rendu FROM compte_rendu ORDER BY id_compte_rendu DESC;");
+        String id_cr = DBL.getResult().get(1).get(0);
+        DBL = new DataBaseLayer("UPDATE examen SET `id_compte_rendu` ="+id_cr+" WHERE `id_examen`="+idExam+";");
     }
     
     public void ajouterPatient(Patient p){
@@ -144,13 +151,12 @@ public class SIR {
     }
 //cherche un professionnel en particulier grace a son id
     public Professionnel chercherProfessionnel(String id) {
-        long idInt = Long.parseLong(id);
         Professionnel p = null;
         int i=0;
         boolean stop=false;
         while( i < listePro.getListePro().size()&&(!stop)) {
             
-            if (listePro.getListePro().get(i).getId_pro()==idInt) {
+            if (listePro.getListePro().get(i).getId_pro().equals(id)) {
                 p = listePro.getListePro().get(i);
                 stop=true;
             }
