@@ -6,6 +6,7 @@
 package nf;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class SIR {
 
@@ -32,6 +33,10 @@ public class SIR {
         
         return modif;
         
+    }
+    
+    public void ajouterExamBDD(TypeExam type, LocalisationExamen localisation_examen,String notes, String dateDebut, String dateFin, int salle, double dose, String libelleDose,int id_patient, Professionnel pro, int image, Code code, int cr) {
+        DataBaseLayer DBL = new DataBaseLayer("Insert into database_sinovar.examen(type_examen,localisation_examen,note_examen,date_debut,date_fin,salle,dose_examen,libelle_dose,identifiant_patient,identifiant_personnel,numero_archivage,code_cout,id_compte_rendu) values('"+type.toString()+"','"+localisation_examen+"','"+notes+"','"+dateDebut+"','"+dateFin+"','"+salle+"','"+dose+"','"+libelleDose+"','"+id_patient+"','"+pro.getId_pro()+"','"+image+"','"+code.toString()+"','"+cr+"');"); 
     }
     
     public void ajouterPatient(Patient p){

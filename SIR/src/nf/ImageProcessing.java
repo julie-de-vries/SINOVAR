@@ -9,6 +9,8 @@ import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.sql.Blob;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -17,42 +19,59 @@ import javax.imageio.ImageIO;
  * @author Julie
  */
 public class ImageProcessing {
+    private BufferedImage imgInit;
     private BufferedImage img;
+    
     
     public ImageProcessing(String imageFileName){
         if(imageFileName.endsWith("pgm")){
             PgmImage pgm = new PgmImage(imageFileName);
             img=pgm.getImg();
+            imgInit=img;
         }
         else{
             try {
                 img = ImageIO.read(new File(imageFileName));
+                imgInit=img;
             } catch (IOException ex) {
                 Logger.getLogger(ImageProcessing.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
-    /*l'image est tournée de 90° vers la gauche*/
-    public void rotateToLeft(){
-        int         height  = img.getWidth();
-        int         width = img.getHeight();
-        BufferedImage   newImage = new BufferedImage( height, width, img.getType() );
-
-        for( int i=0 ; i < width ; i++ )
-            for( int j=0 ; j < height ; j++ )
-                newImage.setRGB( j, i, img.getRGB(i,j) );
-
-        img=newImage;
+    public ImageProcessing(Blob b){
+        try {
+            try {
+                img = ImageIO.read(b.getBinaryStream());
+                imgInit = img;
+            } catch (IOException ex) {
+                Logger.getLogger(ImageProcessing.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ImageProcessing.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
     /*l'image est tournée de 90° vers la droite*/
     public void rotateToRight(){
         int         height  = img.getWidth();
         int         width = img.getHeight();
-        BufferedImage   newImage = new BufferedImage( height, width, img.getType() );
+        BufferedImage   newImage = new BufferedImage( width, height, img.getType() );
 
         for( int i=0 ; i < width ; i++ )
             for( int j=0 ; j < height ; j++ )
-                newImage.setRGB( width-1-i, j, img.getRGB(j,i) );
+                newImage.setRGB( height-1-i, j, img.getRGB(j,i) );
+
+        img=newImage;
+    }
+    /*l'image est tournée de 90° vers la gauche*/
+    public void rotateToLeft(){
+        int         height  = img.getWidth();
+        int         width = img.getHeight();
+        BufferedImage   newImage = new BufferedImage( width, height, img.getType() );
+
+        for( int i=0 ; i < width ; i++ )
+            for( int j=0 ; j < height ; j++ )
+                newImage.setRGB( i, width-1-j, img.getRGB(j,i) );
 
         img=newImage;
     }
@@ -84,10 +103,10 @@ public class ImageProcessing {
     public void brighten(float f){
         int         width  = img.getWidth();
         int         height = img.getHeight();
-        
+        BufferedImage   newImage = new BufferedImage( height, width, img.getType() );
         for( int i=0 ; i < height ; i++ ){
             for( int j=0 ; j < width ; j++ ){
-                Color c=new Color(img.getRGB(i, j));
+                Color c=new Color(imgInit.getRGB(i, j));
                 int r = c.getRed();
                 int g = c.getGreen();
                 int b = c.getBlue();
@@ -98,9 +117,10 @@ public class ImageProcessing {
                 else{
                     h[2]=h[2]*(1+(f/100));
                 }
-                img.setRGB(i, j,Color.HSBtoRGB(h[0],h[1],h[2]));
+                newImage.setRGB(i, j,Color.HSBtoRGB(h[0],h[1],h[2]));
             }
         }
+        img=newImage;
     }
     /*inversement des niveaux de gris*/
     public void greyLevels(){

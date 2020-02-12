@@ -5,21 +5,61 @@
  */
 package ui;
 
+import java.awt.BorderLayout;
+import java.sql.Blob;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import nf.DataBaseLayer;
+import nf.ImageProcessing;
+
 /**
  *
  * @author Julie
  */
 public class Image extends javax.swing.JFrame {
 
+    private ImageProcessing img;
+    ImageRadio ir;
+
     /**
      * Creates new form Image
      */
     public Image() {
         initComponents();
+        String URLImage = "C:\\Users\\Julie\\Downloads\\pgm\\pgm\\abdomen\\cor494-i43.pgm";
+        img = new ImageProcessing(URLImage);
+        ir = new ImageRadio(img);
+        ir.setVisible(true);
+        ImagePanel.add(ir, BorderLayout.CENTER);
     }
-    
-    public Image(int id_image){
+
+    public Image(int id_image) {
         initComponents();
+        DataBaseLayer dbl = new DataBaseLayer("Select * from database_sinovar.pacs where numero_archivage =" + id_image + ";");
+        Blob b=null;
+        try {
+            b = dbl.getConnexion().createBlob();
+            String strContent = dbl.getResult().get(1).get(3);
+            byte[] byteConent = strContent.getBytes();
+            b.setBytes(1, byteConent);
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Image.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        img = new ImageProcessing(b);
+        ir = new ImageRadio(img);
+        ir.setVisible(true);
+        ImagePanel.add(ir, BorderLayout.CENTER);
+    }
+
+    public void afficherImage() {
+        ImagePanel.remove(ir);
+        ir = new ImageRadio(img);
+        ir.setVisible(true);
+        ImagePanel.add(ir, BorderLayout.CENTER);
+        this.repaint();
+        this.pack();
     }
 
     /**
@@ -31,21 +71,202 @@ public class Image extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        ImagePanel = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        CommandPanel = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        Rotationhoraire = new javax.swing.JButton();
+        Rotationantihoraire = new javax.swing.JButton();
+        horizontal = new javax.swing.JButton();
+        vertical = new javax.swing.JButton();
+        Brightness = new javax.swing.JSlider();
+        Terminer = new javax.swing.JButton();
+        annoter = new javax.swing.JButton();
+        notes = new javax.swing.JTextField();
+        greyLevels = new javax.swing.JButton();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        ImagePanel.setMinimumSize(new java.awt.Dimension(300, 300));
+        ImagePanel.setPreferredSize(new java.awt.Dimension(300, 300));
+        ImagePanel.setLayout(new java.awt.BorderLayout());
+
+        jLabel2.setText("Nom : ");
+        ImagePanel.add(jLabel2, java.awt.BorderLayout.PAGE_START);
+
+        CommandPanel.setMinimumSize(new java.awt.Dimension(100, 300));
+
+        jLabel1.setText("Outils");
+
+        Rotationhoraire.setText("Rotation horaire");
+        Rotationhoraire.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                RotationhoraireMouseClicked(evt);
+            }
+        });
+
+        Rotationantihoraire.setText("Rotation anti-horaire");
+        Rotationantihoraire.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                RotationantihoraireMouseClicked(evt);
+            }
+        });
+
+        horizontal.setText("Symétrie horizontale");
+        horizontal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                horizontalMouseClicked(evt);
+            }
+        });
+
+        vertical.setText("Symétrie verticale");
+        vertical.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                verticalMouseClicked(evt);
+            }
+        });
+
+        Brightness.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                BrightnessMouseReleased(evt);
+            }
+        });
+
+        Terminer.setText("Terminer");
+        Terminer.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TerminerMouseClicked(evt);
+            }
+        });
+
+        annoter.setText("Annoter");
+        annoter.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                annoterMouseClicked(evt);
+            }
+        });
+
+        notes.setText("notes");
+
+        greyLevels.setText("Inverser niveaux gris");
+        greyLevels.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                greyLevelsMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout CommandPanelLayout = new javax.swing.GroupLayout(CommandPanel);
+        CommandPanel.setLayout(CommandPanelLayout);
+        CommandPanelLayout.setHorizontalGroup(
+            CommandPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(CommandPanelLayout.createSequentialGroup()
+                .addGroup(CommandPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(CommandPanelLayout.createSequentialGroup()
+                        .addGroup(CommandPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(CommandPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(CommandPanelLayout.createSequentialGroup()
+                                    .addGap(51, 51, 51)
+                                    .addComponent(jLabel1)
+                                    .addGap(53, 53, 53))
+                                .addComponent(Terminer))
+                            .addGroup(CommandPanelLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(CommandPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Brightness, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(horizontal)
+                                    .addComponent(vertical)
+                                    .addComponent(Rotationantihoraire)
+                                    .addComponent(Rotationhoraire)
+                                    .addComponent(greyLevels)
+                                    .addComponent(annoter))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(notes, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
+        );
+        CommandPanelLayout.setVerticalGroup(
+            CommandPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(CommandPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Rotationhoraire)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Rotationantihoraire)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Brightness, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(horizontal)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(vertical)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(greyLevels)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(notes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(annoter)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Terminer))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(ImagePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(CommandPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(ImagePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(CommandPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void RotationhoraireMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RotationhoraireMouseClicked
+        img.rotateToRight();
+        afficherImage();
+    }//GEN-LAST:event_RotationhoraireMouseClicked
+
+    private void RotationantihoraireMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RotationantihoraireMouseClicked
+        img.rotateToLeft();
+        afficherImage();
+    }//GEN-LAST:event_RotationantihoraireMouseClicked
+
+    private void horizontalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_horizontalMouseClicked
+        img.flipHorizontally();
+        afficherImage();
+    }//GEN-LAST:event_horizontalMouseClicked
+
+    private void verticalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_verticalMouseClicked
+        img.flipVertically();
+        afficherImage();
+    }//GEN-LAST:event_verticalMouseClicked
+
+    private void annoterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_annoterMouseClicked
+        img.addNotes(notes.getText(), 0, 0);
+        afficherImage();
+    }//GEN-LAST:event_annoterMouseClicked
+
+    private void TerminerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TerminerMouseClicked
+        img.getImg(); //enregistrer la nouvelle image par-dessus la précédente
+        this.dispose();
+    }//GEN-LAST:event_TerminerMouseClicked
+
+    private void greyLevelsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_greyLevelsMouseClicked
+        img.greyLevels();
+        afficherImage();
+    }//GEN-LAST:event_greyLevelsMouseClicked
+
+    private void BrightnessMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BrightnessMouseReleased
+        int p = Brightness.getValue();
+        img.brighten(p);
+        afficherImage();
+    }//GEN-LAST:event_BrightnessMouseReleased
 
     /**
      * @param args the command line arguments
@@ -83,5 +304,18 @@ public class Image extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JSlider Brightness;
+    private javax.swing.JPanel CommandPanel;
+    private javax.swing.JPanel ImagePanel;
+    private javax.swing.JButton Rotationantihoraire;
+    private javax.swing.JButton Rotationhoraire;
+    private javax.swing.JButton Terminer;
+    private javax.swing.JButton annoter;
+    private javax.swing.JButton greyLevels;
+    private javax.swing.JButton horizontal;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JTextField notes;
+    private javax.swing.JButton vertical;
     // End of variables declaration//GEN-END:variables
 }

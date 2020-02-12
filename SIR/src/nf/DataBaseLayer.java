@@ -17,6 +17,7 @@ import java.util.ArrayList;
 public class DataBaseLayer {
     private ArrayList<ArrayList<String>> result=new ArrayList<>();
     private int modification;
+    private Connection connexion;
 
     public DataBaseLayer(String requete){
        //Récupération des données SQL
@@ -64,7 +65,6 @@ public class DataBaseLayer {
             }
         } catch ( SQLException e ) {
             /* Gérer les éventuelles erreurs ici */
-            System.out.println("pas de connexion");
             e.printStackTrace();
         } finally {
             if ( connexion != null )
@@ -110,6 +110,13 @@ public class DataBaseLayer {
         model.add(rowList);
     }
     return model;
+    }
+
+    /**
+     * @return the connexion
+     */
+    public Connection getConnexion() {
+        return connexion;
     }
     
     

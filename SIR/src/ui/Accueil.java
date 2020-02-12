@@ -59,8 +59,8 @@ public class Accueil extends javax.swing.JFrame {
                 try {
                     Date d1 = format.parse(row.get(4));
                     Date d2 = format.parse(row.get(5));
-                    Professionnel pro = sir.chercherProfessionnel(row.get(9));
-                    Examen e = new Examen(Integer.parseInt(row.get(0)), TypeExam.valueOf(row.get(1)), LocalisationExamen.valueOf(row.get(2)), row.get(3), d1, d2, Integer.parseInt(row.get(6)), Double.parseDouble(row.get(7)), row.get(8), pro, Integer.parseInt(row.get(10)), Code.valueOf(row.get(11)), Integer.parseInt(row.get(12)));
+                    Professionnel pro = sir.chercherProfessionnel(row.get(10));
+                    Examen e = new Examen(Integer.parseInt(row.get(0)), TypeExam.valueOf(row.get(1)), LocalisationExamen.valueOf(row.get(2)), row.get(3), d1, d2, Integer.parseInt(row.get(6)), Double.parseDouble(row.get(7)), row.get(8), pro, Integer.parseInt(row.get(11)), Code.valueOf(row.get(12).toUpperCase()), Integer.parseInt(row.get(13)));
                     //en commentaire tant qu'il n'y a pas accord sur Examen (bdd, ui et nf)
                     /*d1 = new Date(120,01,05,8,30);
                     d2 = new Date(120,01,05,9,0);
@@ -230,14 +230,17 @@ public class Accueil extends javax.swing.JFrame {
     private void DMRTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DMRTableMouseClicked
         int row = DMRTable.getSelectedRow();
         if (searchResult != null && row >= 0 && row < searchResult.size()) {
-            jPanel1.removeAll();
-            jPanel1.add(new DMR(searchResult.get(row), this), BorderLayout.CENTER);
+            ouvrirDMR(searchResult.get(row));
             /*ouvre le DMR du patient selectionne*/
-            this.pack();
-            this.repaint();
         }
     }//GEN-LAST:event_DMRTableMouseClicked
 
+    public void ouvrirDMR(Patient p){
+        jPanel1.removeAll();
+        jPanel1.add(new DMR(p, this), BorderLayout.CENTER);
+        this.pack();
+        this.repaint();
+    }
     private void SearchPatientFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SearchPatientFieldKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             searchResult = sir.chercherPatient(SearchPatientField.getText());//recherche les patients

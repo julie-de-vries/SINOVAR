@@ -120,7 +120,7 @@ public class AgendaPanel extends javax.swing.JPanel {
             }
         });
 
-        SelectType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Scanner", "IRM", "RadioArgentique", "Mammographe", "Echoendoscope", "Angiographie", "AccelerateurParticule" }));
+        SelectType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "scanner", "radiographie", "IRM", "échographie", "scintigraphie" }));
         SelectType.setSelectedItem("Scanner");
         SelectType.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

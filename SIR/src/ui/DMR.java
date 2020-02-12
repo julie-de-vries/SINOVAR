@@ -5,6 +5,7 @@
  */
 package ui;
 
+import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
 import nf.*;
 
@@ -43,6 +44,10 @@ public class DMR extends javax.swing.JPanel {
         model.addColumn("Facture");
         model.setRowCount(nbExam);
         ExamTable.setModel(model);
+        ImageIcon pdfIcon = new ImageIcon("pdf.png");
+        ImageIcon imageIcon = new ImageIcon("image.png");
+        ImageIcon numeriserIcon = new ImageIcon("numeriser.png");
+        ImageIcon nouveauIcon = new ImageIcon("nouveau.png");
         /*remplit les lignes du tableau jusqu'à ce que la liste soit finie*/
         for (int i = 0; i < nbExam; i++) {
             ExamTable.setValueAt(dmr.getExamen().get(i).getNomExamen(), i, 0);
@@ -50,16 +55,16 @@ public class DMR extends javax.swing.JPanel {
             ExamTable.setValueAt(dmr.getExamen().get(i).getIdExam(), i, 2);
             //mettre des icônes à la place des String
             if (dmr.getExamen().get(i).getImage() != 0) {
-                ExamTable.setValueAt("image", i, 3);
+                ExamTable.setValueAt(imageIcon, i, 3);
             } else {
-                ExamTable.setValueAt("numériser", i, 3);
+                ExamTable.setValueAt(numeriserIcon, i, 3);
             }
             if (dmr.getExamen().get(i).getCr() != 0) {
-                ExamTable.setValueAt("CR", i, 4);
+                ExamTable.setValueAt(pdfIcon, i, 4);
             } else {
-                ExamTable.setValueAt("écrire", i, 4);
+                ExamTable.setValueAt(nouveauIcon, i, 4);
             }
-            ExamTable.setValueAt("facture", i, 5);
+            ExamTable.setValueAt(pdfIcon, i, 5);
         }
 
     }
@@ -187,6 +192,11 @@ public class DMR extends javax.swing.JPanel {
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 570, 120));
 
         SaveExamButton.setText("Enregistrer un examen");
+        SaveExamButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                SaveExamButtonMouseClicked(evt);
+            }
+        });
         jPanel2.add(SaveExamButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 170, 170, -1));
 
         SortChoice.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Trier par date", "Trier par nom", "Trier par numéro" }));
@@ -228,18 +238,18 @@ public class DMR extends javax.swing.JPanel {
         int column = ExamTable.getSelectedColumn();
         Examen e = dmr.getExamen().get(row);
         /*si on clique sur la case image*/
-        if (column == 2) {
+        if (column == 3) {
             /*soit ça ouvre la fenêtre de numérisation*/
             if (e.getImage()==0) {
                 new NumeriserExamen().setVisible(true);
             } 
             /*soit ça ouvre l'image (jframe image)*/ 
             else {
-                new Image(e.getImage()).setVisible(true);
+                new Image().setVisible(true); //remplacer rien par e.getImage()
             }
         }
         /*si on clique sur la case CR*/
-        if (column == 3) {
+        if (column == 4) {
             /*soit ça ouvre la fenêtre ajouter CR*/
             if (e.getCr()==0) {
                 new EcrireCR().setVisible(true);
@@ -250,6 +260,10 @@ public class DMR extends javax.swing.JPanel {
             }
         }
     }//GEN-LAST:event_ExamTableMouseClicked
+
+    private void SaveExamButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SaveExamButtonMouseClicked
+        new EnregistrerExamen(a,patient).setVisible(true);
+    }//GEN-LAST:event_SaveExamButtonMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

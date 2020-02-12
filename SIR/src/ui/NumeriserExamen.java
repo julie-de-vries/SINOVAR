@@ -59,10 +59,10 @@ public class NumeriserExamen extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         bouton_panel = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        Valider = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(204, 255, 153));
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.PAGE_AXIS));
 
@@ -148,15 +148,25 @@ public class NumeriserExamen extends javax.swing.JFrame {
 
         bouton_panel.setLayout(new java.awt.GridBagLayout());
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jButton1.setText("VALIDER");
-        jButton1.setToolTipText("");
+        Valider.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        Valider.setText("VALIDER");
+        Valider.setToolTipText("");
+        Valider.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ValiderMouseClicked(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 50);
-        bouton_panel.add(jButton1, gridBagConstraints);
+        bouton_panel.add(Valider, gridBagConstraints);
 
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jButton2.setText("ANNULER");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
         bouton_panel.add(jButton2, new java.awt.GridBagConstraints());
 
         getContentPane().add(bouton_panel);
@@ -167,6 +177,18 @@ public class NumeriserExamen extends javax.swing.JFrame {
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        this.dispose();
+    }//GEN-LAST:event_jButton2MouseClicked
+
+    private void ValiderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ValiderMouseClicked
+        final String acmed30x_location="https://assets.aboutkidshealth.ca/akhassets/BT_Neuro_MRI2_MEDIMG-PHO_EN.jpg?RenditionID=10";
+        final String epsonscan_location="https://assets.aboutkidshealth.ca/akhassets/BT_Neuro_MRI2_MEDIMG-PHO_EN.jpg?RenditionID=10";
+        final String hpsmart_location="https://assets.aboutkidshealth.ca/akhassets/BT_Neuro_MRI2_MEDIMG-PHO_EN.jpg?RenditionID=10";
+        final String canon_location="https://assets.aboutkidshealth.ca/akhassets/BT_Neuro_MRI2_MEDIMG-PHO_EN.jpg?RenditionID=10";
+        
+    }//GEN-LAST:event_ValiderMouseClicked
 
     /**
      * @param args the command line arguments
@@ -219,9 +241,9 @@ public class NumeriserExamen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Valider;
     private javax.swing.JPanel bouton_panel;
     private javax.swing.JPanel choix_panel;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;

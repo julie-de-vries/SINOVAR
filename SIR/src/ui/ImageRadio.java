@@ -26,9 +26,7 @@ import nf.ImageProcessing;
 public class ImageRadio extends JPanel {
     private ImageIcon radioImage;
 
-    public ImageRadio() {
-            ImageProcessing img = new ImageProcessing("C:\\Users\\Julie\\Downloads\\pgm\\pgm\\abdomen\\cor494-i43.pgm");
-            img.greyLevels();
+    public ImageRadio(ImageProcessing img) {
             radioImage = new ImageIcon(img.getImg());
     }
 
@@ -52,11 +50,7 @@ public class ImageRadio extends JPanel {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                //JFrame jf = new JFrame();
-                //jf.setVisible(true);
-                ImageRadio ir = new ImageRadio();
-                ir.setVisible(true);
-                //jf.add(ir);
+                
             }
         });
     }

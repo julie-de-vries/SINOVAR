@@ -6,6 +6,7 @@
 package nf;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class DMR {
 
@@ -22,6 +23,8 @@ public class DMR {
     public void ajouterExamen(Examen e) {
         examens.add(e);
     }
+    
+    
 
     /*public String afficherListeExamen() {
         String s="";

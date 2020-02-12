@@ -163,14 +163,12 @@
         <Component class="javax.swing.JComboBox" name="SelectType">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="7">
-                <StringItem index="0" value="Scanner"/>
-                <StringItem index="1" value="IRM"/>
-                <StringItem index="2" value="RadioArgentique"/>
-                <StringItem index="3" value="Mammographe"/>
-                <StringItem index="4" value="Echoendoscope"/>
-                <StringItem index="5" value="Angiographie"/>
-                <StringItem index="6" value="AccelerateurParticule"/>
+              <StringArray count="5">
+                <StringItem index="0" value="scanner"/>
+                <StringItem index="1" value="radiographie"/>
+                <StringItem index="2" value="IRM"/>
+                <StringItem index="3" value="&#xe9;chographie"/>
+                <StringItem index="4" value="scintigraphie"/>
               </StringArray>
             </Property>
             <Property name="selectedItem" type="java.lang.Object" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">

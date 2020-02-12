@@ -126,12 +126,7 @@ public class Connexion extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
         jLabel1.setText("CONNEXION");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        seconnecter_panel.add(jLabel1, gridBagConstraints);
+        seconnecter_panel.add(jLabel1, new java.awt.GridBagConstraints());
 
         id_label.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         id_label.setText("Identifiant :");
@@ -206,7 +201,7 @@ public class Connexion extends javax.swing.JFrame {
         );
         deco_panelLayout.setVerticalGroup(
             deco_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE)
+            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         getContentPane().add(deco_panel);

@@ -9,18 +9,24 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import nf.Examen;
+import nf.Code;
+import nf.LocalisationExamen;
+import nf.Patient;
+import nf.Professionnel;
 import nf.TypeExam;
 /**
  *
  * @author Julie
  */
 public class EnregistrerExamen extends javax.swing.JFrame {
-
+    Accueil a;
+    Patient p;
     /**
      * Creates new form EnregistrerExamen
      */
-    public EnregistrerExamen() {
+    public EnregistrerExamen(Accueil a, Patient p) {
+        this.a = a;
+        this.p = p;
         initComponents();
     }
 
@@ -50,11 +56,21 @@ public class EnregistrerExamen extends javax.swing.JFrame {
         DateExamenLabel = new javax.swing.JLabel();
         DateExamenFinTextField = new javax.swing.JTextField();
         NumeroArchivageLabel = new javax.swing.JLabel();
-        NumeroArchivageField = new javax.swing.JTextField();
+        notesField = new javax.swing.JTextField();
         MedecinLabel = new javax.swing.JLabel();
-        MedecinField = new javax.swing.JTextField();
+        MedecinFieldNom = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         DateExamenDebutTextField = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        MedecinFieldPrenom = new javax.swing.JTextField();
+        NumeroArchivageLabel1 = new javax.swing.JLabel();
+        localisationExamen = new javax.swing.JComboBox<>();
+        salleField = new javax.swing.JTextField();
+        DoseExamen1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        heureFin = new javax.swing.JTextField();
+        heureDebut = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -67,7 +83,7 @@ public class EnregistrerExamen extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(396, 396, 396)
                 .addComponent(EnregistrerText, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(279, Short.MAX_VALUE))
+                .addContainerGap(329, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -161,19 +177,19 @@ public class EnregistrerExamen extends javax.swing.JFrame {
             }
         });
 
-        NumeroArchivageLabel.setText("Numéro d'archivage de l'examen ");
+        NumeroArchivageLabel.setText("Notes");
 
-        NumeroArchivageField.addActionListener(new java.awt.event.ActionListener() {
+        notesField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NumeroArchivageFieldActionPerformed(evt);
+                notesFieldActionPerformed(evt);
             }
         });
 
-        MedecinLabel.setText("Médecin prescripteur");
+        MedecinLabel.setText("Médecin prescripteur : Nom");
 
-        MedecinField.addActionListener(new java.awt.event.ActionListener() {
+        MedecinFieldNom.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MedecinFieldActionPerformed(evt);
+                MedecinFieldNomActionPerformed(evt);
             }
         });
 
@@ -185,6 +201,47 @@ public class EnregistrerExamen extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setText("Prenom");
+
+        MedecinFieldPrenom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MedecinFieldPrenomActionPerformed(evt);
+            }
+        });
+
+        NumeroArchivageLabel1.setText("Localisation");
+
+        localisationExamen.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "cérébral", "cervical", "membre_supérieur", "membre_inférieur", "thoracique", "abdomino_pelvien", "abdominal", "pelvien", "osseux", "cardiaque" }));
+        localisationExamen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                localisationExamenActionPerformed(evt);
+            }
+        });
+
+        salleField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salleFieldActionPerformed(evt);
+            }
+        });
+
+        DoseExamen1.setText("Salle");
+
+        jLabel3.setText("Heure (HH:MM)");
+
+        heureFin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                heureFinActionPerformed(evt);
+            }
+        });
+
+        heureDebut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                heureDebutActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("Heure (HH:MM)");
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -192,57 +249,102 @@ public class EnregistrerExamen extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(85, 85, 85)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(NumeroArchivageField)
-                    .addComponent(MedecinLabel)
-                    .addComponent(NumeroArchivageLabel)
-                    .addComponent(MedecinField)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(TypeExamen, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(NomExamen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(DateExamenLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(DateExamenDebutTextField))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(DoseExamen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(ValeurDose))
-                            .addComponent(DateExamenFinTextField, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(typeDose)))
-                .addGap(109, 109, 109))
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(DateExamenDebutTextField)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(TypeExamen, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(NomExamen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(DateExamenLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(salleField, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(DoseExamen1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(heureDebut, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
+                        .addGap(67, 67, 67)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(DoseExamen, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(localisationExamen, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(NumeroArchivageLabel1)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(DateExamenFinTextField, javax.swing.GroupLayout.Alignment.LEADING))
+                                    .addComponent(ValeurDose, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(heureFin, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jLabel4)
+                                        .addComponent(typeDose))))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(notesField, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel5Layout.createSequentialGroup()
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(MedecinLabel, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(NumeroArchivageLabel, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(MedecinFieldNom, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(MedecinFieldPrenom, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel2))))
+                        .addGap(39, 39, 39)))
+                .addGap(77, 77, 77))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(65, 65, 65)
+                .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(NomExamen)
-                    .addComponent(DoseExamen))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(NumeroArchivageLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(TypeExamen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(DoseExamen1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                        .addComponent(localisationExamen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(DoseExamen)
+                        .addGap(18, 18, 18)))
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TypeExamen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ValeurDose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(typeDose))
-                .addGap(28, 28, 28)
+                    .addComponent(typeDose)
+                    .addComponent(salleField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(DateExamenLabel)
-                    .addComponent(jLabel1))
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(DateExamenFinTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(DateExamenDebutTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(DateExamenDebutTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(heureFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(heureDebut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(NumeroArchivageLabel)
                 .addGap(18, 18, 18)
-                .addComponent(NumeroArchivageField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(notesField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(MedecinLabel)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(MedecinLabel)
+                    .addComponent(jLabel2))
                 .addGap(18, 18, 18)
-                .addComponent(MedecinField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(MedecinFieldNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(MedecinFieldPrenom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel5, java.awt.BorderLayout.CENTER);
@@ -253,24 +355,36 @@ public class EnregistrerExamen extends javax.swing.JFrame {
     private void ValiderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ValiderActionPerformed
         Date dateDebut = new Date();
         Date dateFin = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyyHH:mm");
+        SimpleDateFormat formatDateTimeBDD = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         double dose_exam = Double.parseDouble(ValeurDose.getText());
-        int id_exam = Integer.parseInt(NumeroArchivageField.getText());
-        String date_debut =  DateExamenDebutTextField.getText();
+        String libelleDose = typeDose.getText();
+        LocalisationExamen localisation_examen = LocalisationExamen.valueOf(localisationExamen.getSelectedItem().toString());
+        String notes = notesField.getText();
+        int salle= Integer.parseInt(salleField.getText());
+        String date_debut =  DateExamenDebutTextField.getText()+heureDebut.getText();
         try {
             dateDebut=sdf.parse(date_debut);
         } catch (ParseException ex) {
             Logger.getLogger(EnregistrerExamen.class.getName()).log(Level.SEVERE, null, ex);
         }
-        String date_fin = DateExamenFinTextField.getText();
+        String date_fin = DateExamenFinTextField.getText()+heureFin.getText();
         try {
             dateFin = sdf.parse(date_fin);
         } catch (ParseException ex) {
             Logger.getLogger(EnregistrerExamen.class.getName()).log(Level.SEVERE, null, ex);
         }
-        String medecin = MedecinField.getText();//relier BDD
+        String dateDebutBDD = formatDateTimeBDD.format(dateDebut);
+        String dateFinBDD = formatDateTimeBDD.format(dateFin);
+        Professionnel medecin = a.getSir().chercherProfessionnel(MedecinFieldNom.getText(),MedecinFieldPrenom.getText());//relier BDD
         TypeExam type = TypeExam.valueOf(TypeExamen.getSelectedItem().toString());
-        
+        a.getSir().ajouterExamBDD(type,localisation_examen,notes,dateDebutBDD,dateFinBDD,salle,dose_exam,libelleDose,p.getIdPatient(),medecin, 0, Code.ENREGISTREMENT, 0);
+        this.dispose();
+        Professionnel p = a.getCurrentUser();
+        a.dispose();
+        a=new Accueil(p);
+        a.setVisible(true);
+        a.ouvrirDMR(this.p);
     }//GEN-LAST:event_ValiderActionPerformed
 
     private void AnnulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AnnulerActionPerformed
@@ -308,17 +422,37 @@ public class EnregistrerExamen extends javax.swing.JFrame {
         
     }//GEN-LAST:event_DateExamenFinTextFieldActionPerformed
 
-    private void NumeroArchivageFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NumeroArchivageFieldActionPerformed
+    private void notesFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notesFieldActionPerformed
         
-    }//GEN-LAST:event_NumeroArchivageFieldActionPerformed
+    }//GEN-LAST:event_notesFieldActionPerformed
 
-    private void MedecinFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MedecinFieldActionPerformed
+    private void MedecinFieldNomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MedecinFieldNomActionPerformed
         
-    }//GEN-LAST:event_MedecinFieldActionPerformed
+    }//GEN-LAST:event_MedecinFieldNomActionPerformed
 
     private void DateExamenDebutTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DateExamenDebutTextFieldActionPerformed
         
     }//GEN-LAST:event_DateExamenDebutTextFieldActionPerformed
+
+    private void MedecinFieldPrenomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MedecinFieldPrenomActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MedecinFieldPrenomActionPerformed
+
+    private void localisationExamenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_localisationExamenActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_localisationExamenActionPerformed
+
+    private void salleFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salleFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_salleFieldActionPerformed
+
+    private void heureFinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_heureFinActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_heureFinActionPerformed
+
+    private void heureDebutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_heureDebutActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_heureDebutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -350,7 +484,7 @@ public class EnregistrerExamen extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EnregistrerExamen().setVisible(true);
+                //new EnregistrerExamen().setVisible(true);
             }
         });
     }
@@ -361,21 +495,31 @@ public class EnregistrerExamen extends javax.swing.JFrame {
     private javax.swing.JTextField DateExamenFinTextField;
     private javax.swing.JLabel DateExamenLabel;
     private javax.swing.JLabel DoseExamen;
+    private javax.swing.JLabel DoseExamen1;
     private javax.swing.JLabel EnregistrerText;
-    private javax.swing.JTextField MedecinField;
+    private javax.swing.JTextField MedecinFieldNom;
+    private javax.swing.JTextField MedecinFieldPrenom;
     private javax.swing.JLabel MedecinLabel;
     private javax.swing.JLabel NomExamen;
-    private javax.swing.JTextField NumeroArchivageField;
     private javax.swing.JLabel NumeroArchivageLabel;
+    private javax.swing.JLabel NumeroArchivageLabel1;
     private javax.swing.JComboBox<String> TypeExamen;
     private javax.swing.JTextField ValeurDose;
     private javax.swing.JButton Valider;
+    private javax.swing.JTextField heureDebut;
+    private javax.swing.JTextField heureFin;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JComboBox<String> localisationExamen;
+    private javax.swing.JTextField notesField;
+    private javax.swing.JTextField salleField;
     private javax.swing.JLabel typeDose;
     // End of variables declaration//GEN-END:variables
 }
