@@ -41,7 +41,7 @@ public class Connexion extends javax.swing.JFrame {
         System.out.println(longueur1);
         connexion_panel.setPreferredSize(new Dimension(longueur1, hauteur1));
         System.out.println(hauteur1);
-        deco_panel.setSize(longueur1, hauteur1);
+        deco_panel.setPreferredSize(new Dimension(longueur1, hauteur1));
         
         
     }
