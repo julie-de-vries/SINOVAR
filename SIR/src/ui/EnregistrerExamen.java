@@ -83,7 +83,7 @@ public class EnregistrerExamen extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(396, 396, 396)
                 .addComponent(EnregistrerText, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(329, Short.MAX_VALUE))
+                .addContainerGap(312, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -131,7 +131,7 @@ public class EnregistrerExamen extends javax.swing.JFrame {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 395, Short.MAX_VALUE)
+            .addGap(0, 399, Short.MAX_VALUE)
         );
 
         getContentPane().add(jPanel3, java.awt.BorderLayout.LINE_START);
@@ -144,7 +144,7 @@ public class EnregistrerExamen extends javax.swing.JFrame {
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 395, Short.MAX_VALUE)
+            .addGap(0, 399, Short.MAX_VALUE)
         );
 
         getContentPane().add(jPanel4, java.awt.BorderLayout.LINE_END);
@@ -153,7 +153,7 @@ public class EnregistrerExamen extends javax.swing.JFrame {
 
         DoseExamen.setText("Dose de l'examen");
 
-        TypeExamen.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "échographie", "IRM", "radiographie", "scanner", "scintigraphie" }));
+        TypeExamen.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "...", "échographie", "IRM", "radiographie", "scanner", "scintigraphie" }));
         TypeExamen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TypeExamenActionPerformed(evt);
@@ -166,8 +166,6 @@ public class EnregistrerExamen extends javax.swing.JFrame {
                 ValeurDoseActionPerformed(evt);
             }
         });
-
-        typeDose.setText("mSv");
 
         DateExamenLabel.setText("Date de début de l'examen (JJ/MM/AAAA)");
 
@@ -345,7 +343,7 @@ public class EnregistrerExamen extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(MedecinFieldNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(MedecinFieldPrenom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel5, java.awt.BorderLayout.CENTER);
@@ -393,22 +391,23 @@ public class EnregistrerExamen extends javax.swing.JFrame {
     }//GEN-LAST:event_AnnulerActionPerformed
 
     private void TypeExamenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TypeExamenActionPerformed
-        if (TypeExamen.getSelectedItem().equals(TypeExam.IRM)){
-            typeDose.setText("mSv");
-            typeDose.repaint();
+        if (TypeExamen.getSelectedItem().equals(TypeExam.IRM.toString())){
+            typeDose.setText("Telsa");
+            this.repaint();
         }
-        if (TypeExamen.getSelectedItem().equals(TypeExam.scanner)){
+        if (TypeExamen.getSelectedItem().equals(TypeExam.scanner.toString())){
             typeDose.setText("mSv");
-            typeDose.repaint();
+            this.repaint();
         }
-        if (TypeExamen.getSelectedItem().equals(TypeExam.scintigraphie)){
+        if (TypeExamen.getSelectedItem().equals(TypeExam.scintigraphie.toString())){
             typeDose.setText("µSv/MBq");
+            this.repaint();
+        }if (TypeExamen.getSelectedItem().equals(TypeExam.radiographie.toString())){
+            typeDose.setText("Gy/cm²");
             typeDose.repaint();
-        }if (TypeExamen.getSelectedItem().equals(TypeExam.radiographie)){
-            ValeurDose.setText("Gy/cm²");
-            ValeurDose.repaint();
-        }if (TypeExamen.getSelectedItem().equals(TypeExam.échographie)){
-            ValeurDose.setText("8");
+        }if (TypeExamen.getSelectedItem().equals(TypeExam.échographie.toString())){
+            typeDose.setText("");
+            typeDose.repaint();
             
         }
         
