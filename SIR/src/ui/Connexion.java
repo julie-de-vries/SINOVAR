@@ -25,6 +25,8 @@ public class Connexion extends javax.swing.JFrame {
         Dimension tailleMoniteur = Toolkit.getDefaultToolkit().getScreenSize();
         int longueur = tailleMoniteur.width* 2/3;
         int hauteur = tailleMoniteur.height* 2/3;
+        System.out.println(longueur);
+        System.out.println(hauteur);
         //régler la taille de JFrame à 2/3 la taille de l'écran
         this.setSize(longueur, hauteur);
         this.setTitle("Se connecter au SIR 1.0");
@@ -36,7 +38,9 @@ public class Connexion extends javax.swing.JFrame {
         int hauteur1 = hauteur*1/3;
         
         message_panel.setSize(longueur1, hauteur1);
+        System.out.println(longueur1);
         connexion_panel.setSize(longueur1, hauteur1);
+        System.out.println(hauteur1);
         deco_panel.setSize(longueur1, hauteur1);
         
         
@@ -75,7 +79,9 @@ public class Connexion extends javax.swing.JFrame {
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.PAGE_AXIS));
 
         message_panel.setBackground(new java.awt.Color(247, 250, 253));
-        message_panel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 100, 5));
+        java.awt.FlowLayout flowLayout1 = new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 100, 5);
+        flowLayout1.setAlignOnBaseline(true);
+        message_panel.setLayout(flowLayout1);
 
         texte_panel.setBackground(new java.awt.Color(241, 184, 185));
         texte_panel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -182,20 +188,11 @@ public class Connexion extends javax.swing.JFrame {
         getContentPane().add(connexion_panel);
 
         deco_panel.setBackground(new java.awt.Color(247, 250, 253));
+        deco_panel.setLayout(new javax.swing.BoxLayout(deco_panel, javax.swing.BoxLayout.LINE_AXIS));
 
         jLabel3.setBackground(new java.awt.Color(247, 250, 253));
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/Connexion_SINOVAR.png"))); // NOI18N
-
-        javax.swing.GroupLayout deco_panelLayout = new javax.swing.GroupLayout(deco_panel);
-        deco_panel.setLayout(deco_panelLayout);
-        deco_panelLayout.setHorizontalGroup(
-            deco_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        deco_panelLayout.setVerticalGroup(
-            deco_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        deco_panel.add(jLabel3);
 
         getContentPane().add(deco_panel);
 
