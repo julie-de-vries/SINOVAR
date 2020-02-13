@@ -18,14 +18,14 @@ import nf.Professionnel;
  *
  * @author laura
  */
-public class CreerDMR extends javax.swing.JFrame {
+public class CreerDMR2 extends javax.swing.JFrame {
     Accueil a;
     int longueur = Toolkit.getDefaultToolkit().getScreenSize().width;
     int hauteur = Toolkit.getDefaultToolkit().getScreenSize().height;
     /**
      * Creates new form createDMR
      */
-    public CreerDMR(Accueil a) {
+    public CreerDMR2(Accueil a) {
 //        //récuperer la dimension de l'écran
 //        Dimension tailleMoniteur = Toolkit.getDefaultToolkit().getScreenSize();
 //        int longueur = tailleMoniteur.width;
