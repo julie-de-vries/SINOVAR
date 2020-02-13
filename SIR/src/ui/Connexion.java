@@ -23,8 +23,8 @@ public class Connexion extends javax.swing.JFrame {
         initComponents();
         //récuperer la dimension de l'écran
         Dimension tailleMoniteur = Toolkit.getDefaultToolkit().getScreenSize();
-        int longueur = tailleMoniteur.width;//* 2/3;
-        int hauteur = tailleMoniteur.height;//* 2/3;
+        int longueur = tailleMoniteur.width*2/3;
+        int hauteur = tailleMoniteur.height*2/3;
         System.out.println(longueur);
         System.out.println(hauteur);
         //régler la taille de JFrame à 2/3 la taille de l'écran
@@ -32,7 +32,7 @@ public class Connexion extends javax.swing.JFrame {
         this.setTitle("Se connecter au SIR 1.0");
         this.setLocationRelativeTo(null);
         this.setVisible(true);
-        this.setResizable(false);
+        //this.setResizable(false);
 
         int longueur1 = longueur*2/3;
         int hauteur1 = hauteur*1/3;
@@ -123,7 +123,7 @@ public class Connexion extends javax.swing.JFrame {
         getContentPane().add(jPanel2);
 
         message_panel.setBackground(new java.awt.Color(247, 250, 253));
-        java.awt.FlowLayout flowLayout1 = new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 100, 5);
+        java.awt.FlowLayout flowLayout1 = new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 100, 50);
         flowLayout1.setAlignOnBaseline(true);
         message_panel.setLayout(flowLayout1);
 
