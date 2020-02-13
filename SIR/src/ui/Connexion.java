@@ -35,13 +35,14 @@ public class Connexion extends javax.swing.JFrame {
         //this.setResizable(false);
 
         int longueur1 = longueur*2/3;
-        int hauteur1 = hauteur*1/3;
+        int hauteur1 = hauteur*1/4;
         
-        message_panel.setSize(longueur1, hauteur1);
+        jPanel2.setPreferredSize(new Dimension(longueur1, hauteur1));
+        message_panel.setPreferredSize(new Dimension(longueur1, hauteur1));
         System.out.println(longueur1);
-        connexion_panel.setSize(longueur1, hauteur1);
+        connexion_panel.setPreferredSize(new Dimension(longueur1, hauteur1));
         System.out.println(hauteur1);
-        deco_panel.setSize(longueur1, hauteur1);
+        deco_panel.setPreferredSize(new Dimension(longueur1, hauteur1));
         
         
     }
