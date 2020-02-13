@@ -394,18 +394,18 @@ public class EnregistrerExamen extends javax.swing.JFrame {
 
     private void TypeExamenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TypeExamenActionPerformed
         if (TypeExamen.getSelectedItem().equals(TypeExam.IRM)){
-            ValeurDose.setText("5");
-            ValeurDose.repaint();
+            typeDose.setText("mSv");
+            typeDose.repaint();
         }
         if (TypeExamen.getSelectedItem().equals(TypeExam.scanner)){
-            ValeurDose.setText("10");
-            ValeurDose.repaint();
+            typeDose.setText("mSv");
+            typeDose.repaint();
         }
         if (TypeExamen.getSelectedItem().equals(TypeExam.scintigraphie)){
-            ValeurDose.setText("9");
-            ValeurDose.repaint();
+            typeDose.setText("µSv/MBq");
+            typeDose.repaint();
         }if (TypeExamen.getSelectedItem().equals(TypeExam.radiographie)){
-            ValeurDose.setText("1");
+            ValeurDose.setText("Gy/cm²");
             ValeurDose.repaint();
         }if (TypeExamen.getSelectedItem().equals(TypeExam.échographie)){
             ValeurDose.setText("8");
