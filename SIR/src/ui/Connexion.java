@@ -23,8 +23,8 @@ public class Connexion extends javax.swing.JFrame {
         initComponents();
         //récuperer la dimension de l'écran
         Dimension tailleMoniteur = Toolkit.getDefaultToolkit().getScreenSize();
-        int longueur = tailleMoniteur.width* 2/3;
-        int hauteur = tailleMoniteur.height* 2/3;
+        int longueur = tailleMoniteur.width;//* 2/3;
+        int hauteur = tailleMoniteur.height;//* 2/3;
         System.out.println(longueur);
         System.out.println(hauteur);
         //régler la taille de JFrame à 2/3 la taille de l'écran
@@ -34,7 +34,7 @@ public class Connexion extends javax.swing.JFrame {
         this.setVisible(true);
         this.setResizable(false);
 
-        int longueur1 = longueur* 2/3;
+        int longueur1 = longueur*2/3;
         int hauteur1 = hauteur*1/3;
         
         message_panel.setSize(longueur1, hauteur1);
@@ -152,7 +152,7 @@ public class Connexion extends javax.swing.JFrame {
 
         id.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         id.setMinimumSize(new java.awt.Dimension(200, 32));
-        id.setPreferredSize(new java.awt.Dimension(60, 32));
+        id.setPreferredSize(new java.awt.Dimension(600, 32));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 1;
         gridBagConstraints.insets = new java.awt.Insets(50, 0, 0, 0);
