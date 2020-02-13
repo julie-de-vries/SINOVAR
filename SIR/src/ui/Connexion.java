@@ -32,8 +32,8 @@ public class Connexion extends javax.swing.JFrame {
         this.setVisible(true);
         this.setResizable(false);
 
-        int longueur1 = tailleMoniteur.width* 2/3;
-        int hauteur1 = tailleMoniteur.height*1/3;
+        int longueur1 = longueur* 2/3;
+        int hauteur1 = hauteur*1/3;
         
         message_panel.setSize(longueur1, hauteur1);
         connexion_panel.setSize(longueur1, hauteur1);
