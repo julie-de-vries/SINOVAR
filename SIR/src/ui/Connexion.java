@@ -56,12 +56,16 @@ public class Connexion extends javax.swing.JFrame {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
+        jPanel2 = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        logo1 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
         message_panel = new javax.swing.JPanel();
         texte_panel = new javax.swing.JPanel();
         text1_label = new javax.swing.JLabel();
         text2_label = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        logo1 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         connexion_panel = new javax.swing.JPanel();
         sepa_1 = new javax.swing.JPanel();
         seconnecter_panel = new javax.swing.JPanel();
@@ -76,7 +80,47 @@ public class Connexion extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(247, 250, 253));
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.PAGE_AXIS));
+
+        jPanel2.setBackground(new java.awt.Color(247, 250, 253));
+        jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.LINE_AXIS));
+
+        jPanel1.setBackground(new java.awt.Color(247, 250, 253));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1547, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 200, Short.MAX_VALUE)
+        );
+
+        jPanel2.add(jPanel1);
+
+        logo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        logo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/Copie de SINOVAR.png"))); // NOI18N
+        jPanel2.add(logo1);
+
+        jPanel3.setBackground(new java.awt.Color(247, 250, 253));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 94, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 200, Short.MAX_VALUE)
+        );
+
+        jPanel2.add(jPanel3);
+
+        getContentPane().add(jPanel2);
 
         message_panel.setBackground(new java.awt.Color(247, 250, 253));
         java.awt.FlowLayout flowLayout1 = new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 100, 5);
@@ -91,33 +135,43 @@ public class Connexion extends javax.swing.JFrame {
         texte_panel.setNextFocusableComponent(logo1);
         texte_panel.setLayout(new java.awt.GridBagLayout());
 
-        text1_label.setFont(new java.awt.Font("Tahoma", 0, 30)); // NOI18N
+        text1_label.setFont(new java.awt.Font("Tahoma", 0, 28)); // NOI18N
         text1_label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        text1_label.setText("Le Systeme d'Information Radiologique n'est accessible qu'aux Praticiens Hospitaliers,");
+        text1_label.setText("Le Systeme d'Information Radiologique ");
         text1_label.setRequestFocusEnabled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.insets = new java.awt.Insets(30, 30, 0, 30);
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.insets = new java.awt.Insets(20, 0, 10, 0);
         texte_panel.add(text1_label, gridBagConstraints);
 
-        text2_label.setFont(new java.awt.Font("Tahoma", 0, 30)); // NOI18N
+        text2_label.setFont(new java.awt.Font("Tahoma", 0, 28)); // NOI18N
         text2_label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        text2_label.setText("manipulateurs(trices) en électroradiologie médicale et secrétaires médicales");
+        text2_label.setText("manipulateurs(trices) en électroradiologie médicale");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(0, 55, 10, 55);
+        texte_panel.add(text2_label, gridBagConstraints);
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 28)); // NOI18N
+        jLabel1.setText("n'est accessible qu'aux Praticiens Hospitaliers,");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
+        texte_panel.add(jLabel1, gridBagConstraints);
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 28)); // NOI18N
+        jLabel2.setText(" et secrétaires médicales");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
-        gridBagConstraints.insets = new java.awt.Insets(0, 30, 30, 30);
-        texte_panel.add(text2_label, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 20, 0);
+        texte_panel.add(jLabel2, gridBagConstraints);
 
         message_panel.add(texte_panel);
-
-        jPanel2.setBackground(new java.awt.Color(247, 250, 253));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        message_panel.add(jPanel2);
-
-        logo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/Copie de SINOVAR.png"))); // NOI18N
-        message_panel.add(logo1);
 
         getContentPane().add(message_panel);
 
@@ -258,11 +312,15 @@ public class Connexion extends javax.swing.JFrame {
     private javax.swing.JPanel deco_panel;
     private javax.swing.JTextField id;
     private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel logo1;
     private javax.swing.JPasswordField mdp;
     private javax.swing.JPanel message_panel;
