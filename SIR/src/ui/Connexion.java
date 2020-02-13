@@ -86,12 +86,15 @@ public class Connexion extends javax.swing.JFrame {
         texte_panel.setBackground(new java.awt.Color(241, 184, 185));
         texte_panel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         texte_panel.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        texte_panel.setMaximumSize(new java.awt.Dimension(1203, 138));
         texte_panel.setName(""); // NOI18N
+        texte_panel.setNextFocusableComponent(logo1);
         texte_panel.setLayout(new java.awt.GridBagLayout());
 
         text1_label.setFont(new java.awt.Font("Tahoma", 0, 30)); // NOI18N
         text1_label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         text1_label.setText("Le Systeme d'Information Radiologique n'est accessible qu'aux Praticiens Hospitaliers,");
+        text1_label.setRequestFocusEnabled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -151,16 +154,16 @@ public class Connexion extends javax.swing.JFrame {
         seconnecter_panel.add(jLabel5, gridBagConstraints);
 
         id.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        id.setMinimumSize(new java.awt.Dimension(200, 32));
-        id.setPreferredSize(new java.awt.Dimension(600, 32));
+        id.setMinimumSize(new java.awt.Dimension(200, 40));
+        id.setPreferredSize(new java.awt.Dimension(600, 40));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 1;
         gridBagConstraints.insets = new java.awt.Insets(50, 0, 0, 0);
         seconnecter_panel.add(id, gridBagConstraints);
 
         mdp.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        mdp.setMinimumSize(new java.awt.Dimension(200, 32));
-        mdp.setPreferredSize(new java.awt.Dimension(600, 32));
+        mdp.setMinimumSize(new java.awt.Dimension(200, 40));
+        mdp.setPreferredSize(new java.awt.Dimension(600, 40));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 2;
         gridBagConstraints.insets = new java.awt.Insets(50, 0, 0, 0);
@@ -191,7 +194,9 @@ public class Connexion extends javax.swing.JFrame {
         deco_panel.setLayout(new javax.swing.BoxLayout(deco_panel, javax.swing.BoxLayout.LINE_AXIS));
 
         jLabel3.setBackground(new java.awt.Color(247, 250, 253));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/Connexion_SINOVAR.png"))); // NOI18N
+        jLabel3.setMaximumSize(new java.awt.Dimension(30000, 296));
         deco_panel.add(jLabel3);
 
         getContentPane().add(deco_panel);
