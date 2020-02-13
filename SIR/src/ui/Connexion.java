@@ -5,39 +5,21 @@
  */
 package ui;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import nf.Identifications;
 
 /**
  *
- * @author laura
+ * @author Julie
  */
 public class Connexion extends javax.swing.JFrame {
 
     /**
-     * Creates new form DefConnexion
+     * Creates new form Connexion
      */
     public Connexion() {
         initComponents();
-        
-        //récuperer la dimension de l'écran
-        Dimension tailleMoniteur = Toolkit.getDefaultToolkit().getScreenSize();
-        int longueur = tailleMoniteur.width; //* 2/3;
-        int hauteur = tailleMoniteur.height; //* 2/3;
-        //régler la taille de JFrame à 2/3 la taille de l'écran
-        this.setSize(longueur, hauteur);
-        
         this.setTitle("Se connecter au SIR 1.0");
-        
-         // set the jframe size and location, and make it visible
-        this.setPreferredSize(new Dimension(400, 300));
-        this.setMinimumSize(new Dimension(longueur,hauteur));
-        this.pack();
-        this.setLocationRelativeTo(null);
-        this.setVisible(true);
-        this.setResizable(false);
     }
 
     /**
@@ -48,174 +30,74 @@ public class Connexion extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
-        message_panel = new javax.swing.JPanel();
-        texte_panel = new javax.swing.JPanel();
-        text1_label = new javax.swing.JLabel();
-        text2_label = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        logo1 = new javax.swing.JLabel();
-        connexion_panel = new javax.swing.JPanel();
-        sepa_1 = new javax.swing.JPanel();
-        seconnecter_panel = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        id_label = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        id_field = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
-        sepa_2 = new javax.swing.JPanel();
-        deco_panel = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        id = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        mdp = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.Y_AXIS));
 
-        message_panel.setBackground(new java.awt.Color(247, 250, 253));
-        message_panel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 100, 5));
+        jLabel4.setText("Identifiant");
 
-        texte_panel.setBackground(new java.awt.Color(241, 184, 185));
-        texte_panel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        texte_panel.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        texte_panel.setName(""); // NOI18N
-        texte_panel.setLayout(new java.awt.GridBagLayout());
+        jLabel5.setText("Mot de passe");
 
-        text1_label.setFont(new java.awt.Font("Tahoma", 0, 30)); // NOI18N
-        text1_label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        text1_label.setText("Le Systeme d'Information Radiologique n'est accessible qu'aux Praticiens Hospitaliers,");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.insets = new java.awt.Insets(30, 30, 0, 30);
-        texte_panel.add(text1_label, gridBagConstraints);
-
-        text2_label.setFont(new java.awt.Font("Tahoma", 0, 30)); // NOI18N
-        text2_label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        text2_label.setText("manipulateurs(trices) en électroradiologie médicale et secrétaires médicales");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.insets = new java.awt.Insets(0, 30, 30, 30);
-        texte_panel.add(text2_label, gridBagConstraints);
-
-        message_panel.add(texte_panel);
-
-        jPanel2.setBackground(new java.awt.Color(247, 250, 253));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        message_panel.add(jPanel2);
-
-        logo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/Copie de SINOVAR.png"))); // NOI18N
-        message_panel.add(logo1);
-
-        getContentPane().add(message_panel);
-
-        connexion_panel.setBackground(new java.awt.Color(247, 250, 253));
-        connexion_panel.setLayout(new javax.swing.BoxLayout(connexion_panel, javax.swing.BoxLayout.LINE_AXIS));
-
-        sepa_1.setBackground(new java.awt.Color(247, 250, 253));
-        sepa_1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        connexion_panel.add(sepa_1);
-
-        seconnecter_panel.setBackground(new java.awt.Color(217, 217, 217));
-        seconnecter_panel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        seconnecter_panel.setMinimumSize(new java.awt.Dimension(8, 373));
-        seconnecter_panel.setName(""); // NOI18N
-        seconnecter_panel.setPreferredSize(new java.awt.Dimension(200, 373));
-        seconnecter_panel.setLayout(new java.awt.GridBagLayout());
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
-        jLabel1.setText("CONNEXION");
-        seconnecter_panel.add(jLabel1, new java.awt.GridBagConstraints());
-
-        id_label.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        id_label.setText("Identifiant :");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(50, 0, 0, 50);
-        seconnecter_panel.add(id_label, gridBagConstraints);
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jLabel2.setText("Mot de passe :");
-        jLabel2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.insets = new java.awt.Insets(50, 0, 0, 50);
-        seconnecter_panel.add(jLabel2, gridBagConstraints);
-
-        id_field.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        id_field.setText("Entrez votre id");
-        id_field.setMinimumSize(new java.awt.Dimension(600, 36));
-        id_field.setPreferredSize(new java.awt.Dimension(300, 40));
-        id_field.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                id_fieldActionPerformed(evt);
+        jButton2.setText("Se connecter");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.insets = new java.awt.Insets(50, 0, 0, 0);
-        seconnecter_panel.add(id_field, gridBagConstraints);
 
-        jPasswordField1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jPasswordField1.setMinimumSize(new java.awt.Dimension(60, 32));
-        jPasswordField1.setPreferredSize(new java.awt.Dimension(300, 40));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.insets = new java.awt.Insets(50, 0, 0, 0);
-        seconnecter_panel.add(jPasswordField1, gridBagConstraints);
+        jLabel6.setText("CONNEXION A SINOVAR");
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jButton1.setText("Se connecter");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.insets = new java.awt.Insets(70, 0, 0, 0);
-        seconnecter_panel.add(jButton1, gridBagConstraints);
-
-        connexion_panel.add(seconnecter_panel);
-
-        sepa_2.setBackground(new java.awt.Color(247, 250, 253));
-        sepa_2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        connexion_panel.add(sepa_2);
-
-        getContentPane().add(connexion_panel);
-
-        deco_panel.setBackground(new java.awt.Color(247, 250, 253));
-
-        jLabel3.setBackground(new java.awt.Color(247, 250, 253));
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/Connexion_SINOVAR.png"))); // NOI18N
-
-        javax.swing.GroupLayout deco_panelLayout = new javax.swing.GroupLayout(deco_panel);
-        deco_panel.setLayout(deco_panelLayout);
-        deco_panelLayout.setHorizontalGroup(
-            deco_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(160, 160, 160)
+                        .addComponent(jButton2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5))
+                        .addGap(36, 36, 36)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel6)
+                            .addComponent(id)
+                            .addComponent(mdp, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE))))
+                .addContainerGap(94, Short.MAX_VALUE))
         );
-        deco_panelLayout.setVerticalGroup(
-            deco_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jLabel6)
+                .addGap(60, 60, 60)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(36, 36, 36)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(mdp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addGap(27, 27, 27))
         );
-
-        getContentPane().add(deco_panel);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void id_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_id_fieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_id_fieldActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String id = id_field.getText();
-        String mdp = String.valueOf(jPasswordField1.getPassword());
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        String id = this.id.getText();
+        String mdp = String.valueOf(this.mdp.getPassword());
         Identifications c = new Identifications(id, mdp);
         
         if(c.isAuth()){
@@ -225,7 +107,7 @@ public class Connexion extends javax.swing.JFrame {
         } else {             
             JOptionPane.showMessageDialog(null, "Identifiant/Mot de passe incorrect(s)");
         }
-     }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButton2MouseClicked
 
     /**
      * @param args the command line arguments
@@ -253,21 +135,6 @@ public class Connexion extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Connexion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -278,23 +145,11 @@ public class Connexion extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel connexion_panel;
-    private javax.swing.JPanel deco_panel;
-    private javax.swing.JTextField id_field;
-    private javax.swing.JLabel id_label;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JLabel logo1;
-    private javax.swing.JPanel message_panel;
-    private javax.swing.JPanel seconnecter_panel;
-    private javax.swing.JPanel sepa_1;
-    private javax.swing.JPanel sepa_2;
-    private javax.swing.JLabel text1_label;
-    private javax.swing.JLabel text2_label;
-    private javax.swing.JPanel texte_panel;
+    private javax.swing.JTextField id;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JPasswordField mdp;
     // End of variables declaration//GEN-END:variables
 }
