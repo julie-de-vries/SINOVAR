@@ -60,12 +60,6 @@ public class Connexion extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         logo1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        message_panel = new javax.swing.JPanel();
-        texte_panel = new javax.swing.JPanel();
-        text1_label = new javax.swing.JLabel();
-        text2_label = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         connexion_panel = new javax.swing.JPanel();
         sepa_1 = new javax.swing.JPanel();
         seconnecter_panel = new javax.swing.JPanel();
@@ -76,6 +70,12 @@ public class Connexion extends javax.swing.JFrame {
         mdp = new javax.swing.JPasswordField();
         jButton2 = new javax.swing.JButton();
         sepa_2 = new javax.swing.JPanel();
+        message_panel = new javax.swing.JPanel();
+        texte_panel = new javax.swing.JPanel();
+        text1_label = new javax.swing.JLabel();
+        text2_label = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         deco_panel = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
 
@@ -121,59 +121,6 @@ public class Connexion extends javax.swing.JFrame {
         jPanel2.add(jPanel3);
 
         getContentPane().add(jPanel2);
-
-        message_panel.setBackground(new java.awt.Color(247, 250, 253));
-        java.awt.FlowLayout flowLayout1 = new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 100, 50);
-        flowLayout1.setAlignOnBaseline(true);
-        message_panel.setLayout(flowLayout1);
-
-        texte_panel.setBackground(new java.awt.Color(241, 184, 185));
-        texte_panel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        texte_panel.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        texte_panel.setMaximumSize(new java.awt.Dimension(1203, 138));
-        texte_panel.setName(""); // NOI18N
-        texte_panel.setNextFocusableComponent(logo1);
-        texte_panel.setLayout(new java.awt.GridBagLayout());
-
-        text1_label.setFont(new java.awt.Font("Tahoma", 0, 28)); // NOI18N
-        text1_label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        text1_label.setText("Le Systeme d'Information Radiologique ");
-        text1_label.setRequestFocusEnabled(false);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.insets = new java.awt.Insets(20, 0, 10, 0);
-        texte_panel.add(text1_label, gridBagConstraints);
-
-        text2_label.setFont(new java.awt.Font("Tahoma", 0, 28)); // NOI18N
-        text2_label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        text2_label.setText("manipulateurs(trices) en électroradiologie médicale");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(0, 55, 10, 55);
-        texte_panel.add(text2_label, gridBagConstraints);
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 28)); // NOI18N
-        jLabel1.setText("n'est accessible qu'aux Praticiens Hospitaliers,");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
-        texte_panel.add(jLabel1, gridBagConstraints);
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 28)); // NOI18N
-        jLabel2.setText(" et secrétaires médicales");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 20, 0);
-        texte_panel.add(jLabel2, gridBagConstraints);
-
-        message_panel.add(texte_panel);
-
-        getContentPane().add(message_panel);
 
         connexion_panel.setBackground(new java.awt.Color(247, 250, 253));
         connexion_panel.setLayout(new javax.swing.BoxLayout(connexion_panel, javax.swing.BoxLayout.LINE_AXIS));
@@ -243,6 +190,59 @@ public class Connexion extends javax.swing.JFrame {
         connexion_panel.add(sepa_2);
 
         getContentPane().add(connexion_panel);
+
+        message_panel.setBackground(new java.awt.Color(247, 250, 253));
+        java.awt.FlowLayout flowLayout1 = new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 100, 50);
+        flowLayout1.setAlignOnBaseline(true);
+        message_panel.setLayout(flowLayout1);
+
+        texte_panel.setBackground(new java.awt.Color(241, 184, 185));
+        texte_panel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        texte_panel.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        texte_panel.setMaximumSize(new java.awt.Dimension(1203, 138));
+        texte_panel.setName(""); // NOI18N
+        texte_panel.setNextFocusableComponent(logo1);
+        texte_panel.setLayout(new java.awt.GridBagLayout());
+
+        text1_label.setFont(new java.awt.Font("Tahoma", 0, 28)); // NOI18N
+        text1_label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        text1_label.setText("Le Systeme d'Information Radiologique ");
+        text1_label.setRequestFocusEnabled(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.insets = new java.awt.Insets(20, 0, 10, 0);
+        texte_panel.add(text1_label, gridBagConstraints);
+
+        text2_label.setFont(new java.awt.Font("Tahoma", 0, 28)); // NOI18N
+        text2_label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        text2_label.setText("manipulateurs(trices) en électroradiologie médicale");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(0, 55, 10, 55);
+        texte_panel.add(text2_label, gridBagConstraints);
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 28)); // NOI18N
+        jLabel1.setText("n'est accessible qu'aux Praticiens Hospitaliers,");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
+        texte_panel.add(jLabel1, gridBagConstraints);
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 28)); // NOI18N
+        jLabel2.setText(" et secrétaires médicales");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 20, 0);
+        texte_panel.add(jLabel2, gridBagConstraints);
+
+        message_panel.add(texte_panel);
+
+        getContentPane().add(message_panel);
 
         deco_panel.setBackground(new java.awt.Color(247, 250, 253));
         deco_panel.setLayout(new javax.swing.BoxLayout(deco_panel, javax.swing.BoxLayout.LINE_AXIS));
