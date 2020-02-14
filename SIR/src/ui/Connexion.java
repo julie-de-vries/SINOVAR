@@ -5,7 +5,6 @@
  */
 package ui;
 
-import keep.Accueil;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
@@ -186,14 +185,11 @@ public class Connexion extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(50, 0, 0, 0);
         seconnecter_panel.add(jButton2, gridBagConstraints);
 
+        connexion_panel.add(seconnecter_panel);
+
         jScrollPane1.setViewportView(jScrollBar1);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 1;
-        seconnecter_panel.add(jScrollPane1, gridBagConstraints);
-
-        connexion_panel.add(seconnecter_panel);
+        connexion_panel.add(jScrollPane1);
 
         sepa_2.setBackground(new java.awt.Color(247, 250, 253));
         sepa_2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
