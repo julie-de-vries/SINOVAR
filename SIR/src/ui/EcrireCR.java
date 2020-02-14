@@ -5,6 +5,7 @@
  */
 package ui;
 
+import ui.Accueil;
 import nf.Patient;
 import nf.Professionnel;
 

@@ -15,6 +15,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import nf.*;
+import ui.AgendaPanel;
+import ui.AgendaPanel;
+import ui.Connexion;
+import ui.Connexion;
+import ui.DMR;
+import ui.DMR;
 
 /**
  *
@@ -118,33 +124,20 @@ public class Accueil extends javax.swing.JFrame {
         SecondPanel.setPreferredSize(new java.awt.Dimension(615, 331));
         SecondPanel.setLayout(new java.awt.BorderLayout());
 
-        jPanel1.setBackground(new java.awt.Color(247, 250, 253));
         jPanel1.setMinimumSize(new java.awt.Dimension(615, 331));
-        jPanel1.setPreferredSize(new java.awt.Dimension(615, 360));
+        jPanel1.setPreferredSize(new java.awt.Dimension(615, 331));
         jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.LINE_AXIS));
-        SecondPanel.add(jPanel1, java.awt.BorderLayout.CENTER);
+        SecondPanel.add(jPanel1, java.awt.BorderLayout.EAST);
 
-        PatientSearchPanel.setBackground(new java.awt.Color(196, 222, 231));
-        PatientSearchPanel.setForeground(new java.awt.Color(247, 250, 253));
-        PatientSearchPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        PatientSearchPanel.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         PatientSearchPanel.setMinimumSize(new java.awt.Dimension(230, 331));
-        PatientSearchPanel.setPreferredSize(new java.awt.Dimension(230, 360));
+        PatientSearchPanel.setPreferredSize(new java.awt.Dimension(230, 331));
 
-        DMRLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        DMRLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         DMRLabel.setText("CONSULTER UN DMR");
 
-        SearchPatientField.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        SearchPatientField.setText("Rechercher un DMR");
+        SearchPatientField.setText("Rechercher");
         SearchPatientField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 SearchPatientFieldMouseClicked(evt);
-            }
-        });
-        SearchPatientField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SearchPatientFieldActionPerformed(evt);
             }
         });
         SearchPatientField.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -153,20 +146,13 @@ public class Accueil extends javax.swing.JFrame {
             }
         });
 
-        SearchPatientButton.setBackground(new java.awt.Color(196, 222, 231));
+        SearchPatientButton.setText("R");
         SearchPatientButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 SearchPatientButtonMouseClicked(evt);
             }
         });
-        SearchPatientButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SearchPatientButtonActionPerformed(evt);
-            }
-        });
 
-        DMRTable.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        DMRTable.setForeground(new java.awt.Color(255, 255, 255));
         DMRTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
@@ -220,45 +206,36 @@ public class Accueil extends javax.swing.JFrame {
             .addGroup(PatientSearchPanelLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(PatientSearchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ScrollDMR, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(PatientSearchPanelLayout.createSequentialGroup()
-                        .addComponent(ScrollDMR, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(PatientSearchPanelLayout.createSequentialGroup()
-                        .addGroup(PatientSearchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(PatientSearchPanelLayout.createSequentialGroup()
-                                .addComponent(SearchPatientField, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(SearchPatientButton, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE))
-                            .addComponent(DMRLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(19, 19, 19))))
+                        .addGroup(PatientSearchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(DMRLabel)
+                            .addComponent(SearchPatientField, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(SearchPatientButton, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         PatientSearchPanelLayout.setVerticalGroup(
             PatientSearchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PatientSearchPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(PatientSearchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(SearchPatientButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(SearchPatientField))
-                .addGap(18, 18, 18)
-                .addComponent(DMRLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addGroup(PatientSearchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(SearchPatientField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SearchPatientButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(DMRLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ScrollDMR, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12))
+                .addComponent(ScrollDMR, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30))
         );
 
-        SecondPanel.add(PatientSearchPanel, java.awt.BorderLayout.WEST);
+        SecondPanel.add(PatientSearchPanel, java.awt.BorderLayout.CENTER);
 
         getContentPane().add(SecondPanel, java.awt.BorderLayout.PAGE_START);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void ouvrirDMR(Patient p){
-        jPanel1.removeAll();
-        jPanel1.add(new DMR(p, this), BorderLayout.CENTER);
-        this.pack();
-        this.repaint();
-    }
     private void DMRTableKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_DMRTableKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_DMRTableKeyPressed
@@ -271,10 +248,12 @@ public class Accueil extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_DMRTableMouseClicked
 
-    private void SearchPatientButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchPatientButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_SearchPatientButtonActionPerformed
-
+    public void ouvrirDMR(Patient p){
+        jPanel1.removeAll();
+        jPanel1.add(new DMR(p, this), BorderLayout.CENTER);
+        this.pack();
+        this.repaint();
+    }
     private void SearchPatientFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SearchPatientFieldKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             searchResult = sir.chercherPatient(SearchPatientField.getText());//recherche les patients
@@ -299,10 +278,6 @@ public class Accueil extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_SearchPatientFieldKeyPressed
-
-    private void SearchPatientFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchPatientFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_SearchPatientFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -329,9 +304,6 @@ public class Accueil extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Accueil.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */

@@ -5,6 +5,7 @@
  */
 package ui;
 
+import ui.Accueil;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.text.ParseException;

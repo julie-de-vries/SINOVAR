@@ -5,6 +5,7 @@
  */
 package ui;
 
+import keep.Accueil;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
@@ -69,6 +70,8 @@ public class Connexion extends javax.swing.JFrame {
         id = new javax.swing.JTextField();
         mdp = new javax.swing.JPasswordField();
         jButton2 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollBar1 = new javax.swing.JScrollBar();
         sepa_2 = new javax.swing.JPanel();
         message_panel = new javax.swing.JPanel();
         texte_panel = new javax.swing.JPanel();
@@ -182,6 +185,13 @@ public class Connexion extends javax.swing.JFrame {
         gridBagConstraints.gridy = 4;
         gridBagConstraints.insets = new java.awt.Insets(50, 0, 0, 0);
         seconnecter_panel.add(jButton2, gridBagConstraints);
+
+        jScrollPane1.setViewportView(jScrollBar1);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        seconnecter_panel.add(jScrollPane1, gridBagConstraints);
 
         connexion_panel.add(seconnecter_panel);
 
@@ -321,6 +331,8 @@ public class Connexion extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollBar jScrollBar1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel logo1;
     private javax.swing.JPasswordField mdp;
     private javax.swing.JPanel message_panel;
