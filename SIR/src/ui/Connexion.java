@@ -57,10 +57,6 @@ public class Connexion extends javax.swing.JFrame {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        jPanel2 = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
-        logo1 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
         connexion_panel = new javax.swing.JPanel();
         sepa_1 = new javax.swing.JPanel();
         seconnecter_panel = new javax.swing.JPanel();
@@ -73,6 +69,10 @@ public class Connexion extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jScrollBar1 = new javax.swing.JScrollBar();
         sepa_2 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        logo1 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
         message_panel = new javax.swing.JPanel();
         texte_panel = new javax.swing.JPanel();
         text1_label = new javax.swing.JLabel();
@@ -85,45 +85,6 @@ public class Connexion extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(247, 250, 253));
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.PAGE_AXIS));
-
-        jPanel2.setBackground(new java.awt.Color(247, 250, 253));
-        jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.LINE_AXIS));
-
-        jPanel1.setBackground(new java.awt.Color(247, 250, 253));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1547, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 200, Short.MAX_VALUE)
-        );
-
-        jPanel2.add(jPanel1);
-
-        logo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        logo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/Copie de SINOVAR.png"))); // NOI18N
-        jPanel2.add(logo1);
-
-        jPanel3.setBackground(new java.awt.Color(247, 250, 253));
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 94, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 200, Short.MAX_VALUE)
-        );
-
-        jPanel2.add(jPanel3);
-
-        getContentPane().add(jPanel2);
 
         connexion_panel.setBackground(new java.awt.Color(247, 250, 253));
         connexion_panel.setLayout(new javax.swing.BoxLayout(connexion_panel, javax.swing.BoxLayout.LINE_AXIS));
@@ -202,6 +163,45 @@ public class Connexion extends javax.swing.JFrame {
         connexion_panel.add(sepa_2);
 
         getContentPane().add(connexion_panel);
+
+        jPanel2.setBackground(new java.awt.Color(247, 250, 253));
+        jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.LINE_AXIS));
+
+        jPanel1.setBackground(new java.awt.Color(247, 250, 253));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1547, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 200, Short.MAX_VALUE)
+        );
+
+        jPanel2.add(jPanel1);
+
+        logo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        logo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/Copie de SINOVAR.png"))); // NOI18N
+        jPanel2.add(logo1);
+
+        jPanel3.setBackground(new java.awt.Color(247, 250, 253));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 94, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 200, Short.MAX_VALUE)
+        );
+
+        jPanel2.add(jPanel3);
+
+        getContentPane().add(jPanel2);
 
         message_panel.setBackground(new java.awt.Color(247, 250, 253));
         java.awt.FlowLayout flowLayout1 = new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 100, 50);
