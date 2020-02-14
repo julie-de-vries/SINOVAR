@@ -29,9 +29,9 @@ public class DataBaseLayer {
             e.printStackTrace();
         }
         /* Connexion à la base de données */
-        String url = "jdbc:mysql://localhost:3306/sinovar?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-        String user = "Julie";
-        String password = "sinovAr4";
+        String url = "jdbc:mysql://localhost:3306/database_sinovar?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+        String user = "AlexP";
+        String password = "WonDerBox.69";
         Connection connexion = null;
        try {
            connexion = DriverManager.getConnection( url ,user, password);
