@@ -7,6 +7,7 @@ package ui;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import nf.Identifications;
 
@@ -179,6 +180,11 @@ public class Connexion extends javax.swing.JFrame {
                 jButton2MouseClicked(evt);
             }
         });
+        jButton2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButton2KeyPressed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 4;
@@ -277,6 +283,22 @@ public class Connexion extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Identifiant/Mot de passe incorrect(s)");
         }
     }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButton2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton2KeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            String id = this.id.getText();
+        String mdp = String.valueOf(this.mdp.getPassword());
+        Identifications c = new Identifications(id, mdp);
+        
+        if(c.isAuth()){
+            this.dispose();
+            Accueil a = new Accueil(c.getCurrentUser());
+            a.setVisible(true);
+        } else {             
+            JOptionPane.showMessageDialog(null, "Identifiant/Mot de passe incorrect(s)");
+        }
+        }
+    }//GEN-LAST:event_jButton2KeyPressed
 
     /**
      * @param args the command line arguments
