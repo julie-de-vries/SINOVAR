@@ -20,8 +20,8 @@ import nf.ImageProcessing;
 public class Image extends javax.swing.JFrame {
 
     private ImageProcessing img;
-    ImageRadio ir;
-
+    private ImageRadio ir;
+    private Controler controler;
     /**
      * Creates new form Image
      */
@@ -34,20 +34,10 @@ public class Image extends javax.swing.JFrame {
         ImagePanel.add(ir, BorderLayout.CENTER);
     }
 
-    public Image(int id_image) {
+    public Image(Controler controler) {
+        this.controler=controler;
         initComponents();
-        DataBaseLayer dbl = new DataBaseLayer("Select * from database_sinovar.pacs where numero_archivage =" + id_image + ";");
-        Blob b=null;
-        try {
-            b = dbl.getConnexion().createBlob();
-            String strContent = dbl.getResult().get(1).get(3);
-            byte[] byteConent = strContent.getBytes();
-            b.setBytes(1, byteConent);
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(Image.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        img = new ImageProcessing(b);
+        img = new ImageProcessing(controler.getImage());
         ir = new ImageRadio(img);
         ir.setVisible(true);
         ImagePanel.add(ir, BorderLayout.CENTER);
