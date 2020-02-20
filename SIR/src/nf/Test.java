@@ -135,13 +135,12 @@ public class Test {
         //sir.afficherExamProfessionnel(pro5);
 
 //        agenda.afficherAgenda(pro1, "04041959");*/
-        DataBaseLayer DBL = new DataBaseLayer("Select * from database_sinovar.patient where numero_SS= '"+29806+"';");
-        DBL.getResult().remove(0);
-        System.out.println(DBL.getResult().isEmpty());
-        for (int i=0; i<DBL.getResult().size();i++)
-            for(int j=0; j<DBL.getResult().get(i).size();j++)
-                System.out.println(DBL.getResult().get(i).get(j));
-        
+        String title ="rien";
+        String content ="ça m'a saoulé";
+        DataBaseLayer DBL = new DataBaseLayer("Insert into database_sinovar.compte_rendu(titre,contenu) values('"+title+"','"+content+"');"); 
+        DBL = new DataBaseLayer("SELECT id_compte_rendu FROM compte_rendu ORDER BY id_compte_rendu DESC;");
+        String id_cr = DBL.getResult().get(1).get(0);
+        System.out.println(id_cr);
     }
     
 

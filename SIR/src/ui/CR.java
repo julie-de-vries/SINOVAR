@@ -16,12 +16,15 @@ public class CR extends javax.swing.JFrame {
     /**
      * Creates new form CR
      */
+    private Controler controler;
     public CR() {
         initComponents();
     }
     
-    public CR(int id_CR){
+    public CR(Controler controler){
+        this.controler=controler;
         initComponents();
+        int id_CR = controler.getCurrentExam().getCr();
         DataBaseLayer dbl = new DataBaseLayer("Select * from database_sinovar.compte_rendu where id_compte_rendu ="+id_CR+";");
         String title = dbl.getResult().get(1).get(1);
         String content = dbl.getResult().get(1).get(2);
@@ -102,6 +105,9 @@ public class CR extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(CR.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */

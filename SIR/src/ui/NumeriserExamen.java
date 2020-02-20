@@ -13,11 +13,32 @@ import java.awt.Toolkit;
  * @author laura
  */
 public class NumeriserExamen extends javax.swing.JFrame {
-
+    private Controler controler;
     /**
      * Creates new form numerisation
      */
     public NumeriserExamen() {
+        initComponents();
+          //récuperer la dimension de l'écran
+        Dimension tailleMoniteur = Toolkit.getDefaultToolkit().getScreenSize();
+        int longueur = tailleMoniteur.width * 2/3;
+        int hauteur = tailleMoniteur.height * 2/3;
+        
+        this.setSize(longueur, hauteur);
+        
+        this.setTitle("Numériser");
+        
+         // set the jframe size and location, and make it visible
+   
+        this.setPreferredSize(new Dimension(longueur, hauteur));
+        this.setMinimumSize(new Dimension(longueur,hauteur));
+        this.pack();
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
+    }
+    
+    public NumeriserExamen(Controler controler) {
+        this.controler=controler;
         initComponents();
           //récuperer la dimension de l'écran
         Dimension tailleMoniteur = Toolkit.getDefaultToolkit().getScreenSize();

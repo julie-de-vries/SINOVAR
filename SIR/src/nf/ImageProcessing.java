@@ -38,17 +38,11 @@ public class ImageProcessing {
             }
         }
     }
-    public ImageProcessing(Blob b){
-        try {
-            try {
-                img = ImageIO.read(b.getBinaryStream());
+    public ImageProcessing(BufferedImage bi){
+        
+                img = bi;
                 imgInit = img;
-            } catch (IOException ex) {
-                Logger.getLogger(ImageProcessing.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(ImageProcessing.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            
         
     }
     /*l'image est tournée de 90° vers la droite*/
@@ -59,7 +53,7 @@ public class ImageProcessing {
 
         for( int i=0 ; i < width ; i++ )
             for( int j=0 ; j < height ; j++ )
-                newImage.setRGB( height-1-i, j, img.getRGB(j,i) );
+                newImage.setRGB( width-1-i, j, img.getRGB(j,i) );
 
         img=newImage;
     }
@@ -71,7 +65,7 @@ public class ImageProcessing {
 
         for( int i=0 ; i < width ; i++ )
             for( int j=0 ; j < height ; j++ )
-                newImage.setRGB( i, width-1-j, img.getRGB(j,i) );
+                newImage.setRGB( i, height-1-j, img.getRGB(j,i) );
 
         img=newImage;
     }
@@ -83,7 +77,7 @@ public class ImageProcessing {
 
         for( int i=0 ; i < width ; i++ )
             for( int j=0 ; j < height ; j++ )
-                newImage.setRGB( height-1-j, i, img.getRGB(j,i) );
+                newImage.setRGB( height-1-j, i, img.getRGB(i,j) );
 
         img=newImage;
     }
@@ -95,7 +89,7 @@ public class ImageProcessing {
 
         for( int i=0 ; i < width ; i++ )
             for( int j=0 ; j < height ; j++ )
-                newImage.setRGB( j, width-1-i, img.getRGB(j,i) );
+                newImage.setRGB( j, width-1-i, img.getRGB(i,j) );
 
         img=newImage;
     }
@@ -103,7 +97,7 @@ public class ImageProcessing {
     public void brighten(float f){
         int         width  = img.getWidth();
         int         height = img.getHeight();
-        BufferedImage   newImage = new BufferedImage( height, width, img.getType() );
+        BufferedImage   newImage = new BufferedImage( width, height, img.getType() );
         for( int i=0 ; i < height ; i++ ){
             for( int j=0 ; j < width ; j++ ){
                 Color c=new Color(imgInit.getRGB(i, j));

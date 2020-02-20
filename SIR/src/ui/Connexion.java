@@ -16,10 +16,37 @@ import nf.Identifications;
  * @author Julie
  */
 public class Connexion extends javax.swing.JFrame {
-
+    private Controler controler;
     /**
      * Creates new form Connexion
      */
+    public Connexion(Controler controler) {
+        this.controler= controler;
+        initComponents();
+        //récuperer la dimension de l'écran
+        Dimension tailleMoniteur = Toolkit.getDefaultToolkit().getScreenSize();
+        int longueur = tailleMoniteur.width*2/3;
+        int hauteur = tailleMoniteur.height*2/3;
+        System.out.println(longueur);
+        System.out.println(hauteur);
+        //régler la taille de JFrame à 2/3 la taille de l'écran
+        this.setSize(longueur, hauteur);
+        this.setTitle("Se connecter au SIR 1.0");
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
+        //this.setResizable(false);
+
+        int longueur1 = longueur*2/3;
+        int hauteur1 = hauteur*1/3;
+        
+        message_panel.setPreferredSize(new Dimension(longueur1, hauteur1));
+        System.out.println(longueur1);
+        connexion_panel.setPreferredSize(new Dimension(longueur1, hauteur1));
+        System.out.println(hauteur1);
+        deco_panel.setPreferredSize(new Dimension(longueur1, hauteur1));
+        
+        
+    }
     public Connexion() {
         initComponents();
         //récuperer la dimension de l'écran
@@ -273,12 +300,11 @@ public class Connexion extends javax.swing.JFrame {
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
         String id = this.id.getText();
         String mdp = String.valueOf(this.mdp.getPassword());
-        Identifications c = new Identifications(id, mdp);
+        boolean auth = controler.identifications(id, mdp);
         
-        if(c.isAuth()){
+        if(auth){
             this.dispose();
-            Accueil a = new Accueil(c.getCurrentUser());
-            a.setVisible(true);
+            controler.launchHomePage();
         } else {             
             JOptionPane.showMessageDialog(null, "Identifiant/Mot de passe incorrect(s)");
         }
@@ -286,14 +312,13 @@ public class Connexion extends javax.swing.JFrame {
 
     private void jButton2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton2KeyPressed
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-            String id = this.id.getText();
+        String id = this.id.getText();
         String mdp = String.valueOf(this.mdp.getPassword());
-        Identifications c = new Identifications(id, mdp);
+        boolean auth = controler.identifications(id, mdp);
         
-        if(c.isAuth()){
+        if(auth){
             this.dispose();
-            Accueil a = new Accueil(c.getCurrentUser());
-            a.setVisible(true);
+            controler.launchHomePage();
         } else {             
             JOptionPane.showMessageDialog(null, "Identifiant/Mot de passe incorrect(s)");
         }

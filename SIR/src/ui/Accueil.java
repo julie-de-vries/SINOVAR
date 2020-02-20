@@ -14,6 +14,7 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.table.DefaultTableModel;
 import nf.*;
 
 /**
@@ -22,73 +23,28 @@ import nf.*;
  */
 public class Accueil extends javax.swing.JFrame {
 
-    private SIR sir;
-    private final Professionnel currentUser;
     private ArrayList<Patient> searchResult;
+    private Controler controler;
+    private AgendaPanel ap;
+    private DMR dmr;
 
     /**
      * Creates new form Accueil
-     *
-     * @param currentUser : utilisateur actuel connecté au logiciel
      */
-    public Accueil(Professionnel currentUser) {
+    public Accueil(Controler controler) {
+        this.controler=controler;
         String titreDePage = "Sinovar";
         this.setTitle(titreDePage);
-        this.currentUser = currentUser;
-        DataBaseLayer DBL = new DataBaseLayer("SELECT * from database_sinovar.personnel;");
-        Professionnels pros = new Professionnels();
-        for (int i = 1; i < DBL.getResult().size(); i++) {
-            ArrayList<String> row = DBL.getResult().get(i);
-            Metier m = Metier.valueOf(row.get(4));
-            Professionnel p = new Professionnel(row.get(0), row.get(1), row.get(2), row.get(3), m, row.get(5), row.get(6), row.get(7));
-            pros.ajouterProfessionnel(p);
-        }
-        /*récupération du personnel de la BDD*/
-        sir = new SIR(pros);
-        DBL = new DataBaseLayer("SELECT * from database_sinovar.patient;");
-        ArrayList<String> row = null;
-        for (int i = 1; i < DBL.getResult().size(); i++) {
-            row = DBL.getResult().get(i);
-            int id = Integer.parseInt(row.get(0));
-            Patient p = new Patient(id, row.get(1), row.get(2), row.get(3), row.get(4), row.get(5), row.get(6), row.get(7), row.get(8));
-            DataBaseLayer DBL1 = new DataBaseLayer("SELECT * from database_sinovar.examen where identifiant_patient=" + id + ";");
-            for (int j = 1; j < DBL1.getResult().size(); j++) {
-                row = DBL1.getResult().get(j);
-                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-                try {
-                    Date d1 = format.parse(row.get(4));
-                    Date d2 = format.parse(row.get(5));
-                    Professionnel pro = sir.chercherProfessionnel(row.get(10));
-                    int image=0;
-                    if(row.get(11)!=null){
-                        image=Integer.parseInt(row.get(11));
-                    }
-                    int cr=0;
-                    if(row.get(13)!=null){
-                        cr=Integer.parseInt(row.get(13));
-                    }
-                    Examen e = new Examen(Integer.parseInt(row.get(0)), TypeExam.valueOf(row.get(1)), LocalisationExamen.valueOf(row.get(2)), row.get(3), d1, d2, Integer.parseInt(row.get(6)), Double.parseDouble(row.get(7)), row.get(8), pro, image, Code.valueOf(row.get(12).toUpperCase()),cr);
-                    //en commentaire tant qu'il n'y a pas accord sur Examen (bdd, ui et nf)
-                    /*d1 = new Date(120,01,05,8,30);
-                    d2 = new Date(120,01,05,9,0);
-                    Examen e = new Examen(1,"examen de ta mère",d1,d2,TypeExam.IRM,this.currentUser,"");*/
-                    p.getDmr().ajouterExamen(e);
-                } catch (ParseException ex) {
-                    Logger.getLogger(Accueil.class.getName()).log(Level.SEVERE, null, ex);
-                }
-
-            }
-            
-            sir.ajouterPatient(p);
-        }
-        /*récupération des patients de la BDD avec leur examens respectifs*/
-
         initComponents();
-        AgendaPanel ap = new AgendaPanel(this);
-        this.jPanel1.add(ap, BorderLayout.CENTER);
-        this.pack();
-        this.setVisible(true);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        add(new AgendaPanel(controler));
+        controler.setAccueil(this);
+    }
+    
+    public Accueil(){
+        String titreDePage = "Sinovar";
+        this.setTitle(titreDePage);
+        initComponents();
+        add(new AgendaPanel(controler));
     }
 
     /**
@@ -159,6 +115,11 @@ public class Accueil extends javax.swing.JFrame {
                 SearchPatientButtonMouseClicked(evt);
             }
         });
+        SearchPatientButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                SearchPatientButtonMouseClicked(evt);
+            }
+        });
         SearchPatientButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SearchPatientButtonActionPerformed(evt);
@@ -169,7 +130,7 @@ public class Accueil extends javax.swing.JFrame {
         DMRTable.setForeground(new java.awt.Color(255, 255, 255));
         DMRTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
+                {"Effectuez une recherche", null},
                 {null, null},
                 {null, null},
                 {null, null},
@@ -228,7 +189,7 @@ public class Accueil extends javax.swing.JFrame {
                             .addGroup(PatientSearchPanelLayout.createSequentialGroup()
                                 .addComponent(SearchPatientField, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(SearchPatientButton, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE))
+                                .addComponent(SearchPatientButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(DMRLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(19, 19, 19))))
         );
@@ -252,10 +213,17 @@ public class Accueil extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    public void ouvrirDMR(Patient p){
+    public void add(AgendaPanel ap) {
+        this.ap=ap;
         jPanel1.removeAll();
-        jPanel1.add(new DMR(p, this), BorderLayout.CENTER);
+        jPanel1.add(ap, BorderLayout.CENTER);
+        this.pack();
+    }
+
+    public void add(DMR dmr) {
+        this.dmr=dmr;
+        jPanel1.removeAll();
+        jPanel1.add(dmr, BorderLayout.CENTER);
         this.pack();
         this.repaint();
     }
@@ -266,7 +234,8 @@ public class Accueil extends javax.swing.JFrame {
     private void DMRTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DMRTableMouseClicked
         int row = DMRTable.getSelectedRow();
         if (searchResult != null && row >= 0 && row < searchResult.size()) {
-            ouvrirDMR(searchResult.get(row));
+            controler.setCurrentPatient(searchResult.get(row));
+            add(new DMR(controler));
             /*ouvre le DMR du patient selectionne*/
         }
     }//GEN-LAST:event_DMRTableMouseClicked
@@ -277,22 +246,21 @@ public class Accueil extends javax.swing.JFrame {
 
     private void SearchPatientFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SearchPatientFieldKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            searchResult = sir.chercherPatient(SearchPatientField.getText());//recherche les patients
-            /*vide le tableau*/
+            searchResult = controler.getSir().chercherPatient(SearchPatientField.getText());//recherche les patients
+            int nbPatient = searchResult.size();
+            /*efface le tableau*/
+
             if (SearchPatientField.getText().isEmpty() || searchResult.isEmpty()) {
-                for (int i = 0; i < DMRTable.getRowCount(); i++) {
-                    DMRTable.setValueAt("", i, 0);
-                    DMRTable.setValueAt("", i, 1);
-                }
+                DMRTable.setValueAt("Faire une recherche", 0, 0);
             } else {
-                /*remplit les lignes jusqu'à ce qu'il n'y en ait plus ou jusqu'à ce que la liste soit finie*/
-                for (int i = 0; i < Math.min(searchResult.size(), DMRTable.getRowCount()); i++) {
-                    DMRTable.setValueAt(searchResult.get(i).getNomUsuel(), i, 0);
-                    DMRTable.setValueAt(searchResult.get(i).getIdPatient(), i, 1);
-                }
-                /*remplit le reste des lignes si la liste est plus longue que le tableau en ajoutant des lignes*/
-                for (int i = DMRTable.getRowCount(); i < Math.max(searchResult.size(), DMRTable.getRowCount()); i++) {
-                    //ajouter des lignes ??
+                /*création et remplissage du tableau*/
+                DefaultTableModel model = new DefaultTableModel();
+                model.addColumn("Nom");
+                model.addColumn("Identifiant");
+                model.setRowCount(nbPatient);
+                DMRTable.setModel(model);
+                /*remplit les lignes*/
+                for (int i = 0; i < nbPatient; i++) {
                     DMRTable.setValueAt(searchResult.get(i).getNomUsuel(), i, 0);
                     DMRTable.setValueAt(searchResult.get(i).getIdPatient(), i, 1);
                 }
@@ -303,6 +271,27 @@ public class Accueil extends javax.swing.JFrame {
     private void SearchPatientFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchPatientFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_SearchPatientFieldActionPerformed
+
+    private void SearchPatientButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SearchPatientButtonMouseClicked
+        searchResult = controler.getSir().chercherPatient(SearchPatientField.getText());//recherche les patients
+        int nbPatient = searchResult.size();
+        /*efface le tableau*/
+        if (SearchPatientField.getText().isEmpty() || searchResult.isEmpty()) {
+            DMRTable.setValueAt("Faire une recherche", 0, 0);
+        } else {
+            /*création et remplissage du tableau*/
+            DefaultTableModel model = new DefaultTableModel();
+            model.addColumn("Nom");
+            model.addColumn("Identifiant");
+            model.setRowCount(nbPatient);
+            DMRTable.setModel(model);
+            /*remplit les lignes*/
+            for (int i = 0; i < nbPatient; i++) {
+                DMRTable.setValueAt(searchResult.get(i).getNomUsuel(), i, 0);
+                DMRTable.setValueAt(searchResult.get(i).getIdPatient(), i, 1);
+            }
+        }
+    }//GEN-LAST:event_SearchPatientButtonMouseClicked
 
     /**
      * @param args the command line arguments
@@ -337,9 +326,7 @@ public class Accueil extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Accueil a = new Accueil(null);
-                AgendaPanel ap = new AgendaPanel(a);
-                a.jPanel1.add(ap, BorderLayout.CENTER);
+                Accueil a = new Accueil();
                 a.pack();
                 a.setVisible(true);
                 a.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -353,41 +340,15 @@ public class Accueil extends javax.swing.JFrame {
         //.setText("");
     }
 
-    public void SearchPatientButtonMouseClicked(java.awt.event.MouseEvent evt) {
-        searchResult = getSir().chercherPatient(SearchPatientField.getText());//recherche les patients
-        /*vide le tableau*/
-        if (SearchPatientField.getText().trim().equals("") || searchResult.isEmpty()) {
-            for (int i = 0; i < DMRTable.getRowCount(); i++) {
-                DMRTable.setValueAt("", i, 0);
-                DMRTable.setValueAt("", i, 1);
-            }
-        } else {
-            /*remplit les lignes jusqu'à ce qu'il n'y en ait plus ou jusqu'à ce que la liste soit finie*/
-            for (int i = 0; i < Math.min(searchResult.size(), DMRTable.getRowCount()); i++) {
-                DMRTable.setValueAt(searchResult.get(i).getNomUsuel(), i, 0);
-                DMRTable.setValueAt(searchResult.get(i).getIdPatient(), i, 1);
-            }
-            /*remplit le reste des lignes si la liste est plus longue que le tableau en ajoutant des lignes*/
-            for (int i = DMRTable.getRowCount(); i < Math.max(searchResult.size(), DMRTable.getRowCount()); i++) {
-                //ajouter des lignes ??
-                DMRTable.setValueAt(searchResult.get(i).getNomUsuel(), i, 0);
-                DMRTable.setValueAt(searchResult.get(i).getIdPatient(), i, 1);
-            }
-        }
-    }
-
     public void CloseDMR() {
         jPanel1.removeAll();
-        jPanel1.add(new AgendaPanel(this), BorderLayout.CENTER);
+        jPanel1.add(new AgendaPanel(controler), BorderLayout.CENTER);
         /*ouvre le DMR du patient selectionne*/
         this.pack();
         this.repaint();
     }
 
-    public void logOut() {
-        this.dispose();
-        new Connexion().setVisible(true);
-    }
+    
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -403,17 +364,17 @@ public class Accueil extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     /**
-     * @return the currentUser
+     * @return the ap
      */
-    public Professionnel getCurrentUser() {
-        return currentUser;
+    public AgendaPanel getAp() {
+        return ap;
     }
 
     /**
-     * @return the sir
+     * @return the dmr
      */
-    public SIR getSir() {
-        return sir;
+    public DMR getDmr() {
+        return dmr;
     }
 
 }

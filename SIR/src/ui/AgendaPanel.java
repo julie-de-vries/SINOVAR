@@ -5,7 +5,6 @@
  */
 package ui;
 
-import ui.Accueil;
 import java.awt.event.KeyEvent;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -14,7 +13,7 @@ import java.util.Calendar;
 import java.util.Date;
 import javax.swing.table.DefaultTableModel;
 import nf.Examen;
-import nf.Metier;
+import nf.Professionnel;
 import nf.TypeExam;
 
 /**
@@ -22,23 +21,41 @@ import nf.TypeExam;
  * @author Julie
  */
 public class AgendaPanel extends javax.swing.JPanel {
-
-    private final Accueil a;
+    private Controler controler;
     private Date dateSelected;
     private final SimpleDateFormat format = new SimpleDateFormat("d/MM/yyyy");
 
     /**
      * Creates new form NewJPanel
-     * @param a
+     * 
      */
-    public AgendaPanel(Accueil a) {
-        this.a = a;
+    public AgendaPanel(Controler controler) {
+        this.controler=controler;
         dateSelected = new Date();
         initComponents();
 
-        utilisateur_label.setText("Utilisateur : "+ a.getCurrentUser().getNom());
-        /*fait un nullPointerException pourquoi ?? (sout currentUser.getNom() ne fait pas de NPE)
-         */
+        utilisateur_label.setText("Utilisateur : "+ controler.getCurrentUser().getNom());
+ /*création et remplissage du tableau*/
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Horaire");
+        /*On suppose un nombre de trois salles pour chaque type d'examen, il est à adapter à l'établissement*/
+        model.addColumn("Salle 1");
+        model.addColumn("Salle 2");
+        model.addColumn("Salle 3");
+        model.setRowCount(48);//nombre de demi-heures dans un jour
+        AgendaTable.setModel(model);
+        for (int i = 0; i < 48; i++) {
+            AgendaTable.setValueAt(Math.round(i / 2) + ":" + (i % 2) * 3 + 0, i, 0);
+        }
+        RemplirTableau();
+
+    }
+    
+    public AgendaPanel() {
+        dateSelected = new Date();
+        initComponents();
+
+        utilisateur_label.setText("Utilisateur : ");
  /*création et remplissage du tableau*/
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("Horaire");
@@ -249,7 +266,7 @@ public class AgendaPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void logOutButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logOutButtonMouseClicked
-        a.logOut();
+        controler.logOut();
     }//GEN-LAST:event_logOutButtonMouseClicked
 
     private void SelectTypePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_SelectTypePropertyChange
@@ -306,15 +323,15 @@ public class AgendaPanel extends javax.swing.JPanel {
         RemplirTableau();    }//GEN-LAST:event_SelectTypeActionPerformed
 
     private void CreateDMRMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CreateDMRMouseClicked
-        new CreerDMR(a).setVisible(true);
+        new CreerDMR(controler).setVisible(true);
     }//GEN-LAST:event_CreateDMRMouseClicked
 
     private void RemplirTableau() {
         /*On cherche les examens du ph utilisateur*/
 
         ArrayList<Examen> listeExamens = new ArrayList();
-        int nbExam = a.getCurrentUser().getExam(a.getSir()).size();
-        listeExamens = a.getCurrentUser().getExam(a.getSir());
+        int nbExam = controler.getCurrentUser().getExam(controler.getSir()).size();
+        listeExamens = controler.getCurrentUser().getExam(controler.getSir());
         for (int i = 0; i < nbExam; i++) {
             /*on met dans le tableau seulement les examens du type selectionné*/
             if (listeExamens.get(i).getType() == TypeExam.valueOf(SelectType.getSelectedItem().toString())) {
@@ -326,7 +343,7 @@ public class AgendaPanel extends javax.swing.JPanel {
                 if (d1.equals(d2)) {
                     int[] trancheHoraires = listeExamens.get(i).calculTrancheHoraire();
                     int salle = listeExamens.get(i).getSalle();
-                    String affichage = listeExamens.get(i).afficherExamen(a.getSir());
+                    String affichage = listeExamens.get(i).afficherExamen(controler.getSir());
                     for (int j = 0; j < trancheHoraires.length; j++) {
 
                         AgendaTable.setValueAt(affichage, trancheHoraires[j], salle);

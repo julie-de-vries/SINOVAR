@@ -3,32 +3,27 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Peuillon/Documents/NetBeansProjects/SIRNOVA/SIR/src/nf/SIR.java</file>
-            <file>file:/C:/Users/Peuillon/Documents/NetBeansProjects/SIRNOVA/SIR/src/nf/DataBaseLayer.java</file>
-            <file>file:/C:/Users/Peuillon/Documents/NetBeansProjects/SIRNOVA/SIR/src/nf/Code.java</file>
-            <file>file:/C:/Users/Peuillon/Documents/NetBeansProjects/SIRNOVA/SIR/src/ui/Controleur.java</file>
-            <file>file:/C:/Users/Peuillon/Documents/NetBeansProjects/SIRNOVA/SIR/src/ui/Test.java</file>
-            <file>file:/C:/Users/Peuillon/Documents/NetBeansProjects/SIRNOVA/SIR/src/ui/DMR.java</file>
-            <file>file:/C:/Users/Peuillon/Documents/NetBeansProjects/SIRNOVA/SIR/src/nf/DMR.java</file>
-            <file>file:/C:/Users/Peuillon/Documents/NetBeansProjects/SIRNOVA/SIR/src/nf/Metier.java</file>
-            <file>file:/C:/Users/Peuillon/Documents/NetBeansProjects/SIRNOVA/SIR/src/ui/Connexion.java</file>
-            <file>file:/C:/Users/Peuillon/Documents/NetBeansProjects/SIRNOVA/SIR/src/ui/CR.java</file>
-            <file>file:/C:/Users/Peuillon/Documents/NetBeansProjects/SIRNOVA/SIR/src/nf/Professionnel.java</file>
-            <file>file:/C:/Users/Peuillon/Documents/NetBeansProjects/SIRNOVA/SIR/src/ui/NumeriserExamen.java</file>
-            <file>file:/C:/Users/Peuillon/Documents/NetBeansProjects/SIRNOVA/SIR/src/ui/EnregistrerExamen.java</file>
-            <file>file:/C:/Users/Peuillon/Documents/NetBeansProjects/SIRNOVA/SIR/src/nf/Test.java</file>
-            <file>file:/C:/Users/Peuillon/Documents/NetBeansProjects/SIRNOVA/SIR/src/ui/ImageRadio.java</file>
-            <file>file:/C:/Users/Peuillon/Documents/NetBeansProjects/SIRNOVA/SIR/src/ui/CreerDMR.java</file>
-            <file>file:/C:/Users/Peuillon/Documents/NetBeansProjects/SIRNOVA/SIR/src/nf/Numerize.java</file>
-            <file>file:/C:/Users/Peuillon/Documents/NetBeansProjects/SIRNOVA/SIR/src/nf/ImageProcessing.java</file>
-            <file>file:/C:/Users/Peuillon/Documents/NetBeansProjects/SIRNOVA/SIR/src/nf/Examen.java</file>
-            <file>file:/C:/Users/Peuillon/Documents/NetBeansProjects/SIRNOVA/SIR/src/nf/TypeExam.java</file>
-            <file>file:/C:/Users/Peuillon/Documents/NetBeansProjects/SIRNOVA/SIR/src/ui/Accueil.java</file>
-            <file>file:/C:/Users/Peuillon/Documents/NetBeansProjects/SIRNOVA/SIR/src/ui/InfoExamen.java</file>
-            <file>file:/C:/Users/Peuillon/Documents/NetBeansProjects/SIRNOVA/SIR/src/nf/CompteRendu.java</file>
-            <file>file:/C:/Users/Peuillon/Documents/NetBeansProjects/SIRNOVA/SIR/src/nf/Patient.java</file>
-            <file>file:/C:/Users/Peuillon/Documents/NetBeansProjects/SIRNOVA/SIR/src/ui/AgendaPanel.java</file>
-            <file>file:/C:/Users/Peuillon/Documents/NetBeansProjects/SIRNOVA/SIR/src/nf/PgmImage.java</file>
+            <file>file:/C:/Users/Julie/Documents/NetBeansProjects/SIRNOVA/SIR/src/nf/DMR.java</file>
+            <file>file:/C:/Users/Julie/Documents/NetBeansProjects/SIRNOVA/SIR/src/ui/CreerDMR2.java</file>
+            <file>file:/C:/Users/Julie/Documents/NetBeansProjects/SIRNOVA/SIR/src/ui/DoublonPatient.java</file>
+            <file>file:/C:/Users/Julie/Documents/NetBeansProjects/SIRNOVA/SIR/src/ui/DMR.java</file>
+            <file>file:/C:/Users/Julie/Documents/NetBeansProjects/SIRNOVA/SIR/src/nf/Identifications.java</file>
+            <file>file:/C:/Users/Julie/Documents/NetBeansProjects/SIRNOVA/SIR/src/nf/ImageProcessing.java</file>
+            <file>file:/C:/Users/Julie/Documents/NetBeansProjects/SIRNOVA/SIR/src/nf/Test.java</file>
+            <file>file:/C:/Users/Julie/Documents/NetBeansProjects/SIRNOVA/SIR/src/nf/SIR.java</file>
+            <file>file:/C:/Users/Julie/Documents/NetBeansProjects/SIRNOVA/SIR/src/ui/CR_1.java</file>
+            <file>file:/C:/Users/Julie/Documents/NetBeansProjects/SIRNOVA/SIR/src/nf/Examen.java</file>
+            <file>file:/C:/Users/Julie/Documents/NetBeansProjects/SIRNOVA/SIR/src/nf/DataBaseLayer.java</file>
+            <file>file:/C:/Users/Julie/Documents/NetBeansProjects/SIRNOVA/SIR/src/ui/Accueil.java</file>
+            <file>file:/C:/Users/Julie/Documents/NetBeansProjects/SIRNOVA/SIR/src/ui/Controler.java</file>
+            <file>file:/C:/Users/Julie/Documents/NetBeansProjects/SIRNOVA/SIR/src/nf/CompteRendu.java</file>
+            <file>file:/C:/Users/Julie/Documents/NetBeansProjects/SIRNOVA/SIR/src/ui/AgendaPanel.java</file>
+            <file>file:/C:/Users/Julie/Documents/NetBeansProjects/SIRNOVA/SIR/src/ui/CreerDMR.java</file>
+            <file>file:/C:/Users/Julie/Documents/NetBeansProjects/SIRNOVA/SIR/src/ui/EcrireCR.java</file>
+            <file>file:/C:/Users/Julie/Documents/NetBeansProjects/SIRNOVA/SIR/src/nf/Code.java</file>
+            <file>file:/C:/Users/Julie/Documents/NetBeansProjects/SIRNOVA/SIR/src/ui/Image.java</file>
+            <file>file:/C:/Users/Julie/Documents/NetBeansProjects/SIRNOVA/SIR/src/ui/EnregistrerExamen.java</file>
+            <file>file:/C:/Users/Julie/Documents/NetBeansProjects/SIRNOVA/SIR/src/ui/NumeriserExamen.java</file>
         </group>
     </open-files>
 </project-private>

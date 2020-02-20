@@ -10,8 +10,8 @@ package nf;
  * @author Peuillon
  */
 public enum Code {
-    ENREGISTREMENT(3),
-    NUMERISATION(5);
+    enregistrement(3),
+    numerisation(5);
     private int cout;
     
     Code(int cout){

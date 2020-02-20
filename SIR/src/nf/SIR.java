@@ -21,30 +21,6 @@ public class SIR {
     public ArrayList<Patient> getPatient() {
         return this.patients;
     }
-
-    public boolean ajouterPatientBDD(String nomNaissance,String nomUsuel, String prenom,String nss,String tel, String adresse,  String dateDeNaissance, String genre) {
-        DataBaseLayer DBL = new DataBaseLayer("Select * from database_sinovar.patient where numero_SS= '"+nss+"';");
-        DBL.getResult().remove(0);
-        boolean modif=false;
-        if(DBL.getResult().isEmpty()){
-            DBL = new DataBaseLayer("Insert into database_sinovar.patient(nom_naissance_patient,nom_usuel_patient,prenom_patient,numero_SS,adresse,tel_patient,date_de_naissance,genre) values('"+nomNaissance+"','"+nomUsuel+"','"+prenom+"','"+nss+"','"+tel+"','"+adresse+"','"+dateDeNaissance+"','"+genre+"');");
-            modif=true;
-        }
-        
-        return modif;
-        
-    }
-    
-    public void ajouterExamBDD(TypeExam type, LocalisationExamen localisation_examen,String notes, String dateDebut, String dateFin, int salle, double dose, String libelleDose,int id_patient, Professionnel pro, Code code) {
-        DataBaseLayer DBL = new DataBaseLayer("Insert into database_sinovar.examen(type_examen,localisation_examen,note_examen,date_debut,date_fin,salle,dose_examen,libelle_dose,identifiant_patient,identifiant_personnel,numero_archivage,code_cout,id_compte_rendu) values('"+type.toString()+"','"+localisation_examen+"','"+notes+"','"+dateDebut+"','"+dateFin+"','"+salle+"','"+dose+"','"+libelleDose+"','"+id_patient+"','"+pro.getId_pro()+"',null,'"+code.toString()+"',null);"); 
-    }
-    
-    public void ajouterCR(int idExam,String title, String content) {
-        DataBaseLayer DBL = new DataBaseLayer("Insert into database_sinovar.compte_rendu(titre,contenu) values('"+title+"','"+content+"');"); 
-        DBL = new DataBaseLayer("SELECT id_compte_rendu FROM compte_rendu ORDER BY id_compte_rendu DESC;");
-        String id_cr = DBL.getResult().get(1).get(0);
-        DBL = new DataBaseLayer("UPDATE examen SET `id_compte_rendu` ="+id_cr+" WHERE `id_examen`="+idExam+";");
-    }
     
     public void ajouterPatient(Patient p){
         patients.add(p);

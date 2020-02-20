@@ -16,25 +16,28 @@ import nf.*;
  */
 public class DMR extends javax.swing.JPanel {
 
-    private Patient patient;
-    private Accueil a;
-    private nf.DMR dmr;
-
+    private Controler controler;
     /**
      * Creates new form DMR
      */
-    public DMR(Patient patient, Accueil a) {
-        this.patient = patient;
-        this.a = a;
+    public DMR(Controler controler) {
+        this.controler=controler;
+        Patient p = controler.getCurrentPatient();
+        controler.chargeDMR();
         initComponents();
-        idLabel.setText(String.valueOf(patient.getIdPatient()));
-        nameLabel.setText(patient.getNomUsuel());
-        firstNameLabel.setText(patient.getPrenom());
-        nssLabel.setText(patient.getNss());
-        DDNLabel.setText(patient.getDateDeNaissance());
-        GenderLabel.setText(patient.getGenre());
-        dmr = patient.getDmr();
-        int nbExam = dmr.getExamen().size();
+        idLabel.setText(String.valueOf(p.getIdPatient()));
+        nameLabel.setText(p.getNomUsuel());
+        firstNameLabel.setText(p.getPrenom());
+        nssLabel.setText(p.getNss());
+        DDNLabel.setText(p.getDateDeNaissance());
+        GenderLabel.setText(p.getGenre());
+        initTable();
+
+    }
+    
+    public void initTable(){
+        Patient p = controler.getCurrentPatient();
+        int nbExam = p.getDmr().getExamen().size();
         /*création et remplissage du tableau*/
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("Nom");
@@ -51,23 +54,23 @@ public class DMR extends javax.swing.JPanel {
         ImageIcon nouveauIcon = new ImageIcon("nouveau.png");
         /*remplit les lignes du tableau jusqu'à ce que la liste soit finie*/
         for (int i = 0; i < nbExam; i++) {
-            ExamTable.setValueAt(dmr.getExamen().get(i).getNomExamen(), i, 0);
-            ExamTable.setValueAt(dmr.getExamen().get(i).getDateDebut(), i, 1);
-            ExamTable.setValueAt(dmr.getExamen().get(i).getIdExam(), i, 2);
+            ExamTable.setValueAt(p.getDmr().getExamen().get(i).getNomExamen(), i, 0);
+            ExamTable.setValueAt(p.getDmr().getExamen().get(i).getDateDebut(), i, 1);
+            ExamTable.setValueAt(p.getDmr().getExamen().get(i).getIdExam(), i, 2);
             //mettre des icônes à la place des String
-            if (dmr.getExamen().get(i).getImage() != 0) {
+            if (p.getDmr().getExamen().get(i).getImage() != 0) {
                 ExamTable.setValueAt(imageIcon, i, 3);
             } else {
                 ExamTable.setValueAt(numeriserIcon, i, 3);
             }
-            if (dmr.getExamen().get(i).getCr() != 0) {
+            if (p.getDmr().getExamen().get(i).getCr() != 0) {
                 ExamTable.setValueAt(pdfIcon, i, 4);
             } else {
                 ExamTable.setValueAt(nouveauIcon, i, 4);
             }
             ExamTable.setValueAt(pdfIcon, i, 5);
         }
-
+        repaint();
     }
 
     /**
@@ -231,39 +234,41 @@ public class DMR extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void CloseDMRMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CloseDMRMouseClicked
-        getA().CloseDMR();
+        controler.CloseDMR();
     }//GEN-LAST:event_CloseDMRMouseClicked
 
     private void ExamTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExamTableMouseClicked
         int row = ExamTable.getSelectedRow();
         int column = ExamTable.getSelectedColumn();
-        Examen e = dmr.getExamen().get(row);
+        Patient p = controler.getCurrentPatient();
+        Examen e = p.getDmr().getExamen().get(row);
+        controler.setCurrentExam(e);
         /*si on clique sur la case image*/
         if (column == 3) {
             /*soit ça ouvre la fenêtre de numérisation*/
             if (e.getImage()==0) {
-                new NumeriserExamen().setVisible(true);
+                new NumeriserExamen(controler).setVisible(true);
             } 
             /*soit ça ouvre l'image (jframe image)*/ 
             else {
-                new Image().setVisible(true); //remplacer rien par e.getImage()
+                new Image(controler).setVisible(true); //remplacer rien par e.getImage()
             }
         }
         /*si on clique sur la case CR*/
         if (column == 4) {
             /*soit ça ouvre la fenêtre ajouter CR*/
             if (e.getCr()==0) {
-                new EcrireCR(e.getId_exam(),this).setVisible(true);
+                new EcrireCR(controler).setVisible(true);
             }
             /*soit ça ouvre le CR*/
             else {
-                new CR(e.getCr()).setVisible(true);
+                new CR(controler).setVisible(true);
             }
         }
     }//GEN-LAST:event_ExamTableMouseClicked
 
     private void SaveExamButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SaveExamButtonMouseClicked
-        new EnregistrerExamen(getA(), getPatient()).setVisible(true);
+        new EnregistrerExamen(controler).setVisible(true);
     }//GEN-LAST:event_SaveExamButtonMouseClicked
 
 
@@ -296,14 +301,5 @@ public class DMR extends javax.swing.JPanel {
     /**
      * @return the patient
      */
-    public Patient getPatient() {
-        return patient;
-    }
-
-    /**
-     * @return the a
-     */
-    public Accueil getA() {
-        return a;
-    }
+    
 }

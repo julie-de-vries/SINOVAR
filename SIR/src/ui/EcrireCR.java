@@ -14,16 +14,14 @@ import nf.Professionnel;
  * @author Julie
  */
 public class EcrireCR extends javax.swing.JFrame {
-    int idExam;
-    DMR dmr;
+    private Controler controler;
     /**
      * Creates new form EcrireCR
      */
-    public EcrireCR(int idExam,DMR dmr) {
+    public EcrireCR(Controler controler) {
+        this.controler = controler;
         initComponents();
         this.setTitle("Écrire le compte-rendu");
-        this.idExam = idExam;
-        this.dmr=dmr;
     }
 
     /**
@@ -97,15 +95,10 @@ public class EcrireCR extends javax.swing.JFrame {
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         final String title = title_field.getText();
         final String content = content_area.getText();
-        Controleur c = new Controleur();
-        c.ajouterCR(idExam,title,content);
+        
+        controler.ajouterCRBDD(title,content);
         this.dispose();
-        Patient pa = dmr.getPatient();
-        Professionnel p = dmr.getA().getCurrentUser();
-        dmr.getA().dispose();
-        Accueil a=new Accueil(p);
-        a.setVisible(true);
-        a.ouvrirDMR(pa);
+        controler.refreshDMR();
     }//GEN-LAST:event_jButton1MouseClicked
 
     /**

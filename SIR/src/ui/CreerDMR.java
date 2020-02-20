@@ -18,12 +18,12 @@ import nf.Professionnel;
  * @author Julie
  */
 public class CreerDMR extends javax.swing.JFrame {
-    Accueil a;
+    private Controler controler;
     /**
      * Creates new form CreerDMR
      */
-    public CreerDMR(Accueil a) {
-        this.a = a;
+    public CreerDMR(Controler controler) {
+        this.controler = controler;
         initComponents();
         this.setTitle("Création d'un DMR");
     }
@@ -285,23 +285,28 @@ public class CreerDMR extends javax.swing.JFrame {
         if (adresse.length() > 60) {
                 champsTropLongs += "L'adresse ne doit pas dépasser 60 caractère";
             }
-        if (champsVides.equals("") && champsTropLongs.equals("")) {
-            //récupere l'id patient a partir de la base de donnees
-            boolean b = a.getSir().ajouterPatientBDD(nomNaissance, nomUsuel, prenom, nss, tel, adresse, dateDeNaissance, genre);
-            if(b){
-            Professionnel p = a.getCurrentUser();
-            a.dispose();
-            a = new Accueil(p);
-            a.setVisible(true);
-            this.dispose();
+        if (champsVides.isEmpty() && champsTropLongs.isEmpty()) {
+            boolean ajout =controler.ajouterPatientBDD(nomNaissance, nomUsuel, prenom, nss, tel, adresse, dateDeNaissance, genre);
+            if(ajout){
+                this.dispose();
+                controler.refreshAccueil();
             }
-            else{
-                new Erreur("Le patient a déjà été rentré");
-            }
+            
+            
         }
         else {
-            champsVides="Les champs suivants n'ont pas été renseignés :"+champsVides;
-            new Erreur(champsVides+"\n"+champsTropLongs).setVisible(true);
+            String erreur = "";
+            if(!champsVides.isEmpty()){
+                champsVides="Les champs suivants n'ont pas été renseignés :"+champsVides;
+                erreur+=champsVides;
+            }
+            else if(!champsTropLongs.isEmpty()){
+                erreur+=champsTropLongs;
+            }
+            else{
+                erreur="Les champs suivants n'ont pas été renseignés :"+champsVides+"\n"+champsTropLongs;
+            }
+            new Erreur(erreur).setVisible(true);
         }
     }//GEN-LAST:event_ValiderMouseClicked
 

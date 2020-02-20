@@ -20,14 +20,12 @@ import nf.TypeExam;
  * @author Julie
  */
 public class EnregistrerExamen extends javax.swing.JFrame {
-    Accueil a;
-    Patient p;
+    private Controler controler;
     /**
      * Creates new form EnregistrerExamen
      */
-    public EnregistrerExamen(Accueil a, Patient p) {
-        this.a = a;
-        this.p = p;
+    public EnregistrerExamen(Controler controler) {
+        this.controler=controler;
         initComponents();
     }
 
@@ -376,15 +374,12 @@ public class EnregistrerExamen extends javax.swing.JFrame {
         }
         String dateDebutBDD = formatDateTimeBDD.format(dateDebut);
         String dateFinBDD = formatDateTimeBDD.format(dateFin);
-        Professionnel medecin = a.getSir().chercherProfessionnel(MedecinFieldNom.getText(),MedecinFieldPrenom.getText());//relier BDD
+        Professionnel medecin = controler.getSir().chercherProfessionnel(MedecinFieldNom.getText(),MedecinFieldPrenom.getText());//relier BDD
         TypeExam type = TypeExam.valueOf(TypeExamen.getSelectedItem().toString());
-        a.getSir().ajouterExamBDD(type,localisation_examen,notes,dateDebutBDD,dateFinBDD,salle,dose_exam,libelleDose,p.getIdPatient(),medecin, Code.ENREGISTREMENT);
+        Patient p = controler.getCurrentPatient();
+        controler.ajouterExamBDD(type,localisation_examen,notes,dateDebutBDD,dateFinBDD,salle,dose_exam,libelleDose,p.getIdPatient(),medecin, Code.enregistrement);
         this.dispose();
-        Professionnel p = a.getCurrentUser();
-        a.dispose();
-        a=new Accueil(p);
-        a.setVisible(true);
-        a.ouvrirDMR(this.p);
+        controler.refreshDMR();
     }//GEN-LAST:event_ValiderActionPerformed
 
     private void AnnulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AnnulerActionPerformed
