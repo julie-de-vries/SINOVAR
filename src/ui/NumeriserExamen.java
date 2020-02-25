@@ -7,6 +7,10 @@ package ui;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
+import nf.DataBaseLayer;
+import nf.Numeriseur;
+import nf.PgmImage;
 
 /**
  *
@@ -74,7 +78,7 @@ public class NumeriserExamen extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        numeriseur = new javax.swing.JComboBox<>();
         jPanel5 = new javax.swing.JPanel();
         résol_panel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -118,20 +122,20 @@ public class NumeriserExamen extends javax.swing.JFrame {
         jLabel1.setText("Choisir un numériseur");
         jPanel4.add(jLabel1, new java.awt.GridBagConstraints());
 
-        jComboBox1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ACME D30-X", "EPSON SCAN", "HP SMART", "CANON", " " }));
-        jComboBox1.setMinimumSize(new java.awt.Dimension(120, 35));
-        jComboBox1.setName(""); // NOI18N
-        jComboBox1.setPreferredSize(new Dimension(250,35));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        numeriseur.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        numeriseur.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ACME D30X", "EPSON SCAN", "HP SMART", "CANON", " " }));
+        numeriseur.setMinimumSize(new java.awt.Dimension(120, 35));
+        numeriseur.setName(""); // NOI18N
+        numeriseur.setPreferredSize(new Dimension(250,35));
+        numeriseur.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                numeriseurActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 1;
         gridBagConstraints.insets = new java.awt.Insets(30, 0, 0, 0);
-        jPanel4.add(jComboBox1, gridBagConstraints);
+        jPanel4.add(numeriseur, gridBagConstraints);
 
         choix_panel.add(jPanel4);
 
@@ -195,20 +199,20 @@ public class NumeriserExamen extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void numeriseurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numeriseurActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_numeriseurActionPerformed
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
         this.dispose();
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void ValiderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ValiderMouseClicked
-        final String acmed30x_location="https://assets.aboutkidshealth.ca/akhassets/BT_Neuro_MRI2_MEDIMG-PHO_EN.jpg?RenditionID=10";
-        final String epsonscan_location="https://assets.aboutkidshealth.ca/akhassets/BT_Neuro_MRI2_MEDIMG-PHO_EN.jpg?RenditionID=10";
-        final String hpsmart_location="https://assets.aboutkidshealth.ca/akhassets/BT_Neuro_MRI2_MEDIMG-PHO_EN.jpg?RenditionID=10";
-        final String canon_location="https://assets.aboutkidshealth.ca/akhassets/BT_Neuro_MRI2_MEDIMG-PHO_EN.jpg?RenditionID=10";
-        
+        //enregistre l'image dans le pacs
+        String numeriseurChoisi = (String) numeriseur.getSelectedItem();
+        String adresse = Numeriseur.valueOf(numeriseurChoisi.replaceAll(" ","")).getAdresse();
+        controler.ajouterImageBDD(adresse);
+        this.dispose();
     }//GEN-LAST:event_ValiderMouseClicked
 
     /**
@@ -266,13 +270,13 @@ public class NumeriserExamen extends javax.swing.JFrame {
     private javax.swing.JPanel bouton_panel;
     private javax.swing.JPanel choix_panel;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JComboBox<String> numeriseur;
     private javax.swing.JPanel résol_panel;
     private javax.swing.JLabel titre_label;
     private javax.swing.JPanel titre_panel;

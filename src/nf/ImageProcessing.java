@@ -49,7 +49,7 @@ public class ImageProcessing {
     public void rotateToRight(){
         int         height  = img.getWidth();
         int         width = img.getHeight();
-        BufferedImage   newImage = new BufferedImage( width, height, img.getType() );
+        BufferedImage   newImage = new BufferedImage( width, height, BufferedImage.TYPE_INT_ARGB );
 
         for( int i=0 ; i < width ; i++ )
             for( int j=0 ; j < height ; j++ )
@@ -61,7 +61,7 @@ public class ImageProcessing {
     public void rotateToLeft(){
         int         height  = img.getWidth();
         int         width = img.getHeight();
-        BufferedImage   newImage = new BufferedImage( width, height, img.getType() );
+        BufferedImage   newImage = new BufferedImage( width, height, BufferedImage.TYPE_INT_ARGB );
 
         for( int i=0 ; i < width ; i++ )
             for( int j=0 ; j < height ; j++ )
@@ -73,11 +73,11 @@ public class ImageProcessing {
     public void flipVertically(){
         int         width  = img.getWidth();
         int         height = img.getHeight();
-        BufferedImage   newImage = new BufferedImage( height, width, img.getType() );
+        BufferedImage   newImage = new BufferedImage( width, height, BufferedImage.TYPE_INT_ARGB );
 
         for( int i=0 ; i < width ; i++ )
             for( int j=0 ; j < height ; j++ )
-                newImage.setRGB( height-1-j, i, img.getRGB(i,j) );
+                newImage.setRGB( width-1-i,j,  img.getRGB(i,j) );
 
         img=newImage;
     }
@@ -85,11 +85,10 @@ public class ImageProcessing {
     public void flipHorizontally(){
         int         width  = img.getWidth();
         int         height = img.getHeight();
-        BufferedImage   newImage = new BufferedImage( height, width, img.getType() );
-
+        BufferedImage   newImage = new BufferedImage( width, height, BufferedImage.TYPE_INT_ARGB );
         for( int i=0 ; i < width ; i++ )
             for( int j=0 ; j < height ; j++ )
-                newImage.setRGB( j, width-1-i, img.getRGB(i,j) );
+                newImage.setRGB(  i,height-1-j, img.getRGB(i,j) );
 
         img=newImage;
     }
@@ -97,7 +96,7 @@ public class ImageProcessing {
     public void brighten(float f){
         int         width  = img.getWidth();
         int         height = img.getHeight();
-        BufferedImage   newImage = new BufferedImage( width, height, img.getType() );
+        BufferedImage   newImage = new BufferedImage( width, height, BufferedImage.TYPE_INT_ARGB );
         for( int i=0 ; i < height ; i++ ){
             for( int j=0 ; j < width ; j++ ){
                 Color c=new Color(imgInit.getRGB(i, j));

@@ -6,6 +6,7 @@
 package ui;
 
 import java.awt.Dimension;
+import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
@@ -16,62 +17,193 @@ import nf.Identifications;
  * @author Julie
  */
 public class Connexion extends javax.swing.JFrame {
+    private javax.swing.JPanel BOTTOM;
+    private javax.swing.JPanel CENTER;
+    private javax.swing.JPanel LEFT;
+    private javax.swing.JPanel RIGHT;
+    private javax.swing.JPanel TOP;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JPasswordField password_field;
+    private javax.swing.JTextField id_field;
     private Controler controler;
     /**
      * Creates new form Connexion
      */
     public Connexion(Controler controler) {
         this.controler= controler;
-        initComponents();
-        //récuperer la dimension de l'écran
+        initComponents_perso();
+        //pour récupérer la taille du moniteur
         Dimension tailleMoniteur = Toolkit.getDefaultToolkit().getScreenSize();
-        int longueur = tailleMoniteur.width*2/3;
-        int hauteur = tailleMoniteur.height*2/3;
-        System.out.println(longueur);
-        System.out.println(hauteur);
-        //régler la taille de JFrame à 2/3 la taille de l'écran
+        //récupérer les insets (enlever les marges)
+        Insets insets = Toolkit.getDefaultToolkit().getScreenInsets(getGraphicsConfiguration());
+        int longueur = (tailleMoniteur.width - insets.left - insets.right);
+        int hauteur = (tailleMoniteur.height - insets.top - insets.bottom);
         this.setSize(longueur, hauteur);
         this.setTitle("Se connecter au SIR 1.0");
         this.setLocationRelativeTo(null);
         this.setVisible(true);
         //this.setResizable(false);
-
-        int longueur1 = longueur*2/3;
-        int hauteur1 = hauteur*1/3;
-        
-        message_panel.setPreferredSize(new Dimension(longueur1, hauteur1));
-        System.out.println(longueur1);
-        connexion_panel.setPreferredSize(new Dimension(longueur1, hauteur1));
-        System.out.println(hauteur1);
-        deco_panel.setPreferredSize(new Dimension(longueur1, hauteur1));
-        
         
     }
     public Connexion() {
-        initComponents();
-        //récuperer la dimension de l'écran
+        initComponents_perso();
+        //pour récupérer la taille du moniteur
         Dimension tailleMoniteur = Toolkit.getDefaultToolkit().getScreenSize();
-        int longueur = tailleMoniteur.width*2/3;
-        int hauteur = tailleMoniteur.height*2/3;
-        System.out.println(longueur);
-        System.out.println(hauteur);
-        //régler la taille de JFrame à 2/3 la taille de l'écran
+        //récupérer les insets (enlever les marges)
+        Insets insets = Toolkit.getDefaultToolkit().getScreenInsets(getGraphicsConfiguration());
+        int longueur = (tailleMoniteur.width - insets.left - insets.right);
+        int hauteur = (tailleMoniteur.height - insets.top - insets.bottom);
         this.setSize(longueur, hauteur);
         this.setTitle("Se connecter au SIR 1.0");
         this.setLocationRelativeTo(null);
         this.setVisible(true);
         //this.setResizable(false);
+        
+    }
+    private void initComponents_perso(){
+        java.awt.GridBagConstraints gridBagConstraints;
 
-        int longueur1 = longueur*2/3;
-        int hauteur1 = hauteur*1/3;
-        
-        message_panel.setPreferredSize(new Dimension(longueur1, hauteur1));
-        System.out.println(longueur1);
-        connexion_panel.setPreferredSize(new Dimension(longueur1, hauteur1));
-        System.out.println(hauteur1);
-        deco_panel.setPreferredSize(new Dimension(longueur1, hauteur1));
-        
-        
+        TOP = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        RIGHT = new javax.swing.JPanel();
+        CENTER = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        id_field = new javax.swing.JTextField();
+        password_field = new javax.swing.JPasswordField();
+        jButton1 = new javax.swing.JButton();
+        LEFT = new javax.swing.JPanel();
+        BOTTOM = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        TOP.setBackground(new java.awt.Color(247, 250, 253));
+
+        jPanel1.setBackground(new java.awt.Color(240, 144, 141));
+        jPanel1.setLayout(new java.awt.GridBagLayout());
+
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Le Système d'Information Radiologique n'est accessible qu'aux Praticiens Hospitaliers,  ");
+        jLabel2.setToolTipText("");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 0, 10);
+        jPanel1.add(jLabel2, gridBagConstraints);
+
+        jLabel7.setText("manipaulateurs(trices) en électroradiologie médicale et secrétaires médicales");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 10, 10);
+        jPanel1.add(jLabel7, gridBagConstraints);
+
+        TOP.add(jPanel1);
+
+        getContentPane().add(TOP, java.awt.BorderLayout.PAGE_START);
+
+        RIGHT.setBackground(new java.awt.Color(247, 250, 253));
+
+        javax.swing.GroupLayout RIGHTLayout = new javax.swing.GroupLayout(RIGHT);
+        RIGHT.setLayout(RIGHTLayout);
+        RIGHTLayout.setHorizontalGroup(
+            RIGHTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        RIGHTLayout.setVerticalGroup(
+            RIGHTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 305, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(RIGHT, java.awt.BorderLayout.LINE_END);
+
+        CENTER.setBackground(new java.awt.Color(153, 153, 153));
+        CENTER.setLayout(new java.awt.GridBagLayout());
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setText("Connexion");
+        CENTER.add(jLabel1, new java.awt.GridBagConstraints());
+
+        jLabel3.setText("Identifiant :");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(40, 0, 0, 0);
+        CENTER.add(jLabel3, gridBagConstraints);
+
+        jLabel4.setText("Mot de passe :");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 0);
+        CENTER.add(jLabel4, gridBagConstraints);
+
+        id_field.setMinimumSize(new java.awt.Dimension(80, 30));
+        id_field.setPreferredSize(new java.awt.Dimension(80, 30));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.insets = new java.awt.Insets(40, 0, 0, 0);
+        CENTER.add(id_field, gridBagConstraints);
+
+        password_field.setMinimumSize(new java.awt.Dimension(80, 30));
+        password_field.setPreferredSize(new java.awt.Dimension(80, 30));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 0);
+        CENTER.add(password_field, gridBagConstraints);
+
+        jButton1.setText("Se connecter");
+        jButton1.addMouseListener(new java.awt.event.MouseListener() {
+            public void mouseClicked(java.awt.event.MouseEvent evt){
+                jButton2MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt){}
+            public void mouseExited(java.awt.event.MouseEvent evt){}
+            public void mouseReleased(java.awt.event.MouseEvent evt){}
+            public void mousePressed(java.awt.event.MouseEvent evt){}
+        });
+        jButton1.addKeyListener(new java.awt.event.KeyListener(){
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButton2KeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {}
+            public void keyTyped(java.awt.event.KeyEvent evt) {}
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.insets = new java.awt.Insets(40, 0, 0, 0);
+        CENTER.add(jButton1, gridBagConstraints);
+
+        getContentPane().add(CENTER, java.awt.BorderLayout.CENTER);
+
+        LEFT.setBackground(new java.awt.Color(247, 250, 253));
+
+        javax.swing.GroupLayout LEFTLayout = new javax.swing.GroupLayout(LEFT);
+        LEFT.setLayout(LEFTLayout);
+        LEFTLayout.setHorizontalGroup(
+            LEFTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        LEFTLayout.setVerticalGroup(
+            LEFTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 305, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(LEFT, java.awt.BorderLayout.LINE_START);
+
+        BOTTOM.setBackground(new java.awt.Color(247, 250, 253));
+        BOTTOM.setLayout(new javax.swing.BoxLayout(BOTTOM, javax.swing.BoxLayout.LINE_AXIS));
+
+        jLabel5.setText("image");
+        jLabel5.setToolTipText("");
+        BOTTOM.add(jLabel5);
+
+        getContentPane().add(BOTTOM, java.awt.BorderLayout.PAGE_END);
+
+        pack();
     }
 
     /**
@@ -298,8 +430,8 @@ public class Connexion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-        String id = this.id.getText();
-        String mdp = String.valueOf(this.mdp.getPassword());
+        String id = this.id_field.getText();
+        String mdp = String.valueOf(this.password_field.getPassword());
         boolean auth = controler.identifications(id, mdp);
         
         if(auth){

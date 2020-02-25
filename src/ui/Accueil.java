@@ -127,7 +127,6 @@ public class Accueil extends javax.swing.JFrame {
         });
 
         DMRTable.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        DMRTable.setForeground(new java.awt.Color(255, 255, 255));
         DMRTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"Effectuez une recherche", null},

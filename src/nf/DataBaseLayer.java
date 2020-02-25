@@ -11,6 +11,7 @@ package nf;
  */
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
@@ -21,7 +22,6 @@ public class DataBaseLayer {
     private ArrayList<ArrayList<String>> result = new ArrayList<>();
     private int modification;
     private Connection connexion;
-    private BufferedImage buffImg;
             
     public DataBaseLayer(String requete) {
         //Récupération des données SQL
@@ -80,8 +80,46 @@ public class DataBaseLayer {
             }
         }
     }
-
-    public DataBaseLayer(String requete, String retrieveImage) {
+    public DataBaseLayer(){}
+    
+    public DataBaseLayer(String requete, BufferedImage img) {
+        //Récupération des données SQL
+        /* Chargement du driver JDBC pour MySQL */
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            /* Gérer les éventuelles erreurs ici. */
+            e.printStackTrace();
+        }
+        /* Connexion à la base de données */
+        String url = "jdbc:mysql://localhost:3306/database_sinovar?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+        String user = "Julie";
+        String password = "sinovAr4";
+        Connection connexion = null;
+        try {
+            connexion = DriverManager.getConnection(url, user, password);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        PreparedStatement pstmt = null;
+        ByteArrayInputStream imageBlobStream = getBlobByImage(img);
+ 
+        try {
+            pstmt = 
+                (PreparedStatement) connexion.prepareStatement(requete);
+            pstmt.setBinaryStream(1,imageBlobStream,imageBlobStream.available());
+//          execute statement
+            pstmt.executeUpdate();
+            System.out.println("generic part added in the DB");
+            pstmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("\n DB Error :can not perform query : \"" + requete + "\"");
+        }
+    
+    }
+    
+    public BufferedImage getBuffImg(String requete) {
         //Récupération des données SQL
         /* Chargement du driver JDBC pour MySQL */
         try {
@@ -106,6 +144,7 @@ public class DataBaseLayer {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        BufferedImage buffImg = null ;
         try {
             /* Création de l'objet gérant les requêtes */
  /* Exécution d'une requête de lecture */
@@ -140,8 +179,27 @@ public class DataBaseLayer {
                 }
             }
         }
+        return buffImg;
     }
-
+    private ByteArrayInputStream getBlobByImage(BufferedImage buff) {        
+            byte[] imageBytes;
+            if(buff != null) {
+                 BufferedImage bImage = (BufferedImage)buff;
+                 ByteArrayOutputStream baos = new ByteArrayOutputStream(1024);
+                 try {
+                     ImageIO.write(bImage, "jpeg", baos);
+                 } catch (IOException e) {
+                     throw new IllegalStateException(e.toString());
+                 }
+                 imageBytes = baos.toByteArray();    
+            }
+            else {
+             imageBytes = new byte[0];
+             System.out.println("PCD error : the buffered image is null");
+            }
+            ByteArrayInputStream inStream = new ByteArrayInputStream(imageBytes);
+            return inStream;        
+    }
     /**
      * @return the resultat
      */
@@ -186,8 +244,5 @@ public class DataBaseLayer {
     /**
      * @return the buffImg
      */
-    public BufferedImage getBuffImg() {
-        return buffImg;
-    }
 
 }

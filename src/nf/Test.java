@@ -135,12 +135,15 @@ public class Test {
         //sir.afficherExamProfessionnel(pro5);
 
 //        agenda.afficherAgenda(pro1, "04041959");*/
-        String title ="rien";
-        String content ="ça m'a saoulé";
-        DataBaseLayer DBL = new DataBaseLayer("Insert into database_sinovar.compte_rendu(titre,contenu) values('"+title+"','"+content+"');"); 
-        DBL = new DataBaseLayer("SELECT id_compte_rendu FROM compte_rendu ORDER BY id_compte_rendu DESC;");
-        String id_cr = DBL.getResult().get(1).get(0);
-        System.out.println(id_cr);
+//        String title ="rien";
+//        String content ="ça m'a saoulé";
+//        DataBaseLayer DBL = new DataBaseLayer("Insert into database_sinovar.compte_rendu(titre,contenu) values('"+title+"','"+content+"');"); 
+//        DBL = new DataBaseLayer("SELECT id_compte_rendu FROM compte_rendu ORDER BY id_compte_rendu DESC;");
+//        String id_cr = DBL.getResult().get(1).get(0);
+//        System.out.println(id_cr);
+          String s = "je met des espaces";
+          String s2 = "        ";
+          System.out.println(s.replaceAll(" ",""));
     }
     
 

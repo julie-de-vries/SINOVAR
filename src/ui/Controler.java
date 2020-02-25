@@ -19,6 +19,7 @@ import nf.Examen;
 import nf.LocalisationExamen;
 import nf.Metier;
 import nf.Patient;
+import nf.PgmImage;
 import nf.Professionnel;
 import nf.Professionnels;
 import nf.SIR;
@@ -137,7 +138,18 @@ public class Controler {
         String id_cr = DBL.getResult().get(1).get(0);
         DBL = new DataBaseLayer("UPDATE examen SET `id_compte_rendu` =" + id_cr + " WHERE `id_examen`=" + idExam + ";");
     }
-
+    /**
+     * @ajoute l'image à l'examen courant et l'enregistre dans le pacs
+     */
+    public void ajouterImageBDD(String adresse){
+        BufferedImage img = new PgmImage(adresse).getImg();
+        DataBaseLayer dbl = new DataBaseLayer("insert into database_sinovar.pacs(image) values(?);",img);
+        //associe l'image à l'examen courant
+        dbl = new DataBaseLayer("SELECT numero_archivage FROM pacs ORDER BY numero_archivage DESC;");
+        String id_img = dbl.getResult().get(1).get(0);//récupère le dernier id ajouté dans le pacs
+        dbl = new DataBaseLayer("UPDATE examen SET `numero_archivage` ="+id_img+" WHERE `id_examen`="+currentExam.getIdExam()+";");
+    }
+    
     public boolean ajouterPatientBDD(String nomNaissance, String nomUsuel, String prenom, String nss, String tel, String adresse, String dateDeNaissance, String genre) {
         boolean doublon = false;
         DataBaseLayer DBL = new DataBaseLayer("Select * from database_sinovar.patient where nom_usuel_patient= '" + nomUsuel + "' and prenom = '" + prenom + "' and dateDeNaissance = '" + dateDeNaissance + "';");
@@ -254,7 +266,7 @@ public class Controler {
     
     public BufferedImage getImage(){
         int idImage = currentExam.getImage();
-        DataBaseLayer DBL = new DataBaseLayer("SELECT image FROM database_sinovar.pacs WHERE numero_archivage ="+idImage+";","blob");
-        return DBL.getBuffImg();
+        DataBaseLayer DBL = new DataBaseLayer();
+        return DBL.getBuffImg("SELECT image FROM database_sinovar.pacs WHERE numero_archivage ="+idImage+";");
     }
 }

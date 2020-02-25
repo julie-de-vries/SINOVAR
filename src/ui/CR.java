@@ -6,6 +6,7 @@
 package ui;
 
 import nf.DataBaseLayer;
+import nf.Patient;
 
 /**
  *
@@ -17,6 +18,23 @@ public class CR extends javax.swing.JFrame {
      * Creates new form CR
      */
     private Controler controler;
+    //declaration des composants
+    private javax.swing.JButton Print;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    
     public CR() {
         initComponents();
     }
@@ -30,9 +48,163 @@ public class CR extends javax.swing.JFrame {
         String content = dbl.getResult().get(1).get(2);
         jLabel1.setText(title);
         jTextArea1.setText(content);
+        Patient p = controler.getCurrentPatient();
+        jLabel6.setText(p.getNomNaissance()+" "+p.getPrenom()); //nom et prenom du patient
+        jLabel7.setText(p.getAdresse()); //adresse du patient
+        jLabel6.setText(""); //code postal + ville
+        
+        jLabel9.setText(p.getNss());//numero securite sociale
+        jLabel10.setText("Compte-rendu du :"+controler.getCurrentExam().getDateDebut()); //date de l'examen
        
     }
+    private void initComponent_perso(){
+        java.awt.GridBagConstraints gridBagConstraints;
 
+        jPanel4 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        Print = new javax.swing.JButton();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setAlwaysOnTop(true);
+        setBackground(new java.awt.Color(247, 250, 253));
+        getContentPane().setLayout(new java.awt.GridBagLayout());
+
+        jLabel1.setText("JLabel1 et encore beaucoup");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel4Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jLabel1)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel4Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jLabel1)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 23, 0);
+        getContentPane().add(jPanel4, gridBagConstraints);
+
+        jPanel1.setBackground(new java.awt.Color(247, 250, 253));
+        jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.PAGE_AXIS));
+
+        jLabel2.setText("Hôpital de Princeton Plainsboro");
+        jPanel1.add(jLabel2);
+
+        jLabel3.setText("23 Avenue de la Place Rose");
+        jPanel1.add(jLabel3);
+
+        jLabel4.setText("38000 Grenoble");
+        jPanel1.add(jLabel4);
+
+        jLabel5.setText("Tél. : 04.56.28.95.10");
+        jPanel1.add(jLabel5);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+        getContentPane().add(jPanel1, gridBagConstraints);
+
+        jPanel2.setBackground(new java.awt.Color(247, 250, 253));
+        jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.PAGE_AXIS));
+
+        jLabel6.setText("Nom Prénom et beaucoup d'information encore");
+        jPanel2.add(jLabel6);
+
+        jLabel7.setText("Adresse");
+        jPanel2.add(jLabel7);
+
+        jLabel8.setText("Code Postal");
+        jPanel2.add(jLabel8);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
+        getContentPane().add(jPanel2, gridBagConstraints);
+
+        jPanel3.setBackground(new java.awt.Color(247, 250, 253));
+        jPanel3.setLayout(new javax.swing.BoxLayout(jPanel3, javax.swing.BoxLayout.PAGE_AXIS));
+
+        jLabel9.setText("Numero de S.S");
+        jPanel3.add(jLabel9);
+
+        jLabel10.setBackground(new java.awt.Color(247, 250, 253));
+        jLabel10.setText("Compte rendu du : jour/mois/annee");
+        jLabel10.setToolTipText("");
+        jPanel3.add(jLabel10);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 10, 0);
+        getContentPane().add(jPanel3, gridBagConstraints);
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 15;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridheight = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        getContentPane().add(jScrollPane1, gridBagConstraints);
+
+        Print.setText("Imprimer");
+        Print.addMouseListener(new java.awt.event.MouseListener() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                PrintMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {}
+            public void mouseEntered(java.awt.event.MouseEvent evt) {}
+            public void mouseReleased(java.awt.event.MouseEvent evt) {}
+            public void mousePressed(java.awt.event.MouseEvent evt) {}
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 20;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_END;
+        getContentPane().add(Print, gridBagConstraints);
+
+        pack();
+    }
+    
+    public void PrintMouseClicked(java.awt.event.MouseEvent evt){
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

@@ -70,10 +70,11 @@ public class Image extends javax.swing.JFrame {
         horizontal = new javax.swing.JButton();
         vertical = new javax.swing.JButton();
         Brightness = new javax.swing.JSlider();
-        Terminer = new javax.swing.JButton();
+        CancelButton = new javax.swing.JButton();
         annoter = new javax.swing.JButton();
         notes = new javax.swing.JTextField();
         greyLevels = new javax.swing.JButton();
+        SaveButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -122,10 +123,10 @@ public class Image extends javax.swing.JFrame {
             }
         });
 
-        Terminer.setText("Terminer");
-        Terminer.addMouseListener(new java.awt.event.MouseAdapter() {
+        CancelButton.setText("Annuler");
+        CancelButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                TerminerMouseClicked(evt);
+                CancelButtonMouseClicked(evt);
             }
         });
 
@@ -145,21 +146,31 @@ public class Image extends javax.swing.JFrame {
             }
         });
 
+        SaveButton.setText("Enregistrer");
+        SaveButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                SaveButtonMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout CommandPanelLayout = new javax.swing.GroupLayout(CommandPanel);
         CommandPanel.setLayout(CommandPanelLayout);
         CommandPanelLayout.setHorizontalGroup(
             CommandPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(CommandPanelLayout.createSequentialGroup()
-                .addGroup(CommandPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CommandPanelLayout.createSequentialGroup()
+                .addGroup(CommandPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(CommandPanelLayout.createSequentialGroup()
-                        .addGroup(CommandPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(CommandPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(CommandPanelLayout.createSequentialGroup()
-                                    .addGap(51, 51, 51)
-                                    .addComponent(jLabel1)
-                                    .addGap(53, 53, 53))
-                                .addComponent(Terminer))
-                            .addGroup(CommandPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(SaveButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(CancelButton))
+                    .addComponent(notes)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, CommandPanelLayout.createSequentialGroup()
+                        .addGroup(CommandPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, CommandPanelLayout.createSequentialGroup()
+                                .addGap(51, 51, 51)
+                                .addComponent(jLabel1))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, CommandPanelLayout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(CommandPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(Brightness, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -169,8 +180,7 @@ public class Image extends javax.swing.JFrame {
                                     .addComponent(Rotationhoraire)
                                     .addComponent(greyLevels)
                                     .addComponent(annoter))))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(notes, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         CommandPanelLayout.setVerticalGroup(
@@ -195,7 +205,9 @@ public class Image extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(annoter)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Terminer))
+                .addGroup(CommandPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CancelButton)
+                    .addComponent(SaveButton)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -242,10 +254,9 @@ public class Image extends javax.swing.JFrame {
         afficherImage();
     }//GEN-LAST:event_annoterMouseClicked
 
-    private void TerminerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TerminerMouseClicked
-        img.getImg(); //enregistrer la nouvelle image par-dessus la précédente
+    private void CancelButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CancelButtonMouseClicked
         this.dispose();
-    }//GEN-LAST:event_TerminerMouseClicked
+    }//GEN-LAST:event_CancelButtonMouseClicked
 
     private void greyLevelsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_greyLevelsMouseClicked
         img.greyLevels();
@@ -257,6 +268,13 @@ public class Image extends javax.swing.JFrame {
         img.brighten(p);
         afficherImage();
     }//GEN-LAST:event_BrightnessMouseReleased
+
+    private void SaveButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SaveButtonMouseClicked
+        //enregistrer la nouvelle image par-dessus la précédente
+        int idImg = controler.getCurrentExam().getImage();
+        DataBaseLayer dbl = new DataBaseLayer("UPDATE pacs SET `image` = ? WHERE `numero_archivage`="+idImg+";",img.getImg());
+        this.dispose();
+    }//GEN-LAST:event_SaveButtonMouseClicked
 
     /**
      * @param args the command line arguments
@@ -295,11 +313,12 @@ public class Image extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSlider Brightness;
+    private javax.swing.JButton CancelButton;
     private javax.swing.JPanel CommandPanel;
     private javax.swing.JPanel ImagePanel;
     private javax.swing.JButton Rotationantihoraire;
     private javax.swing.JButton Rotationhoraire;
-    private javax.swing.JButton Terminer;
+    private javax.swing.JButton SaveButton;
     private javax.swing.JButton annoter;
     private javax.swing.JButton greyLevels;
     private javax.swing.JButton horizontal;
